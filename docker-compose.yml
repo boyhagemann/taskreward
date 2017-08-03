@@ -1,0 +1,41 @@
+version: '3.0'
+services:
+  maven:
+    build: ./neo4j-graphql
+    volumes:
+     - ./neo4j-graphql:/data
+  ubuntu:
+    build: .
+    volumes:
+     - .:/data
+  frontend:
+    build: ./frontend
+    ports:
+     - 3000:3000
+    volumes:
+     - ./frontend:/data
+    links:
+     - backend
+    environment:
+     - PORT=3000
+     - HOST=0.0.0.0
+     - CHOKIDAR_USEPOLLING=true
+  neo4j:
+    image: neo4j:3.2
+    ports:
+     - 7474:7474
+     - 7473:7473
+     - 7687:7687
+    volumes:
+    - ./neo4j/data:/data
+    - ./neo4j/conf:/conf
+    - ./neo4j/logs:/logs
+    - ./neo4j/plugins:/plugins
+  backend:
+    build: ./backend
+    ports:
+    - 3001:3000
+    links:
+    - neo4j
+    volumes:
+    - ./backend:/data

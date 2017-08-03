@@ -1,0 +1,20 @@
+
+`
+mutation CreateTask($task: TaskInput) {
+  createTask(input: $task) {
+    id
+  }
+}
+`
+
+// Query variables
+
+`
+{
+  "task": {
+    "owner": "1",
+    "name": "whaaaa",
+    "description": "whooo"
+  }
+}
+`
