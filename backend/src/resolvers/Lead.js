@@ -18,14 +18,17 @@ export const createLead = (_, { input }) => session
     CREATE (b)-[r:HAS_LEAD]->(a)
     RETURN a
   `,
-    { task: input.task, props: { ...input, id: id() } }
+    { task: input.task, props: { id: id(), ...input } }
   )
   .then(result => transformOne(result, session))
   .catch(handleError)
 
 
 export const getLeads = () => session
-  .run('MATCH (n1:Lead) RETURN n1 LIMIT 25')
+  .run(`
+    MATCH (n1:Lead)
+    RETURN n1
+  `)
   .then(result => transformMany(result, session))
   .catch(handleError)
 

@@ -1,4 +1,4 @@
-import Task from './Task'
+// import Task from './Task'
 // import Lead from './Lead'
 
 const User = `
@@ -9,6 +9,5 @@ type User {
   leads: [Lead]
 }
 `
-
 
 export default [User]

@@ -7,13 +7,7 @@ import cors from 'cors'
 import typeDefs from './types'
 import resolvers from './resolvers'
 
-let tasks = [
-  { id: 1, owner: 2, name: 'Some task', description: 'Some description', link: '/test' },
-  { id: 2, owner: 1, name: 'Some other task', description: 'Some description', link: '/test' },
-]
-
 const schema = makeExecutableSchema({ typeDefs, resolvers })
-
 const PORT = 3000;
 
 const app = express();
