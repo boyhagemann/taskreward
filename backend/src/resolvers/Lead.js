@@ -2,27 +2,26 @@ import { session, transformOne, transformMany, id, handleError } from './helpers
 import { findUser } from './User'
 import { findTask } from './Task'
 
-const leads = [
-  { id: "1", from: "1", to: "2", task: 'tatata',
-    description: 'This is something for you', status: 'some-status',
-   },
-  { id: "2", from: "1", to: "2", task: 'tatata',
-    description: 'Some other message', status: 'some-status',
-  },
-]
-
 export const createLead = (_, { input }) => session
   .run(`
     MATCH (b:Task { id: $task })
+    MATCH (c:User { id: $from })
+    MATCH (d:User { id: $to })
     CREATE (a:Lead $props)
-    CREATE (b)-[r:HAS_LEAD]->(a)
+    CREATE (b)-[r1:HAS_LEAD]->(a)
+    CREATE (c)-[r2:SENDS_LEAD]->(a)
+    CREATE (d)-[r3:RECEIVES_LEAD]->(a)
     RETURN a
   `,
-    { task: input.task, props: { id: id(), ...input } }
+    {
+      from: input.from,
+      to: input.to,
+      task: input.task,
+      props: { id: id(), ...input }
+    }
   )
   .then(result => transformOne(result, session))
   .catch(handleError)
-
 
 export const getLeads = () => session
   .run(`
@@ -40,8 +39,21 @@ export const findLeadsForTask = id => session
   .then(result => transformMany(result, session))
   .catch(handleError)
 
-export const findLeadsFrom = id => leads.find(lead => lead.from === id)
-export const findLeadsTo = id => leads.find(lead => lead.to === id)
+export const findLeadsFrom = id => session
+  .run(`
+    MATCH (a:Lead)<-[r:SENDS_LEAD]-(b:User { id: $id })
+    RETURN a LIMIT 1
+  `, { id })
+  .then(result => transformMany(result, session))
+  .catch(handleError)
+
+export const findLeadsTo = id => session
+  .run(`
+    MATCH (a:Lead)<-[r:RECEIVES_LEAD]-(b:Task { id: $id })
+    RETURN a LIMIT 1
+  `, { id })
+  .then(result => transformMany(result, session))
+  .catch(handleError)
 
 export default {
   from: (lead) => findUser(lead.from),

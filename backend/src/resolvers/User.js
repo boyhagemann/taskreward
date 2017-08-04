@@ -19,11 +19,11 @@ export const getUsers = () => session
   .then(result => transformMany(result, session))
   .catch(handleError)
 
-export const findUser = () => session
+export const findUser = id => session
   .run(`
-    MATCH (n1:User)
+    MATCH (n1:User { id: $id })
     RETURN n1 LIMIT 1
-  `)
+  `, { id })
   .then(result => transformOne(result, session))
   .catch(handleError)
 
