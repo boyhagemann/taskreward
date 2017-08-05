@@ -1,16 +1,27 @@
-import { session, transformOne, transformMany, id, handleError } from './helpers'
+import { session, transformOne, transformMany, id, handleError, encrypt } from './helpers'
 import { findTasksByUser } from './Task'
 import { findLeadsFrom, findLeadsTo } from './Lead'
 
-export const createUser = (_, { input }) => session
+const withPassword = (data, password) => {
+  const salt = id()
+  return { ...data, password: encrypt(password, salt) , salt }
+}
+
+export const createUser = (_, { input }) => {
+
+  const data = { id: id(), ...input }
+  const props = input.password ? withPassword(data, input.password) : data
+
+  return session
   .run(`
     CREATE (a:User $props)
     RETURN a
   `,
-    { props: { id: id(), ...input } }
+    { props }
   )
   .then(result => transformOne(result, session))
   .catch(handleError)
+}
 
 export const getUsers = () => session
   .run(`

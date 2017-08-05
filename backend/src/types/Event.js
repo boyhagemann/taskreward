@@ -1,6 +1,5 @@
 
 const Event = `
-scalar Date
 interface Event {
   id: ID
   createdAt: Date
