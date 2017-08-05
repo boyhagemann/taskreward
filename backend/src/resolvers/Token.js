@@ -18,6 +18,13 @@ const getToken = (email, password, salt) => session
     }
   )
 
+const handleInvalidCredentials = error => {
+  if(error.name && error.name === 'TransformException') {
+    return { message: 'Unauthorized'}
+  }
+  throw error
+}
+
 export const requestToken = (_, { email, password }) => session
   .run(`
     MATCH (a:User {email: $email})
@@ -26,14 +33,8 @@ export const requestToken = (_, { email, password }) => session
   .then(result => transformOne(result, session))
   .then( ({ salt }) => getToken(email, password, salt))
   .then(result => transformOne(result, session))
-  .catch(error => {
-
-    if(error.name && error.name === 'TransformException') {
-      return { message: 'Unauthorized'}
-    }
-
-    handleError(error)
-  })
+  .catch(handleInvalidCredentials)
+  .catch(handleError)
 
 export const isValidToken = () => true
 
