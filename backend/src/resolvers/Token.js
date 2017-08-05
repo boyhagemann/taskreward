@@ -26,7 +26,14 @@ export const requestToken = (_, { email, password }) => session
   .then(result => transformOne(result, session))
   .then( ({ salt }) => getToken(email, password, salt))
   .then(result => transformOne(result, session))
-  .catch(handleError)
+  .catch(error => {
+
+    if(error.name && error.name === 'TransformException') {
+      return { message: 'Unauthorized'}
+    }
+
+    handleError(error)
+  })
 
 export const isValidToken = () => true
 

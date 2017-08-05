@@ -11,7 +11,7 @@ export const mapRecord = ({ keys, _fields, _fieldLookup }) => keys.map(key => {
   return field.properties
 })[0]
 
-export const handleError = error => console.log(error)
+export const handleError = error => console.log('Handled error:', error)
 
 export const transformMany = (result, session) => {
 
@@ -20,13 +20,20 @@ export const transformMany = (result, session) => {
   return result.records.map(mapRecord)
 }
 
+function TransformException(message) {
+  this.message = message
+  this.name = 'TransformException'
+}
+
 export const transformOne = (result, session) => {
 
   session.close();
 
-  const singleRecord = result.records[0];
-  const node = singleRecord.get(0);
-  console.log('Result!!!!!', node)
+  const singleRecord = result.records[0]
+
+  if(!singleRecord) throw new TransformException('Record does not exist')
+
+  const node = singleRecord.get(0)
 
   return node.properties
 }
