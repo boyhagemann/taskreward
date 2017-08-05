@@ -6,7 +6,8 @@ type User {
   id: ID!
   email: String!
   tasks: [Task]
-  leads: [Lead]
+  sentLeads: [Lead]
+  receivedLeads: [Lead]
 }
 `
 

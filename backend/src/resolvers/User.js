@@ -1,5 +1,6 @@
 import { session, transformOne, transformMany, id, handleError } from './helpers'
 import { findTasksByUser } from './Task'
+import { findLeadsFrom, findLeadsTo } from './Lead'
 
 export const createUser = (_, { input }) => session
   .run(`
@@ -28,5 +29,7 @@ export const findUser = id => session
   .catch(handleError)
 
 export default {
-  tasks: (user) => findTasksByUser(user.id)
+  tasks: (user) => findTasksByUser(user.id),
+  sentLeads: (user) => findLeadsFrom(user.id),
+  receivedLeads: (user) => findLeadsTo(user.id)
 }

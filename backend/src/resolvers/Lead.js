@@ -34,7 +34,7 @@ export const getLeads = () => session
 export const findLeadsForTask = id => session
   .run(`
     MATCH (a:Lead)<-[r:HAS_LEAD]-(b:Task { id: $id })
-    RETURN a LIMIT 1
+    RETURN a
   `, { id })
   .then(result => transformMany(result, session))
   .catch(handleError)
@@ -42,15 +42,15 @@ export const findLeadsForTask = id => session
 export const findLeadsFrom = id => session
   .run(`
     MATCH (a:Lead)<-[r:SENDS_LEAD]-(b:User { id: $id })
-    RETURN a LIMIT 1
+    RETURN a
   `, { id })
   .then(result => transformMany(result, session))
   .catch(handleError)
 
 export const findLeadsTo = id => session
   .run(`
-    MATCH (a:Lead)<-[r:RECEIVES_LEAD]-(b:Task { id: $id })
-    RETURN a LIMIT 1
+    MATCH (a:Lead)<-[r:RECEIVES_LEAD]-(b:User { id: $id })
+    RETURN a
   `, { id })
   .then(result => transformMany(result, session))
   .catch(handleError)
