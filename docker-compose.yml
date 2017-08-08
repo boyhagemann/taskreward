@@ -1,9 +1,5 @@
 version: '3.0'
 services:
-  maven:
-    build: ./neo4j-graphql
-    volumes:
-     - ./neo4j-graphql:/data
   ubuntu:
     build: .
     volumes:
@@ -11,7 +7,8 @@ services:
   frontend:
     build: ./frontend
     ports:
-     - 3000:3000
+     - 3002:3000
+     - 9009:9009
     volumes:
      - ./frontend:/data
     links:
@@ -34,7 +31,7 @@ services:
   backend:
     build: ./backend
     ports:
-    - 3001:3000
+    - 3003:3000
     links:
     - neo4j
     volumes:

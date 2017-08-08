@@ -1,43 +1,30 @@
-import { session, transformOne, transformMany, id, handleError, encrypt } from './helpers'
-import { findUser } from './User'
-import { findLeadsForTask } from './Lead'
+import { sign } from 'jsonwebtoken'
+import { encrypt } from './helpers'
+import { findUserByEmail, isValidPassword } from './User'
+const secret = 'fdst3401$sxk&d&^@@WWQR%%wefq43o54@#F*&$%GGq23s'
 
-const getToken = (email, password, salt) => session
-  .run(`
-    MATCH (b:User { email: $email, password: $password })
-    OPTIONAL MATCH (b)-[:HAS_TOKEN]->(c:Token)
-    DETACH DELETE c
-    CREATE (a:Token { token: $token })
-    CREATE (b)-[:HAS_TOKEN]->(a)
-    RETURN a
-    `,
-    {
-      email,
-      password: encrypt(password, salt),
-      token: id()
+export const requestToken = async (_, { email, password }) => {
+
+  try {
+
+    const user = await findUserByEmail(email)
+
+    if(!user) {
+      throw new Error('User not found')
     }
-  )
 
-const handleInvalidCredentials = error => {
-  if(error.name && error.name === 'TransformException') {
-    return { message: 'Unauthorized'}
+    if(!isValidPassword(password, user.salt, user.password)) {
+      throw new Error('Invalid password')
+    }
+
+    const token = sign({ id: user.id }, secret)
+
+    return { ok: true, token }
+
   }
-  throw error
-}
+  catch(error) {
 
-export const requestToken = (_, { email, password }) => session
-  .run(`
-    MATCH (a:User {email: $email})
-    RETURN a LIMIT 1
-    `, { email })
-  .then(result => transformOne(result, session))
-  .then( ({ salt }) => getToken(email, password, salt))
-  .then(result => transformOne(result, session))
-  .catch(handleInvalidCredentials)
-  .catch(handleError)
+    return { ok: false, message: error }
+  }
 
-export const isValidToken = () => true
-
-export default {
-  user: (token) => findUser(token.user),
 }

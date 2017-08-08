@@ -2,7 +2,6 @@ import { session, id, handleError } from '../resolvers/helpers'
 import { createUser } from '../resolvers/User'
 import { createTask } from '../resolvers/Task'
 import { createLead } from '../resolvers/Lead'
-import { requestToken } from '../resolvers/Token'
 import users from './users'
 import tasks from './tasks'
 import leads from './leads'
@@ -32,12 +31,5 @@ leads.forEach(lead => {
   console.log('Seeding lead', lead)
   createLead(null, { input: lead })
 })
-
-console.log('Seeding token...')
-requestToken(null, {
-  email: 'first@email.com',
-  password: 'test'
-})
-
 
 console.log('Done!')

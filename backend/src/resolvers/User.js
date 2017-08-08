@@ -37,7 +37,15 @@ export const findUser = id => session
     RETURN n1 LIMIT 1
   `, { id })
   .then(result => transformOne(result, session))
-  .catch(handleError)
+
+export const findUserByEmail = email => session
+  .run(`
+    MATCH (n1:User { email: $email })
+    RETURN n1 LIMIT 1
+  `, { email })
+  .then(result => transformOne(result, session))
+
+export const isValidPassword = (password, salt, hash) => encrypt(password, salt) === hash
 
 export default {
   tasks: (user) => findTasksByUser(user.id),

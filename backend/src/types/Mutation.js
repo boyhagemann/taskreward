@@ -11,8 +11,8 @@ type Mutation {
 
   requestToken(
     email: String!
-    password: String!
-  ) : RequestTokenResult
+    password: String!,
+  ): Token
 
   createUser(
     input: CreateUserInput
@@ -33,5 +33,5 @@ export default [
   ...User, CreateUserInput,
   ...Task, TaskInput,
   ...Lead, LeadInput,
-  Token
+  Token,
 ]

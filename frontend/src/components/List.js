@@ -12,8 +12,8 @@ export default ({ data: { tasks = [] } }) => (
         <Link to={`/${id}`}>View</Link>
         <div>
           <h4>Leads</h4>
-          { leads.map( ({ from, to }) => (
-            <div>
+          { leads.map( ({ id, from, to }) => (
+            <div key={id}>
               From {from.email} To {to.email}
             </div>
           ) )}

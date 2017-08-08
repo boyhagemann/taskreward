@@ -12,6 +12,7 @@ export default graphql(gql`
         email
       }
       leads {
+        id
         from {
           email
         }

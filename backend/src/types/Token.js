@@ -1,17 +1,9 @@
-const Token = `
 
-union RequestTokenResult = Token | RequestTokenInvalid
 
-type RequestTokenInvalid {
-  message: String!
-}
-
+export default `
 type Token {
-  token: ID!
-  createdAt: Date
-  lifetime: Second
+  ok: Boolean!
+  token: String
+  message: String
 }
-
 `
-
-export default Token
