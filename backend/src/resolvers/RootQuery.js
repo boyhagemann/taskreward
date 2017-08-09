@@ -1,13 +1,11 @@
-import { getTasks, findTask } from './Task'
+import { getTasks, getTask } from './Task'
 import { getUsers } from './User'
-import { getLeads } from './Lead'
+import { getLeads, getLead } from './Lead'
 
 export default {
   tasks: () => getTasks(),
-  task: (_, { id }) => {
-    console.log(id)
-    return findTask(id)
-  },
+  task: (_, { id }) => getTask(id),
   users: () => getUsers(),
   leads: () => getLeads(),
+  lead: (_, { id }) => getLead(id),
 }

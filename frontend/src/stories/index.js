@@ -5,8 +5,9 @@ import { action } from '@storybook/addon-actions'
 import { linkTo } from '@storybook/addon-links'
 
 import { Welcome } from '@storybook/react/demo'
-import TextInput from '../components/TextInput'
-import Button from '../components/Button'
+import TextInput from '../components/UI/TextInput'
+import TextArea from '../components/UI/TextArea'
+import Button from '../components/UI/Button'
 import Login from '../components/Login'
 import LoginContainer from '../components/LoginContainer'
 import Card from '../components/Card'
@@ -31,6 +32,15 @@ storiesOf('TextInput', module)
   .add('with error message', () => <TextInput error="Some error message" />)
   .add('with warning', () => <TextInput warning />)
   .add('with warning message', () => <TextInput warning="Some warning here...." />)
+
+storiesOf('TextArea', module)
+  .addDecorator(getStory => <Card>{ getStory() }</Card>)
+  .add('default', () => <TextArea />)
+  .add('with label', () => <TextArea label="Email address" />)
+  .add('with error', () => <TextArea error />)
+  .add('with error message', () => <TextArea error="Some error message" />)
+  .add('with warning', () => <TextArea warning />)
+  .add('with warning message', () => <TextArea warning="Some warning here...." />)
 
 storiesOf('Login', module)
   .addDecorator(getStory => (

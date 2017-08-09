@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import ListContainer from './components/ListContainer'
-import ItemContainer from './components/ItemContainer'
+import TaskListContainer from './components/TaskListContainer'
+import TaskContainer from './components/TaskContainer'
+import LeadContainer from './components/LeadContainer'
 import LoginContainer from './components/LoginContainer'
 import DashboardContainer from './components/DashboardContainer'
 import { ApolloProvider } from 'react-apollo'
@@ -27,8 +28,9 @@ class App extends Component {
           <Router>
             <div>
               <Link to={`/`}>Tasks</Link>
-              <Route path={`/tasks/:id`} component={ItemContainer}/>
-              <Route exact path={'/'} component={ListContainer} />
+              <Route path={`/tasks/:id`} component={TaskContainer}/>
+              <Route path={`/leads/:id`} component={LeadContainer}/>
+              <Route exact path={'/'} component={TaskListContainer} />
               <Route exact path={'/login'} component={LoginContainer} />
               <Route exact path={'/dashboard'} component={DashboardContainer} />
             </div>

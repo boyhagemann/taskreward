@@ -1,4 +1,3 @@
-import React from 'react'
 import {  gql, graphql } from 'react-apollo'
 import { reduxForm } from 'redux-form'
 import Login from './Login'

@@ -9,6 +9,7 @@ type RootQuery {
   task(id: ID!): Task
   users: [User]
   leads: [Lead]
+  lead(id: ID!): Lead
 }
 `
 

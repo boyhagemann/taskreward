@@ -5,6 +5,7 @@ const User = `
 type User {
   id: ID!
   email: String!
+  name: String
   tasks: [Task]
   sentLeads: [Lead]
   receivedLeads: [Lead]

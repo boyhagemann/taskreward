@@ -1,8 +1,8 @@
 import {  gql, graphql } from 'react-apollo'
-import List from './List'
+import TaskList from './TaskList'
 
 export default graphql(gql`
-  query List {
+  query TaskList {
     tasks {
       id
       name
@@ -22,4 +22,4 @@ export default graphql(gql`
       }
     }
   }
-`)(List)
+`)(TaskList)

@@ -1,8 +1,8 @@
 import React from 'react'
-import ListItem from './ListItem'
+import TaskListItem from './TaskListItem'
 
 export default ({ data: { tasks = [] } }) => (
   <div>
-    { tasks.map(ListItem) }
+    { tasks.map(TaskListItem) }
   </div>
 )

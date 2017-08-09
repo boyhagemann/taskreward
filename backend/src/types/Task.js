@@ -8,6 +8,7 @@ type Task {
   name: String
   description: String
   link: String
+  reward: Int
   leads: [Lead]
 }
 `

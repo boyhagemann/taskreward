@@ -1,6 +1,6 @@
 import { session, transformOne, transformMany, id, handleError } from './helpers'
 import { findUser } from './User'
-import { findTask } from './Task'
+import { getTask } from './Task'
 
 export const createLead = (_, { input }) => session
   .run(`
@@ -39,6 +39,14 @@ export const findLeadsForTask = id => session
   .then(result => transformMany(result, session))
   .catch(handleError)
 
+export const getLead = id => session
+  .run(`
+    MATCH (a:Lead { id: $id })
+    RETURN a
+  `, { id })
+  .then(result => transformOne(result, session))
+  .catch(handleError)
+
 export const findLeadsFrom = id => session
   .run(`
     MATCH (a:Lead)<-[r:SENDS_LEAD]-(b:User { id: $id })
@@ -58,5 +66,5 @@ export const findLeadsTo = id => session
 export default {
   from: (lead) => findUser(lead.from),
   to: (lead) => findUser(lead.to),
-  task: (lead) => findTask(lead.task),
+  task: (lead) => getTask(lead.task),
 }

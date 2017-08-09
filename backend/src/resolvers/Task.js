@@ -22,7 +22,7 @@ export const getTasks = () => session
   .then(result => transformMany(result, session))
   .catch(handleError)
 
-export const findTask = id => session
+export const getTask = id => session
   .run(`
     MATCH (n1:Task { id: $id })
     RETURN n1 LIMIT 1

@@ -5,13 +5,15 @@ export default [
     owner: 'user.1',
     name: 'First task',
     description: "Some task description",
-    link: 'somelink'
+    link: 'somelink',
+    reward: 300,
   },
   {
     id: 'task.2',
     owner: 'user.1',
     name: 'Second task',
     description: "Some other task description",
-    link: 'someotherlink'
+    link: 'someotherlink',
+    reward: 500,
   }
 ]

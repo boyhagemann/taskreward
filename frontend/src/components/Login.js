@@ -1,8 +1,8 @@
 import React from 'react'
 import { Field } from 'redux-form'
-import TextInput from './TextInput'
-import Button from './Button'
-import Card from './Card'
+import TextInput from './UI/TextInput'
+import Button from './UI/Button'
+import Card from './UI/Card'
 import { isRequired, isEmail } from '../utils/validation'
 
 const renderField = ({ input, label, placeholder, type, meta: { touched, error, warning } }) => (
