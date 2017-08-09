@@ -6,6 +6,7 @@ import Event from './Event'
 const RootQuery = `
 type RootQuery {
   tasks: [Task]
+  task(id: ID!): Task
   users: [User]
   leads: [Lead]
 }

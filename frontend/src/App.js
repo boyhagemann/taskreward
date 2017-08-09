@@ -8,7 +8,16 @@ import client from './configuration/apollo'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import store from './configuration/redux'
+import { injectGlobal } from 'styled-components'
 
+injectGlobal([`
+  body {
+    font-family: Arial;
+    font-size: 20px;
+    color: #456;
+    background: #f4f6f8;
+  }
+`])
 
 class App extends Component {
   render() {
@@ -16,9 +25,9 @@ class App extends Component {
       <ApolloProvider client={client}>
         <Provider store={store}>
           <Router>
-            <div className="App">
+            <div>
               <Link to={`/`}>Tasks</Link>
-              <Route path={`/:id`} component={ItemContainer}/>
+              <Route path={`/tasks/:id`} component={ItemContainer}/>
               <Route exact path={'/'} component={ListContainer} />
               <Route exact path={'/login'} component={LoginContainer} />
               <Route exact path={'/dashboard'} component={DashboardContainer} />

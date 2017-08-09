@@ -2,15 +2,16 @@ import {  gql, graphql } from 'react-apollo'
 import Item from './Item'
 
 export default graphql(gql`
-  query Item {
-    tasks {
+  query Item($id: ID!) {
+    task(id: $id) {
       id
+      name
+      description
+      link
     }
   }
 `, {
   options: props => ({
-    variables: {
-      id: 1
-    }
+    variables: props.match.params
   })
 })(Item)

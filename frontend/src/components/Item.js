@@ -1,15 +1,21 @@
 import React from 'react'
+import Button from './Button'
 
-import { Link } from 'react-router-dom'
-
-export default ({ data: { user } }) => (
+export default ({ data: { loading, task }}) => !loading ? (
   <div>
-    { user && user.tasks.map( ({ id, name, description }) =>
-      <div key={id}>
-        <h2>{ name }</h2>
-        <p>{ description }</p>
-        <Link to={`/${id}`}>View</Link>
+    <div>
+
+      <h1>{ task.name }</h1>
+      <p>{ task.description }</p>
+
+      <h2>Hey, I know someone for this...</h2>
+      <p></p>
+
+      <div>
+        <Button primary huge>Share it</Button>
       </div>
-      ) }
+
+    </div>
+
   </div>
-)
+) : null
