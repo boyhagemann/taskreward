@@ -1,11 +1,18 @@
+import React from 'react'
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
 
-export default styled(Link)`
+const Component = ({ component: Component, ...props }) => <Component { ...props } />
+
+export default styled(Component)`
   display: inline-block;
-  margin-right: 5px;
-  background: #eee;
+  margin-right: 3px;
+  background: ${ ({ theme }) => theme.tab.default.background };
+  color: ${ ({ theme }) => theme.tab.default.color };
   padding: 10px;
-  color: #456;
   text-decoration: none;
+
+  &.${ ({ theme }) => theme.tab.active.className || 'active' } {
+    background: ${ ({ theme }) => theme.tab.active.background };
+    color: ${ ({ theme }) => theme.tab.active.color };
+  }
 `

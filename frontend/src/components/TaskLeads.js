@@ -1,17 +1,43 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Card from './UI/Card'
+import Box from './UI/Box'
+import Button from './UI/Button'
+import Container from './UI/Container'
+import TextInput from './UI/TextInput'
+
+const SearchBox = Box.extend`
+  background: #ddd;
+  margin-top: 10px;
+`
+
+const Leads = Container.extend``
 
 export default ({ task }) => (
-  <Card>
+  <Box>
 
-      { task.leads.map(lead => (
+      <Container>
+        <SearchBox max={1200}>
+          <TextInput name="q" placeholder="Search..." />
+        </SearchBox>
+      </Container>
 
-        <div key={lead.id}>
-          <p>Sent to { lead.to.name }</p>
-          <Link to={`/leads/${lead.id}`}>View lead page</Link>
-        </div>
-      )) }
+      <Leads>
+        <Box max={1200}>
+          { task.leads.map(lead => (
 
-  </Card>
+            <Card key={lead.id}>
+              <Box width={2/8}>{lead.to.name}</Box>
+              <Box width={2/8}>{lead.to.email}</Box>
+              <Box width={2/8}>{lead.status}</Box>
+              <Box width={2/8}>
+                <Button primary component={Link} to={`/leads/${lead.id}`}>Accept</Button>
+                <Button component={Link} to={`/leads/${lead.id}`}>View page</Button>
+              </Box>
+            </Card>
+          )) }
+        </Box>
+      </Leads>
+
+  </Box>
 )

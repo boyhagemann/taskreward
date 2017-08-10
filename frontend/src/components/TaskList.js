@@ -1,8 +1,12 @@
 import React from 'react'
 import TaskListItem from './TaskListItem'
+import Container from './UI/Container'
+import Box from './UI/Box'
 
 export default ({ data: { tasks = [] } }) => (
-  <div>
-    { tasks.map(TaskListItem) }
-  </div>
+  <Container>
+    <Box max={1200}>
+      { tasks.map(TaskListItem) }
+    </Box>
+  </Container>
 )

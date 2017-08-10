@@ -7,10 +7,7 @@ export default graphql(gql`
       id
       name
       description
-      owner {
-        id
-        email
-      }
+      reward
       leads {
         id
         from {
