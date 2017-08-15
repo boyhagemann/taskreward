@@ -8,6 +8,9 @@ export default graphql(gql`
       name
       description
       reward
+      lead {
+        hash
+      }
     }
   }
 `)(TaskList)

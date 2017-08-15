@@ -5,6 +5,7 @@ export default graphql(gql`
   query Lead($id: ID!) {
     lead(id: $id) {
       id
+      hash
       task {
         id
         name

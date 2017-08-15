@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import Button from './UI/Button'
+import { redirectUrl } from '../utils/routes'
 
 const Separator = styled.span`
 
@@ -18,11 +19,14 @@ export default ({ data: { loading, lead } }) => !loading ? (
         ? <h1>Hey {lead.user.name}, {getUserName(lead)} shared this with you...</h1>
         : <h1>Hey, {getUserName(lead)}</h1>
       }
-      <p></p>
 
       <h2>{ lead.task.name }</h2>
       <p>{ lead.task.description }</p>
       <h4>Reward: {lead.task.reward}</h4>
+
+      <p>
+        Share this link on your social media: <strong>{redirectUrl(lead.hash)}</strong>
+      </p>
 
       <div>
         <Button primary huge>View page</Button>

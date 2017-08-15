@@ -36,5 +36,14 @@ export default {
         color: colors.pencil,
       },
     }
+  },
+  task: {
+    list: {
+      item: {
+        heading: {
+          color: colors.pencil,
+        }
+      }
+    }
   }
 }

@@ -17,6 +17,14 @@ const Email = styled.span`
   margin-left: 5px;
 `
 
+const Actions = styled(Box)`
+  text-align: right;
+  
+  > ${Button} {
+    margin-left: 5px;
+  }
+`
+
 const Leads = Container.extend``
 
 export default ({ task }) => (
@@ -39,10 +47,10 @@ export default ({ task }) => (
               </Box>
               <Box width={2/8}>{lead.status}</Box>
               <Box width={2/8}>{lead.depth}</Box>
-              <Box width={2/8}>
+              <Actions width={2/8}>
                 <Button primary component={Link} to={`/leads/${lead.id}`}>Accept</Button>
                 <Button component={Link} to={`/leads/${lead.id}`}>View page</Button>
-              </Box>
+              </Actions>
             </Card>
           )) }
         </Box>

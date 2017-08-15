@@ -7,6 +7,8 @@ const Component = ({ component: Component = 'button', primary, huge, ...props}) 
 
 export default styled(Component)`
   border: none;
+  display: inline-box;
+  box-sizing: border-box;
   cursor: pointer;
   background: ${ props => props.primary ? '#39f' : '#ddd' };
   color: ${ props => props.primary ? '#fff' : '#666' };

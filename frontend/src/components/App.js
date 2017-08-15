@@ -44,7 +44,7 @@ class App extends Component {
                 <Content>
                   <Route path={`/tasks/:id`} component={TaskContainer}/>
                   <Route path={`/leads/:id`} component={LeadContainer}/>
-                  <Route path={`/redirect/:hash`} render={ ({ match }) => <RedirectContainer hash={match.params.hash} /> } />
+                  <Route path={`/r/:hash`} render={ ({ match }) => <RedirectContainer hash={match.params.hash} /> } />
                   <Route exact path={'/tasks'} component={TaskListContainer} />
                   <Route exact path={'/login'} component={LoginContainer} />
                   <Route exact path={'/dashboard'} component={DashboardContainer} />

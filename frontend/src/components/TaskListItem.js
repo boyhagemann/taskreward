@@ -7,21 +7,33 @@ import Button from './UI/Button'
 
 const Heading = styled(Link)`
   margin: 0;
+  text-decoration: none;
+  color: ${ ({ theme}) => theme.task.list.item.heading.color };
+  font-size: 1.5em;
 `
 const Description = styled.p``
 const Owner = styled.div``
 
-export default ({ id, name, description, reward }) => (
-  <Card key={id}>
+const Item = styled(Card)``
+
+const Actions = styled(Box)`
+  > ${Button} {
+    margin-right: 5px;
+  }
+`
+
+export default ({ id, name, description, reward, lead: { hash } }) => (
+  <Item key={id}>
     <Box width={4/6}>
       <Heading to={`/tasks/${id}`}>{ name }</Heading>
       <Description>{ description }</Description>
+      <Actions>
+        <Button primary component={Link} to={`/tasks/${id}`}>Dashboard</Button>
+        <Button component={Link} to={`/r/${hash}`}>View</Button>
+      </Actions>
     </Box>
-    <Box width={1/6}>
+    <Box width={2/6}>
       <Owner>{ reward }</Owner>
     </Box>
-    <Box width={1/6}>
-      <Button component={Link} to={`/tasks/${id}`}>View</Button>
-    </Box>
-  </Card>
+  </Item>
 )
