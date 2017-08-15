@@ -12,12 +12,13 @@ export default graphql(gql`
         link
         reward
       }
-      from {
+      user {
         name
-        email
       }
-      to {
-        name
+      parent {
+        user {
+          name
+        }
       }
     }
   }

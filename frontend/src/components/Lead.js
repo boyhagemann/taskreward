@@ -6,7 +6,10 @@ export default ({ data: { loading, lead } }) => !loading ? (
     <div>
       { console.log(lead) }
 
-      <h1>Hey {lead.to.name}, {lead.from.name} shared this with you...</h1>
+      { lead.to && lead.to.name
+        ? <h1>Hey {lead.to.name}, {lead.parent.user.name} shared this with you...</h1>
+        : <h1>Hey, {lead.parent.user.name} shared this with you...</h1>
+      }
       <p></p>
 
       <h2>{ lead.task.name }</h2>

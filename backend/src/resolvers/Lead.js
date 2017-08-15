@@ -63,8 +63,16 @@ export const getLead = id => session
   .then(result => transformOne(result, session))
   .catch(handleError)
 
+export const getParent = id => session
+  .run(`
+    MATCH (:Lead { id: $id })<-[:HAS_LEAD]-(a:Lead)
+    RETURN a
+  `, { id })
+  .then(result => transformOne(result, session))
+  .catch(handleError)
+
 export default {
   task: (lead) => getTask(lead.task),
   user: (lead) => getUser(lead.user),
-  parent: (lead) => getLead(lead.parent),
+  parent: (lead) => getParent(lead.id),
 }
