@@ -22,6 +22,21 @@ export const createUser = (_, { input }) => {
   .catch(handleError)
 }
 
+export const createUserFromSession = key => {
+
+  const props = { id: id(), session: key }
+
+  return session
+  .run(`
+    CREATE (a:User $props)
+    RETURN a
+  `,
+    { props }
+  )
+  .then(result => transformOne(result, session))
+  .catch(handleError)
+}
+
 export const getUsers = () => session
   .run(`
     MATCH (n1:User)

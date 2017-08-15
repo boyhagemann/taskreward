@@ -1,4 +1,4 @@
-import {  gql, graphql } from 'react-apollo'
+import { gql, graphql } from 'react-apollo'
 import TaskList from './TaskList'
 
 export default graphql(gql`

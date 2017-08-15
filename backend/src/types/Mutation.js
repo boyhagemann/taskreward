@@ -14,6 +14,12 @@ type Mutation {
     password: String!,
   ): Token
 
+  redirect(
+    task: ID
+    parent: ID
+    session: String!
+  ): Lead
+
   createUser(
     input: CreateUserInput
   ): User

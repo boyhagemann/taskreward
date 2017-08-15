@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import TaskListContainer from './TaskListContainer'
 import TaskContainer from './TaskContainer'
 import LeadContainer from './LeadContainer'
+import RedirectContainer from './RedirectContainer'
 import LoginContainer from './LoginContainer'
 import DashboardContainer from './DashboardContainer'
 import { ApolloProvider } from 'react-apollo'
@@ -42,7 +43,9 @@ class App extends Component {
                 <Navbar />
                 <Content>
                   <Route path={`/tasks/:id`} component={TaskContainer}/>
+                  <Route path={`/tasks/:id/redirect`} render={ ({ match }) => <RedirectContainer task={match.params.id} /> } />
                   <Route path={`/leads/:id`} component={LeadContainer}/>
+                  <Route path={`/redirect/:id`} render={ ({ match }) => <RedirectContainer parent={match.params.id} /> } />
                   <Route exact path={'/tasks'} component={TaskListContainer} />
                   <Route exact path={'/login'} component={LoginContainer} />
                   <Route exact path={'/dashboard'} component={DashboardContainer} />

@@ -1,5 +1,10 @@
 import React from 'react'
+import styled from 'styled-components'
 import Button from './UI/Button'
+
+const Separator = styled.span`
+
+`
 
 const getUserName = lead => lead.parent
   ? lead.parent.user.name
@@ -20,8 +25,11 @@ export default ({ data: { loading, lead } }) => !loading ? (
       <h4>Reward: {lead.task.reward}</h4>
 
       <div>
-        <Button primary>View page</Button>
-        <Button primary>..or share it</Button>
+        <Button primary huge>View page</Button>
+        <Separator> - or - </Separator>
+        <Button primary huge>Share it</Button>
+        <Separator> - or - </Separator>
+        <Button primary huge>Invite people</Button>
       </div>
 
     </div>

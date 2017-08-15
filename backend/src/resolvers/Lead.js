@@ -1,5 +1,5 @@
-import { session, transformOne, transformMany, id, handleError } from './helpers'
-import { getUser } from './User'
+import { session, transformOne, transformMany, id, handleError, cookieExists, getUserFromCookie, } from './helpers'
+import { getUser, createUserFromSession } from './User'
 import { getTask } from './Task'
 
 export const createRootLead = (_, { input }) => session
@@ -72,6 +72,56 @@ export const getParent = id => session
   `, { id })
   .then(result => transformOne(result, session))
   .catch(handleError)
+
+export const findLeadForUserAndParent = (userId, parent) => session
+  .run(`
+    MATCH (:User { id: $userId })-[:HAS_LEAD]->(a:Lead)<-[r:HAS_LEAD*]-(:Lead { id: $parent })
+    RETURN a
+  `, { userId, parent })
+  .then(result => transformOne(result, session))
+  .catch(handleError)
+
+  export const findLeadForUserAndTask = (userId, task) => session
+    .run(`
+      MATCH (:User { id: $userId })-[:HAS_LEAD]->(a:Lead)<-[r:HAS_LEAD]-(:Task { id: $task })
+      RETURN a
+    `, { userId, task })
+    .then(result => transformOne(result, session))
+    .catch(handleError)
+
+export const redirect = (task, parent, session, user) => {
+
+  // If we don't have a user, we want to create a new user,
+  // based on the current session ...
+  const userId = user ? user.id : createUserFromSession(session).id
+
+  // Yes, just return it or create one for this user...
+  return task
+    ? redirectWithTask(task, userId)
+    : redirectWithParentLead(parent, userId)
+}
+
+export const redirectWithTask = async (task, user) => {
+
+    // Do we have an existing lead?
+    const lead = await findLeadForUserAndTask(user, task)
+
+    // Yes, just return it or create one for this user...
+    return lead || createRootLead(null, { input: {
+        user, task, status: 'some-status',
+      }})
+}
+
+export const redirectWithParentLead = async (parent, user) => {
+
+    // Do we have an existing lead?
+    const lead = await findLeadForUserAndParent(user, parent)
+
+    // Yes, just return it or create one for this user...
+    return lead || createLead(null, { input: {
+      user, parent, status: 'some-status',
+    } })
+}
 
 export default {
   task: (lead) => getTask(lead.task),

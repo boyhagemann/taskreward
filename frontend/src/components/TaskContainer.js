@@ -1,4 +1,4 @@
-import {  gql, graphql } from 'react-apollo'
+import { gql, graphql } from 'react-apollo'
 import { reduxForm } from 'redux-form'
 import Task from './Task'
 
