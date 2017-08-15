@@ -58,7 +58,8 @@ export const findLeadsForTask = id => session
 export const getLead = id => session
   .run(`
     MATCH (a:Lead { id: $id })
-    RETURN a
+    MATCH (a)<-[HAS_LEAD*]-(b:Task)
+    RETURN a, b.id AS task
   `, { id })
   .then(result => transformOne(result, session))
   .catch(handleError)
@@ -66,7 +67,8 @@ export const getLead = id => session
 export const getParent = id => session
   .run(`
     MATCH (:Lead { id: $id })<-[:HAS_LEAD]-(a:Lead)
-    RETURN a
+    MATCH (a)<-[HAS_LEAD*]-(b:Task)
+    RETURN a, b.id AS task
   `, { id })
   .then(result => transformOne(result, session))
   .catch(handleError)

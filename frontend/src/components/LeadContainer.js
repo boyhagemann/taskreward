@@ -11,6 +11,9 @@ export default graphql(gql`
         description
         link
         reward
+        owner {
+          name
+        }
       }
       user {
         name

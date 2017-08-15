@@ -25,6 +25,11 @@ export const mapRecord = ({ keys, _fields, _fieldLookup }) => keys
       case 'Integer':
         return {[key]: field.low }
 
+      case 'String':
+        console.log('STRING', field)
+        console.log('KEY', key)
+        return {[key]: field}
+
       default:
         console.log(`Type "${type}" is not implemented yet`)
         return {[key]: null}

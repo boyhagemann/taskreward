@@ -1,14 +1,17 @@
 import React from 'react'
 import Button from './UI/Button'
 
+const getUserName = lead => lead.parent
+  ? lead.parent.user.name
+  : lead.task.owner.name
+
 export default ({ data: { loading, lead } }) => !loading ? (
   <div>
     <div>
-      { console.log(lead) }
 
-      { lead.to && lead.to.name
-        ? <h1>Hey {lead.to.name}, {lead.parent.user.name} shared this with you...</h1>
-        : <h1>Hey, {lead.parent.user.name} shared this with you...</h1>
+      { lead.user && lead.user.name
+        ? <h1>Hey {lead.user.name}, {getUserName(lead)} shared this with you...</h1>
+        : <h1>Hey, {getUserName(lead)}</h1>
       }
       <p></p>
 
