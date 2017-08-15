@@ -11,14 +11,12 @@ const TaskWithData = graphql(gql`
       link
       leads {
         id
-        from {
+        user {
           name
           email
         }
-        to {
-          name
-          email
-        }
+        status
+        depth
       }
     }
   }

@@ -5,11 +5,12 @@ import Event from './Event'
 const Lead = `
 type Lead {
   id: ID
-  from: User
-  to: User
+  user: User
   task: Task
+  parent: Lead
   description: String
   status: String
+  depth: Int
   events: [Event]
 }
 `

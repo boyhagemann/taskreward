@@ -1,8 +1,7 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { ThemeProvider } from 'styled-components'
 import Container from './UI/Container'
 import { NavLink } from 'react-router-dom'
-import Box from './UI/Box'
 import Tab from './UI/Tab'
 import defaultTheme from '../themes/default'
 
@@ -15,9 +14,7 @@ const Bar = Container.extend`
   margin: 0 auto;
 `
 
-const CircleTab = styled(Tab).attrs({
-  theme: defaultTheme.navbar
-})`
+const CircleTab = styled(Tab)`
   text-decoration: none;
   width: 40px;
   height: 40px;
@@ -29,9 +26,11 @@ const CircleTab = styled(Tab).attrs({
 `
 
 export default props => (
-  <Bar>
-    <CircleTab component={NavLink} exact to={`/`}>H</CircleTab>
-    <CircleTab component={NavLink} to={`/tasks`}>T</CircleTab>
-    <CircleTab component={NavLink} to={`/account`}>A</CircleTab>
-  </Bar>
+  <ThemeProvider theme={defaultTheme.navbar}>
+    <Bar>
+      <CircleTab component={NavLink} exact to={`/`}>H</CircleTab>
+      <CircleTab component={NavLink} to={`/tasks`}>T</CircleTab>
+      <CircleTab component={NavLink} to={`/account`}>A</CircleTab>
+    </Bar>
+  </ThemeProvider>
 )

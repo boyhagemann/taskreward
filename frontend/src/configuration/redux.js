@@ -2,8 +2,7 @@ import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { reducer as formReducer } from 'redux-form'
 
 import createHistory from 'history/createBrowserHistory'
-import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux'
-
+import {routerReducer, routerMiddleware } from 'react-router-redux'
 
 // Create a history of your choosing (we're using a browser history in this case)
 export const history = createHistory()

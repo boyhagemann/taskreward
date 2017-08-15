@@ -1,7 +1,7 @@
 import { session, id, handleError } from '../resolvers/helpers'
 import { createUser } from '../resolvers/User'
 import { createTask } from '../resolvers/Task'
-import { createLead } from '../resolvers/Lead'
+import { createRootLead, createLead } from '../resolvers/Lead'
 import users from './users'
 import tasks from './tasks'
 import leads from './leads'
@@ -29,7 +29,9 @@ tasks.forEach(task => {
 
 leads.forEach(lead => {
   console.log('Seeding lead', lead)
-  createLead(null, { input: lead })
+  lead.task
+    ? createRootLead(null, { input: lead })
+    : createLead(null, { input: lead })
 })
 
 console.log('Done!')

@@ -1,5 +1,5 @@
 import { session, transformOne, transformMany, id, handleError } from './helpers'
-import { findUser } from './User'
+import { getUser } from './User'
 import { findLeadsForTask } from './Lead'
 
 export const createTask = (_, { input }) => session
@@ -39,6 +39,6 @@ export const findTasksByUser = id => session
   .catch(handleError)
 
 export default {
-  owner: (task) => findUser(task.owner),
+  owner: (task) => getUser(task.owner),
   leads: (task) => findLeadsForTask(task.id),
 }

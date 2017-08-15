@@ -8,15 +8,6 @@ export default graphql(gql`
       name
       description
       reward
-      leads {
-        id
-        from {
-          email
-        }
-        to {
-          email
-        }
-      }
     }
   }
 `)(TaskList)

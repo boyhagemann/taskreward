@@ -10,7 +10,7 @@ import TextArea from '../components/UI/TextArea'
 import Button from '../components/UI/Button'
 import Login from '../components/Login'
 import LoginContainer from '../components/LoginContainer'
-import Card from '../components/Card'
+import Card from '../components/UI/Card'
 
 import store from '../configuration/redux'
 import { Provider } from 'react-redux'

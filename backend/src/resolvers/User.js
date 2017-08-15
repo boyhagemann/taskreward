@@ -1,6 +1,5 @@
 import { session, transformOne, transformMany, id, handleError, encrypt } from './helpers'
 import { findTasksByUser } from './Task'
-import { findLeadsFrom, findLeadsTo } from './Lead'
 
 const withPassword = (data, password) => {
   const salt = id()
@@ -31,7 +30,7 @@ export const getUsers = () => session
   .then(result => transformMany(result, session))
   .catch(handleError)
 
-export const findUser = id => session
+export const getUser = id => session
   .run(`
     MATCH (n1:User { id: $id })
     RETURN n1 LIMIT 1
@@ -48,7 +47,5 @@ export const findUserByEmail = email => session
 export const isValidPassword = (password, salt, hash) => encrypt(password, salt) === hash
 
 export default {
-  tasks: (user) => findTasksByUser(user.id),
-  sentLeads: (user) => findLeadsFrom(user.id),
-  receivedLeads: (user) => findLeadsTo(user.id)
+  tasks: (user) => findTasksByUser(user.id)
 }

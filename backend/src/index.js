@@ -6,7 +6,7 @@ import { createTask, getTasks } from './resolvers'
 import cors from 'cors'
 import typeDefs from './types'
 import resolvers from './resolvers'
-import { findUser } from './resolvers/User'
+import { getUser } from './resolvers/User'
 
 import jwt from 'jsonwebtoken'
 import { id } from './resolvers/helpers'
@@ -35,7 +35,7 @@ const extractToken = () => async (req, res, next) => {
   if(token) {
     try {
       const decoded = jwt.verify(token, SECRET)
-      const user = await findUser(decoded.id)
+      const user = await getUser(decoded.id)
 
       req.user = user
     }
@@ -57,7 +57,7 @@ app.post('/graphql',
     console.log('Is there a user?', user)
 
     const context = { user }
-    
+
     graphqlExpress({ schema, context })(req, res, next)
   }
 );
