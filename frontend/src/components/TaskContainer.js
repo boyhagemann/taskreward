@@ -9,6 +9,9 @@ const TaskWithData = graphql(gql`
       name
       description
       link
+      lead {
+        hash
+      }
       leads {
         id
         user {

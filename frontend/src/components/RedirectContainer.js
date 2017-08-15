@@ -1,11 +1,11 @@
 import {  gql, graphql } from 'react-apollo'
 import { connect } from 'react-redux'
-import { push } from 'react-router-redux'
+import { replace } from 'react-router-redux'
 import Redirect from './Redirect'
 
 const redirect = gql(`
-  mutation redirect($task: ID, $parent: ID, $session: String!) {
-    redirect(task: $task, parent: $parent, session: $session) {
+  mutation redirect($hash: String!, $session: String!) {
+    redirect(hash: $hash, session: $session) {
       id
     }
   }
@@ -14,8 +14,7 @@ const redirect = gql(`
 const withRedirectMutation = graphql(redirect, {
   props: ({ mutate, ownProps }) => ({
     redirect: () => mutate({ variables: {
-      parent: ownProps.parent,
-      task: ownProps.task,
+      hash: ownProps.hash,
       session: 'the-session-string'
     } })
       .then(response => {
@@ -29,7 +28,7 @@ const withRedirectMutation = graphql(redirect, {
 })(Redirect)
 
 const mapDispatchToProps = dispatch => ({
-  redirect: id => dispatch(push(`/leads/${id}`))
+  redirect: id => dispatch(replace(`/leads/${id}`))
 })
 
 export default connect(null, mapDispatchToProps)(withRedirectMutation)

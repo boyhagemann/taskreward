@@ -29,9 +29,7 @@ tasks.forEach(task => {
 
 leads.forEach(lead => {
   console.log('Seeding lead', lead)
-  lead.task
-    ? createRootLead(null, { input: lead })
-    : createLead(null, { input: lead })
+  createLead(null, { input: lead })
 })
 
 console.log('Done!')

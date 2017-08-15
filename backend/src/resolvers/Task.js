@@ -1,15 +1,28 @@
 import { session, transformOne, transformMany, id, handleError } from './helpers'
 import { getUser } from './User'
-import { findLeadsForTask } from './Lead'
+import { findLeadByTask, findLeadsForTask } from './Lead'
+import { unique } from 'shorthash'
 
 export const createTask = (_, { input }) => session
   .run(`
     MATCH (b:User { id: $owner })
     CREATE (a:Task $props)
     CREATE (b)-[r:HAS_TASK]->(a)
+    CREATE (c:Lead $lead)
+    CREATE (a)-[:HAS_LEAD]->(c)
+    CREATE (b)-[:HAS_LEAD]->(c)
     RETURN a
   `,
-    { owner: input.owner, props: { id: id(), ...input } }
+    {
+      owner: input.owner,
+      props: { id: id(), ...input },
+      lead: {
+        id: input.id || id(),
+        hash: unique(id()),
+        user: input.owner,
+        status: 'some-status'
+      }
+    }
   )
   .then(result => transformOne(result, session))
   .catch(handleError)
@@ -40,5 +53,6 @@ export const findTasksByUser = id => session
 
 export default {
   owner: (task) => getUser(task.owner),
+  lead: (task) => findLeadByTask(task.id),
   leads: (task) => findLeadsForTask(task.id),
 }

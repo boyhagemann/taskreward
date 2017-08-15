@@ -5,6 +5,7 @@ import Event from './Event'
 const Lead = `
 type Lead {
   id: ID
+  hash: String
   user: User
   task: Task
   parent: Lead

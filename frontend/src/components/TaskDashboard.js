@@ -2,10 +2,10 @@ import React from 'react'
 import Button from './UI/Button'
 import { Link } from 'react-router-dom'
 
-export default ({ handleSubmit, task }) => (
+export default ({ task }) => (
   <div>
     Dashboard
 
-    <Button component={Link} to={`/tasks/${task.id}/redirect`}>View redirect link</Button>
+    <Button component={Link} to={`/redirect/${task.lead.hash}`}>View redirect link</Button>
   </div>
 )

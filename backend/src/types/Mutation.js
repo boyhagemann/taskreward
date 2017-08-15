@@ -15,8 +15,7 @@ type Mutation {
   ): Token
 
   redirect(
-    task: ID
-    parent: ID
+    hash: String!
     session: String!
   ): Lead
 

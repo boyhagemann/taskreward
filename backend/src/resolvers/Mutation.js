@@ -5,7 +5,7 @@ import { createLead, redirect } from './Lead'
 
 export default {
   requestToken,
-  redirect: (_, { task, parent, session }, { user }) => redirect(task, parent, session, user),
+  redirect: (_, { hash, session }, { user }) => redirect(hash, session, user),
   createUser,
   createTask,
   createLead,
