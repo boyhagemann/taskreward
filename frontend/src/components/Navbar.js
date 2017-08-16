@@ -3,6 +3,7 @@ import styled, { ThemeProvider } from 'styled-components'
 import Container from './UI/Container'
 import { NavLink } from 'react-router-dom'
 import Tab from './UI/Tab'
+import ProfileContainer from './ProfileContainer'
 import defaultTheme from '../themes/default'
 
 const Bar = Container.extend`
@@ -31,6 +32,7 @@ export default props => (
       <CircleTab component={NavLink} exact to={`/`}>H</CircleTab>
       <CircleTab component={NavLink} to={`/tasks`}>T</CircleTab>
       <CircleTab component={NavLink} to={`/account`}>A</CircleTab>
+      <ProfileContainer />
     </Bar>
   </ThemeProvider>
 )

@@ -5,6 +5,7 @@ import Event from './Event'
 
 const RootQuery = `
 type RootQuery {
+  viewer: User
   tasks: [Task]
   task(id: ID!): Task
   users: [User]

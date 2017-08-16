@@ -14,9 +14,6 @@ networkInterface.use([{
       req.options.headers = {};  // Create the header object if needed.
     }
 
-    // localStorage.setItem('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXIuMSIsImlhdCI6MTUwMjIwNjk4MX0.fBjGlzVCTmKbjDlAA2d1bQx6J4X02VXtxovW1Jda-aI')
-    // localStorage.removeItem('token')
-
     // get the authentication token from local storage if it exists
     const token = localStorage.getItem('token') || null;
 

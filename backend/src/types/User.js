@@ -6,6 +6,7 @@ type User {
   id: ID!
   email: String!
   name: String
+  role: String!
   tasks: [Task]
   sentLeads: [Lead]
   receivedLeads: [Lead]

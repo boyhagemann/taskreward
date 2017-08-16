@@ -1,5 +1,7 @@
-import {  gql, graphql } from 'react-apollo'
+import {  gql, graphql, withApollo } from 'react-apollo'
+import { connect } from 'react-redux'
 import { reduxForm } from 'redux-form'
+import { push } from 'react-router-redux'
 import Login from './Login'
 
 const requestToken = gql(`
@@ -13,21 +15,35 @@ const requestToken = gql(`
 `)
 
 
-const FormWithRedux = reduxForm({
+const WithReduxForm = reduxForm({
   form: 'authentication',
   onSubmit: ({ email, password }, _, { request }) => request(email, password)
 })(Login)
 
-export default graphql(requestToken, {
-  props: ({ mutate }) => ({
+const WithGraphql = withApollo(graphql(requestToken, {
+  props: ({ mutate, ownProps }) => ({
     request: (email, password) => mutate({ variables: { email, password } })
       .then(response => {
         const data = response.data.requestToken
         if(data.ok) {
-          console.log('Got token', data.token)
+
+          // 1. Remember the token
           localStorage.setItem('token', data.token)
+
+          // 2. Clear any cache from the Apollo client redux store and
+          //    Use the new token to refetch with new privileges
+          ownProps.client.resetStore()
+
+          // 3. Redirect to the right page
+          ownProps.redirect()
         }
       })
       .catch(error => console.error('Got error', error))
   })
-})(FormWithRedux)
+})(WithReduxForm))
+
+const mapDispatchToProps = dispatch => ({
+  redirect: () => dispatch(push('/tasks'))
+})
+
+export default connect(null, mapDispatchToProps)(WithGraphql)

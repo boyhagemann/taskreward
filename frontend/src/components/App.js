@@ -4,6 +4,7 @@ import TaskContainer from './TaskContainer'
 import LeadContainer from './LeadContainer'
 import RedirectContainer from './RedirectContainer'
 import LoginContainer from './LoginContainer'
+import Logout from './Logout'
 import DashboardContainer from './DashboardContainer'
 import { ApolloProvider } from 'react-apollo'
 import client from '../configuration/apollo'
@@ -15,6 +16,9 @@ import styled, { injectGlobal } from 'styled-components'
 import Navbar from './Navbar'
 import { ThemeProvider } from 'styled-components'
 import defaultTheme from '../themes/default'
+import Allowed from './Allowed'
+
+const AdminCanView = component => Allowed(['admin'])(component)
 
 injectGlobal([`
   body {
@@ -42,12 +46,13 @@ class App extends Component {
               <div>
                 <Navbar />
                 <Content>
-                  <Route path={`/tasks/:id`} component={TaskContainer}/>
-                  <Route path={`/leads/:id`} component={LeadContainer}/>
+                  <Route path={`/tasks/:id`} component={AdminCanView(TaskContainer)}/>
+                  <Route path={`/leads/:id`} component={AdminCanView(LeadContainer)}/>
                   <Route path={`/r/:hash`} render={ ({ match }) => <RedirectContainer hash={match.params.hash} /> } />
-                  <Route exact path={'/tasks'} component={TaskListContainer} />
+                  <Route exact path={'/tasks'} component={AdminCanView(TaskListContainer)} />
+                  <Route exact path={'/dashboard'} component={AdminCanView(DashboardContainer)} />
                   <Route exact path={'/login'} component={LoginContainer} />
-                  <Route exact path={'/dashboard'} component={DashboardContainer} />
+                  <Route exact path={'/logout'} component={Logout} />
                 </Content>
               </div>
             </ThemeProvider>
