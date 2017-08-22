@@ -27,7 +27,7 @@ const Account = Box.extend`
   text-align: right;
 `
 
-export default ({ loading, viewer }) => loading ? null : (
+export default ({ loading, viewer = {} }) => loading ? null : (
   <Bar>
     <Box width={9/12}>
       { viewer.name
@@ -36,6 +36,7 @@ export default ({ loading, viewer }) => loading ? null : (
           <Tab key={'profile'} to={`/profile`}>Profile</Tab>,
           <Tab key={'page'} to={`/page`}>My page</Tab>,
           <Tab key={'leads'} to={`/leads`}>Leads</Tab>,
+          <Tab key={'claims'} to={`/claims`}>Claims</Tab>,
         ]
         : <Tab exact to={`/`}>Home</Tab>
       }
@@ -45,6 +46,9 @@ export default ({ loading, viewer }) => loading ? null : (
         ? (
           <div>
             <div>Welcome, {viewer.name}</div>
+            <Link to={`/account`}>My account</Link>
+            <Link to={`/preferences`}>Preferences</Link>
+            <Link to={`/invoices`}>Invoices</Link>
             <Link to={`/logout`}>Logout</Link>
           </div>
         )

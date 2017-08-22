@@ -9,9 +9,22 @@ const colors = {
   bleech: '#fff',
   dirt: '#bdb289',
   grass: '#89c552',
+  test: '#425a50',
 }
 
 export default {
+  page: {
+    visual: {
+      background: colors.night,
+      color: colors.bleech,
+    },
+    rewards: {
+      background: colors.canvas,
+    },
+    actions: {
+      background: color(colors.canvas).darken(0.05).string()
+    }
+  },
   visual: {
     container: {
       background: colors.night,
@@ -73,7 +86,7 @@ export default {
   },
   input: {
     description: {
-      color: color(colors.pencil).lighten(0.9).string(),
+      color: color(colors.pencil).fade(0.5).string(),
     }
   },
 }

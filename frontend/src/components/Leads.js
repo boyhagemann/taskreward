@@ -32,7 +32,7 @@ export default ({ loading, leads = [] }) => loading ? null : (
   <Leads>
     <Heading>Leads</Heading>
     <SearchBox>
-    <TextInput name="q" placeholder="Search..." />
+    <TextInput name="q" placeholder="Search for email or telephone..." />
     </SearchBox>
     { leads.map(lead => (
 

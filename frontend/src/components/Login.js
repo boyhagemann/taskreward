@@ -9,6 +9,11 @@ import { isRequired, isEmail } from '../utils/validation'
 import Heading from './UI/Heading'
 import FieldWrapper from './UI/FieldWrapper'
 
+
+// const FieldWrapper = (field) => {
+//   return <input type="text" {...field.input} />
+// }
+
 export default ({ handleSubmit, errors, pristine, submitting }) => (
   <form
     onSubmit={handleSubmit}
@@ -20,20 +25,16 @@ export default ({ handleSubmit, errors, pristine, submitting }) => (
           <div>
             { errors }
             <Field
-              component={ props => <FieldWrapper component={TextInput} { ...props} />}
+              component={FieldWrapper}
               type="email"
               name="email"
-              placeholder="Your email address..."
-              validate={[isRequired, isEmail]}
               />
           </div>
           <div>
             <Field
-              component={ props => <FieldWrapper component={TextInput} { ...props} />}
+              component={FieldWrapper}
               type="password"
               name="password"
-              placeholder="Enter your password..."
-              validate={[isRequired]}
               />
           </div>
           <div>
