@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const Component = ({ component: Component = 'button', primary, positive, huge, ...props}) => {
+const Component = ({ component: Component = 'button', primary, positive, negative, huge, ...props}) => {
   return <Component {...props} />
 }
 

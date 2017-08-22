@@ -1,12 +1,11 @@
 import React from 'react'
-import styled, { ThemeProvider } from 'styled-components'
+import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import Container from './UI/Container'
 import Box from './UI/Box'
 import Heading from './UI/Heading'
 import SubHeading from './UI/SubHeading'
 import Button from './UI/Button'
-import defaultTheme from '../themes/default'
 
 const PayoffContainer = styled(Container)`
   background: red;

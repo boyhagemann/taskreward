@@ -15,15 +15,11 @@ const Reward = styled.div`
   padding: 20px;
   background: ${ ({ theme }) => theme.profile.reward.background };
 `
-const Line = styled.hr`
-
-`
-
 
 const renderRewards = ({ fields }) => (
   <Box>
     { fields.map( (reward, index) => (
-      <Reward>
+      <Reward key={index}>
         <RewardForm name={reward} remove={ () => fields.remove(index) } />
       </Reward>
     )) }

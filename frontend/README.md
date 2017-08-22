@@ -197,3 +197,35 @@ mutation token {
     token
   }
 }
+
+
+
+## Conversion paths
+
+### 1
+A creates profile
+B sees profile
+B enters own email/telephone
+B hits button to be contacted
+A emails/calls B
+B turns into sale
+A accepts lead and no one needs a reward
+
+### 2
+A creates profile
+B sees profile
+B enters email/telephone friend C
+A emails/calls C
+C turns into sale
+A accepts lead and B gets reward
+
+### 3
+A creates profile
+B sees profile
+B shares own link
+C sees profile
+C enters own email/telephone
+C hits button to be contacted
+A emails/calls C
+C turns into sale
+A accepts lead and B gets reward

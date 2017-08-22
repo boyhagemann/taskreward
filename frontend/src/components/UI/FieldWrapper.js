@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import TextInput from './TextInput'
 import Box from './Box'
 
 const Wrapper = styled.div`
@@ -34,13 +33,6 @@ const Description = styled.p`
   font-size: 0.9em;
   margin: 0 20px;
 `
-
-const renderField = props => {
-  switch(props.type) {
-    default:
-      return <TextInput { ...props } />
-  }
-}
 
 export default ({ component: Component, input, type, label, description, placeholder, meta }) => {
 

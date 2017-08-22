@@ -29,20 +29,19 @@ const Account = Box.extend`
 
 export default ({ loading, viewer }) => loading ? null : (
   <Bar>
-    { console.log(viewer) }
     <Box width={9/12}>
-      { viewer
+      { viewer.name
         ? [
-          <Tab exact to={`/dashboard`}>Dashboard</Tab>,
-          <Tab to={`/profile`}>Profile</Tab>,
-          <Tab to={`/page`}>My page</Tab>,
-          <Tab to={`/leads`}>Leads</Tab>,
+          <Tab key={'dashboard'} exact to={`/dashboard`}>Dashboard</Tab>,
+          <Tab key={'profile'} to={`/profile`}>Profile</Tab>,
+          <Tab key={'page'} to={`/page`}>My page</Tab>,
+          <Tab key={'leads'} to={`/leads`}>Leads</Tab>,
         ]
         : <Tab exact to={`/`}>Home</Tab>
       }
     </Box>
     <Account width={3/12}>
-      { viewer
+      { viewer.name
         ? (
           <div>
             <div>Welcome, {viewer.name}</div>

@@ -36,7 +36,7 @@ export default ({ loading, leads = [] }) => loading ? null : (
     </SearchBox>
     { leads.map(lead => (
 
-      <Card key={lead.id}>
+      <Card key={lead.hash}>
         <Box width={2/8}>
           {lead.user.name}
           <Email>({lead.user.email})</Email>
