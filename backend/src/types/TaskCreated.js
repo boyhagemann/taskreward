@@ -1,12 +1,12 @@
 import Event from './Event'
-import Task from './Task'
+import Reward from './Reward'
 import User from './User'
 
-const TaskCreated = `
-type TaskCreated implements Event {
-  task: Task!
+const RewardCreated = `
+type RewardCreated implements Event {
+  reward: Reward!
   user: User!
 }
 `
 
-export default [TaskCreated, Event, ...Task, ...User]
+export default [RewardCreated, Event, ...Reward, ...User]

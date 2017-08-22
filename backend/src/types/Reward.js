@@ -1,17 +1,15 @@
 // import User from './User' // Don't need to call this, because of recursive dependency
-import Lead from './Lead'
+// import Profile from './Profile'
 
-const Task = `
-type Task {
+const Reward = `
+type Reward {
   id: ID
-  owner: User
+  profile: Profile
   name: String
   description: String
   link: String
-  reward: Int
-  lead: Lead
-  leads: [Lead]
+  value: Int
 }
 `
 
-export default [Task, ...Lead]
+export default [Reward]

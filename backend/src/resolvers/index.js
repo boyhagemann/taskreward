@@ -1,7 +1,8 @@
 import Email from './Email'
 import RootQuery from './RootQuery'
-import Task from './Task'
+import Reward from './Reward'
 import User from './User'
+import Profile from './Profile'
 import Lead from './Lead'
 import Mutation from './Mutation'
 
@@ -9,7 +10,8 @@ export default {
   Email,
   RootQuery,
   User,
-  Task,
+  Profile,
+  Reward,
   Lead,
   Mutation,
 }

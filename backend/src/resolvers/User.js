@@ -1,5 +1,8 @@
+import jwt from 'jsonwebtoken'
 import { session, transformOne, transformMany, id, handleError, encrypt } from './helpers'
-import { findTasksByUser } from './Task'
+import { findRewardsByUser } from './Reward'
+import { getProfileByUser } from './Profile'
+import { SECRET } from '../constants'
 
 const withPassword = (data, password) => {
   const salt = id()
@@ -61,6 +64,12 @@ export const findUserByEmail = email => session
 
 export const isValidPassword = (password, salt, hash) => encrypt(password, salt) === hash
 
+export const getUserByToken = token => {
+  const decoded = jwt.verify(token, SECRET)
+  return getUser(decoded.id)
+}
+
 export default {
-  tasks: (user) => findTasksByUser(user.id)
+  profile: (user) => getProfileByUser(user.id)
+  // rewards: (user) => findRewardsByUser(user.id)
 }

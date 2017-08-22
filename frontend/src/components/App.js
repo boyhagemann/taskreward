@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import TaskListContainer from './TaskListContainer'
-import TaskContainer from './TaskContainer'
+import ProfileContainer from './ProfileContainer'
+import RewardsContainer from './RewardsContainer'
 import LeadContainer from './LeadContainer'
 import RedirectContainer from './RedirectContainer'
+import HomeContainer from './HomeContainer'
 import LoginContainer from './LoginContainer'
 import Logout from './Logout'
 import DashboardContainer from './DashboardContainer'
@@ -13,7 +14,7 @@ import { ConnectedRouter as Router } from 'react-router-redux'
 import { Provider } from 'react-redux'
 import { store, history } from '../configuration/redux'
 import styled, { injectGlobal } from 'styled-components'
-import Navbar from './Navbar'
+import NavbarContainer from './NavbarContainer'
 import { ThemeProvider } from 'styled-components'
 import defaultTheme from '../themes/default'
 import Allowed from './Allowed'
@@ -27,13 +28,11 @@ injectGlobal([`
     font-family: sans-serif;
     font-size: 16px;
     color: #456;
-    background: #f4f6f8;
+    background: #f3f1eb;
   }
 `])
 
 const Content = styled.div`
-  box-sizing: border-box;
-  padding-left: 100px;
 `
 
 class App extends Component {
@@ -44,15 +43,18 @@ class App extends Component {
           <Router history={history}>
             <ThemeProvider theme={defaultTheme}>
               <div>
-                <Navbar />
+                <NavbarContainer />
                 <Content>
-                  <Route path={`/tasks/:id`} component={AdminCanView(TaskContainer)}/>
+                  <Route exact path={`/`} component={HomeContainer}/>
+                  <Route path={'/dashboard'} component={AdminCanView(DashboardContainer)} />
+                  <Route path={'/profile'} component={AdminCanView(ProfileContainer)} />
+                  <Route path={`/rewards`} component={AdminCanView(RewardsContainer)}/>
+                  <Route exact path={'/leads'} component={AdminCanView(LeadsContainer)} />
+                  <Route path={'/login'} component={LoginContainer} />
+                  <Route path={'/logout'} component={Logout} />
+
                   <Route path={`/leads/:id`} component={AdminCanView(LeadContainer)}/>
                   <Route path={`/r/:hash`} render={ ({ match }) => <RedirectContainer hash={match.params.hash} /> } />
-                  <Route exact path={'/tasks'} component={AdminCanView(TaskListContainer)} />
-                  <Route exact path={'/dashboard'} component={AdminCanView(DashboardContainer)} />
-                  <Route exact path={'/login'} component={LoginContainer} />
-                  <Route exact path={'/logout'} component={Logout} />
                 </Content>
               </div>
             </ThemeProvider>

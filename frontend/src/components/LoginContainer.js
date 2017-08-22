@@ -25,6 +25,7 @@ const WithGraphql = withApollo(graphql(requestToken, {
     request: (email, password) => mutate({ variables: { email, password } })
       .then(response => {
         const data = response.data.requestToken
+        console.log(data)
         if(data.ok) {
 
           // 1. Remember the token
@@ -43,7 +44,7 @@ const WithGraphql = withApollo(graphql(requestToken, {
 })(WithReduxForm))
 
 const mapDispatchToProps = dispatch => ({
-  redirect: () => dispatch(push('/tasks'))
+  redirect: () => dispatch(push('/rewards'))
 })
 
 export default connect(null, mapDispatchToProps)(WithGraphql)

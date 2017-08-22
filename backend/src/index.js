@@ -2,21 +2,19 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import { graphqlExpress, graphiqlExpress } from 'apollo-server-express'
 import { makeExecutableSchema } from 'graphql-tools'
-import { createTask, getTasks } from './resolvers'
+import { createReward, getRewards } from './resolvers'
 import cors from 'cors'
 import typeDefs from './types'
 import resolvers from './resolvers'
-import { getUser } from './resolvers/User'
+import { getUserByToken } from './resolvers/User'
 
-import jwt from 'jsonwebtoken'
+import { SECRET, PORT } from './constants'
 import { id } from './resolvers/helpers'
 
 
 
 
 const schema = makeExecutableSchema({ typeDefs, resolvers })
-const PORT = 3000;
-const SECRET = 'fdst3401$sxk&d&^@@WWQR%%wefq43o54@#F*&$%GGq23s'
 
 const app = express();
 
@@ -29,15 +27,19 @@ app.use(cors({
 const extractToken = () => async (req, res, next) => {
 
   const authorization = req.headers.authorization
-  const token = authorization && authorization.match('jwt ')
-    ? authorization.split(' ')[1] : null
+
+  // Get the token from the request query params or from the 'jwt' header
+  const token =
+    req.query.token ||
+    (
+      authorization && authorization.match('jwt ')
+        ? authorization.split(' ')[1] :
+        null
+    )
 
   if(token) {
     try {
-      const decoded = jwt.verify(token, SECRET)
-      const user = await getUser(decoded.id)
-
-      req.user = user
+      req.user = await getUserByToken(token)
     }
     catch(error) {
       console.error('Error in jwt verify', error)
@@ -54,7 +56,7 @@ app.post('/graphql',
   (req, res, next) => {
 
     const { user } = req
-    console.log('Is there a user?', user)
+    // console.log('Is there a user?', user)
 
     const context = { user }
 

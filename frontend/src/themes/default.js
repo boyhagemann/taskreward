@@ -2,42 +2,52 @@ import color from 'color'
 
 const colors = {
   night: '#234',
-  canvas: '#f4f6f8',
+  canvas: '#f3f1eb',
   pencil: '#456',
   ocean: '#39f',
   bleech: '#fff',
+  dirt: '#bdb289',
+  grass: '#89c552',
 }
 
 export default {
+  visual: {
+    container: {
+      background: colors.night,
+      color: colors.bleech,
+    }
+  },
   navbar: {
-    background: colors.night,
-    color: colors.bleechs,
+    bar: {
+      background: colors.bleech,
+      color: colors.pencil,
+    },
     tab: {
       default: {
-        background: color(colors.night).lighten(0.1).string(),
-        color: color(colors.night).lighten(0.6).string(),
+        background: null,
+        color: colors.pencil,
       },
       active: {
-        background: color(colors.night).lighten(0.3).string(),
+        background: color(colors.ocean).string(),
         color: colors.bleech,
       },
     }
   },
   header: {
-    background: colors.ocean,
-    color: colors.bleech,
+    background: color(colors.canvas).string(),
+    color: colors.pencil,
     tab: {
       default: {
-        background: color(colors.ocean).lighten(0.1).string(),
-        color: color(colors.ocean).lighten(0.5).string(),
+        background: color(colors.dirt).lighten(0.35).string(),
+        color: color(colors.pencil).string(),
       },
       active: {
-        background: colors.canvas,
-        color: colors.pencil,
+        background: colors.ocean,
+        color: colors.bleech,
       },
     }
   },
-  task: {
+  reward: {
     list: {
       item: {
         heading: {
@@ -45,5 +55,24 @@ export default {
         }
       }
     }
-  }
+  },
+  button: {
+    default: {
+      background: color(colors.dirt).lighten(0.35).string(),
+      color: colors.pencil,
+    },
+    primary: {
+      background: color(colors.ocean).string(),
+      color: colors.bleech,
+    },
+    positive: {
+      background: color(colors.grass).string(),
+      color: colors.bleech,
+    },
+  },
+  input: {
+    description: {
+      color: color(colors.pencil).lighten(0.9).string(),
+    }
+  },
 }

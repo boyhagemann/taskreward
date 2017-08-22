@@ -1,17 +1,12 @@
 import { gql, graphql } from 'react-apollo'
-import Profile from './Profile'
+import Leads from './Leads'
 
 export default graphql(gql`
-  query Profile {
+  query Leads {
     viewer {
-      profile {
+      leads {
         name
         description
-      }
-      rewards {
-        name
-        description
-        value
       }
     }
   }

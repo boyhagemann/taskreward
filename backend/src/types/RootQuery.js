@@ -1,4 +1,4 @@
-import Task from './Task'
+import Reward from './Reward'
 import User from './User'
 import Lead from './Lead'
 import Event from './Event'
@@ -6,12 +6,12 @@ import Event from './Event'
 const RootQuery = `
 type RootQuery {
   viewer: User
-  tasks: [Task]
-  task(id: ID!): Task
+  rewards: [Reward]
+  reward(id: ID!): Reward
   users: [User]
   leads: [Lead]
   lead(id: ID!): Lead
 }
 `
 
-export default [RootQuery, ...User, ...Task, ...Lead, Event]
+export default [RootQuery, ...User, ...Reward, ...Lead, Event]

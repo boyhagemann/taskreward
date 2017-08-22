@@ -9,7 +9,7 @@ const Separator = styled.span`
 
 const getUserName = lead => lead.parent
   ? lead.parent.user.name
-  : lead.task.owner.name
+  : lead.reward.owner.name
 
 export default ({ data: { loading, lead } }) => !loading ? (
   <div>
@@ -20,9 +20,9 @@ export default ({ data: { loading, lead } }) => !loading ? (
         : <h1>Hey, {getUserName(lead)}</h1>
       }
 
-      <h2>{ lead.task.name }</h2>
-      <p>{ lead.task.description }</p>
-      <h4>Reward: {lead.task.reward}</h4>
+      <h2>{ lead.reward.name }</h2>
+      <p>{ lead.reward.description }</p>
+      <h4>Reward: {lead.reward.reward}</h4>
 
       <p>
         Share this link on your social media: <strong>{redirectUrl(lead.hash)}</strong>

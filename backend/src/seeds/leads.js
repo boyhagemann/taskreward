@@ -2,7 +2,7 @@ export default [
   {
     id: 'lead.3',
     user: 'user.3',
-    hash: 'task.1',
+    hash: 'profile.1',
     description: "Check this out level 2",
     status: 'some-status'
   },

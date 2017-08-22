@@ -1,19 +1,18 @@
 import User from './User'
-import Task from './Task'
-import Event from './Event'
+import Profile from './Profile'
+// import Event from './Event'
 
 const Lead = `
 type Lead {
   id: ID
   hash: String
   user: User
-  task: Task
+  profile: Profile
   parent: Lead
-  description: String
   status: String
   depth: Int
   events: [Event]
 }
 `
 
-export default [Lead, ...User, Event]
+export default [Lead]

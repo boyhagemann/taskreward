@@ -3,7 +3,7 @@ const LeadInput = `
 input LeadInput {
   from: ID!
   to: ID!
-  task: ID!
+  reward: ID!
 }
 `
 

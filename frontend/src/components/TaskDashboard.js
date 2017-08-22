@@ -6,13 +6,12 @@ import Container from './UI/Container'
 import Box from './UI/Box'
 
 
-export default ({ task }) => (
+export default ({ reward }) => (
   <Container>
-    <Box max={1200}>
 
-      <p>This is the link: <strong>{redirectUrl(task.lead.hash)}</strong></p>
+    <p>This is the link: <strong>{redirectUrl(reward.lead.hash)}</strong></p>
 
-      <Button component={Link} to={`/r/${task.lead.hash}`}>Follow the redirect link</Button>
-    </Box>
+    <Button component={Link} to={`/r/${reward.lead.hash}`}>Follow the redirect link</Button>
+
   </Container>
 )

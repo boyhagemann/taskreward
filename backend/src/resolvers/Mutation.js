@@ -1,12 +1,12 @@
 import { requestToken } from './Token'
 import { createUser } from './User'
-import { createTask } from './Task'
+import { createReward } from './Reward'
 import { createLead, redirect } from './Lead'
 
 export default {
   requestToken,
   redirect: (_, { hash, session }, { user }) => redirect(hash, session, user),
   createUser,
-  createTask,
+  createReward,
   createLead,
 }

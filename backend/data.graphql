@@ -1,7 +1,7 @@
 
 `
-mutation CreateTask($task: TaskInput) {
-  createTask(input: $task) {
+mutation CreateReward($reward: RewardInput) {
+  createReward(input: $reward) {
     id
   }
 }
@@ -11,7 +11,7 @@ mutation CreateTask($task: TaskInput) {
 
 `
 {
-  "task": {
+  "reward": {
     "owner": "1",
     "name": "whaaaa",
     "description": "whooo"

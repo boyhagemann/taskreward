@@ -1,6 +1,6 @@
 import { session, transformOne, transformMany, id, handleError, cookieExists, getUserFromCookie, } from './helpers'
 import { getUser, createUserFromSession } from './User'
-import { getTask } from './Task'
+import { getReward } from './Reward'
 import { unique } from 'shorthash'
 
 export const createLead = (_, { input }) => session
@@ -29,9 +29,9 @@ export const getLeads = () => session
   .then(result => transformMany(result, session))
   .catch(handleError)
 
-export const findLeadsForTask = id => session
+export const findLeadsForProfile = id => session
   .run(`
-    MATCH (a:Lead)<-[r:HAS_LEAD*]-(:Task { id: $id })
+    MATCH (a:Lead)<-[r:HAS_LEAD*]-(:Profile { id: $id })
     WITH a, max(size(r)) AS depth
     RETURN a, depth
   `, { id })
@@ -41,8 +41,8 @@ export const findLeadsForTask = id => session
 export const getLead = id => session
   .run(`
     MATCH (a:Lead { id: $id })
-    MATCH (a)<-[HAS_LEAD*]-(b:Task)
-    RETURN a, b.id AS task
+    MATCH (a)<-[HAS_LEAD*]-(b:Reward)
+    RETURN a, b.id AS reward
   `, { id })
   .then(result => transformOne(result, session))
   .catch(handleError)
@@ -50,8 +50,8 @@ export const getLead = id => session
 export const getParent = id => session
   .run(`
     MATCH (:Lead { id: $id })<-[:HAS_LEAD]-(a:Lead)
-    MATCH (a)<-[HAS_LEAD*]-(b:Task)
-    RETURN a, b.id AS task
+    MATCH (a)<-[HAS_LEAD*]-(b:Reward)
+    RETURN a, b.id AS reward
   `, { id })
   .then(result => transformOne(result, session))
   .catch(handleError)
@@ -64,11 +64,11 @@ export const findLeadForUserAndHash = (userId, hash) => session
   .then(result => transformOne(result, session))
   .catch(handleError)
 
-export const findLeadByTask = task => session
+export const findLeadByProfile = profile => session
   .run(`
-    MATCH (a:Lead)<-[r:HAS_LEAD]-(:Task { id: $task })
+    MATCH (a:Lead)<-[r:HAS_LEAD]-(:Profile { id: $profile })
     RETURN a
-  `, { task })
+  `, { profile })
   .then(result => transformOne(result, session))
   .catch(handleError)
 
@@ -88,7 +88,7 @@ export const redirect = async (hash, session, user) => {
 }
 
 export default {
-  task: (lead) => getTask(lead.task),
+  // profile: (lead) => get(lead.reward),
   user: (lead) => getUser(lead.user),
   parent: (lead) => getParent(lead.id),
 }

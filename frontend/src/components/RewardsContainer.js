@@ -1,16 +1,16 @@
 import { gql, graphql } from 'react-apollo'
-import TaskList from './TaskList'
+import Rewards from './Rewards'
 
 export default graphql(gql`
-  query TaskList {
-    tasks {
+  query Rewards {
+    rewards {
       id
       name
       description
-      reward
+      value
       lead {
         hash
       }
     }
   }
-`)(TaskList)
+`)(Rewards)

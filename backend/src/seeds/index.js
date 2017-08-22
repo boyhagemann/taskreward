@@ -1,9 +1,11 @@
 import { session, id, handleError } from '../resolvers/helpers'
 import { createUser } from '../resolvers/User'
-import { createTask } from '../resolvers/Task'
+import { createProfile } from '../resolvers/Profile'
+import { createReward } from '../resolvers/Reward'
 import { createRootLead, createLead } from '../resolvers/Lead'
 import users from './users'
-import tasks from './tasks'
+import profiles from './profiles'
+import rewards from './rewards'
 import leads from './leads'
 
 console.log('Truncating first...')
@@ -22,9 +24,14 @@ users.forEach(user => {
   createUser(null, { input: user })
 })
 
-tasks.forEach(task => {
-  console.log('Seeding task', task)
-  createTask(null, { input: task })
+profiles.forEach(profile => {
+  console.log('Seeding profile', profile)
+  createProfile(null, { input: profile })
+})
+
+rewards.forEach(reward => {
+  console.log('Seeding reward', reward)
+  createReward(null, { input: reward })
 })
 
 leads.forEach(lead => {

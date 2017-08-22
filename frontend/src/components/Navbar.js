@@ -1,38 +1,55 @@
 import React from 'react'
-import styled, { ThemeProvider } from 'styled-components'
+import styled from 'styled-components'
 import Container from './UI/Container'
 import { NavLink } from 'react-router-dom'
-import Tab from './UI/Tab'
-import ProfileContainer from './ProfileContainer'
-import defaultTheme from '../themes/default'
+import Box from './UI/Box'
+import Profile from './Profile'
 
-const Bar = Container.extend`
+const Bar = styled(Container)`
   position: fixed;
-  width: 100px;
-  height: 100%;
-  background: ${ ({ theme }) => theme.navbar.background };
-  padding: 20px 0;
-  margin: 0 auto;
 `
 
-const CircleTab = styled(Tab)`
+const Tab = styled(NavLink)`
+  display: inline-block;
+  margin-right: 3px;
+  background: ${ ({ theme }) => theme.navbar.tab.default.background };
+  color: ${ ({ theme }) => theme.navbar.tab.default.color };
+  padding: 10px;
   text-decoration: none;
-  width: 40px;
-  height: 40px;
-  line-height: 40px;
-  font-size: 2em;
-  vertical-align: middle;
-  border-radius: 40px;
-  margin-bottom: 20px;
+
+  &.${ ({ theme }) => theme.navbar.tab.active.className || 'active' } {
+    background: ${ ({ theme }) => theme.navbar.tab.active.background };
+    color: ${ ({ theme }) => theme.navbar.tab.active.color };
+  }
 `
 
-export default props => (
-  <ThemeProvider theme={defaultTheme.navbar}>
-    <Bar>
-      <CircleTab component={NavLink} exact to={`/`}>H</CircleTab>
-      <CircleTab component={NavLink} to={`/tasks`}>T</CircleTab>
-      <CircleTab component={NavLink} to={`/account`}>A</CircleTab>
-      <ProfileContainer />
-    </Bar>
-  </ThemeProvider>
+const Account = Box.extend`
+  text-align: right;
+`
+
+export default ({ loading, viewer }) => loading ? null : (
+  <Bar>
+    <Box width={9/12}>
+      { viewer
+        ? [
+          <Tab exact to={`/dashboard`}>Dashboard</Tab>,
+          <Tab to={`/manage`}>Manage</Tab>
+        ]
+        : <Tab exact to={`/`}>Home</Tab>
+      }
+    </Box>
+    <Account width={3/12}>
+      { viewer
+        ? (
+          <div>
+            <div>Welcome, {viewer.name}</div>
+            <Link to={`/logout`}>Logout</Link>
+          </div>
+        )
+        : (
+          <Button primary component={Link} to={`/login`}>Login</Button>
+        )
+      }
+    </Account>
+  </Bar>
 )

@@ -8,7 +8,7 @@ import Button from './UI/Button'
 const Heading = styled(Link)`
   margin: 0;
   text-decoration: none;
-  color: ${ ({ theme}) => theme.task.list.item.heading.color };
+  color: ${ ({ theme}) => theme.reward.list.item.heading.color };
   font-size: 1.5em;
 `
 const Description = styled.p``
@@ -25,10 +25,10 @@ const Actions = styled(Box)`
 export default ({ id, name, description, reward, lead: { hash } }) => (
   <Item key={id}>
     <Box width={4/6}>
-      <Heading to={`/tasks/${id}`}>{ name }</Heading>
+      <Heading to={`/rewards/${id}`}>{ name }</Heading>
       <Description>{ description }</Description>
       <Actions>
-        <Button primary component={Link} to={`/tasks/${id}`}>Dashboard</Button>
+        <Button primary component={Link} to={`/rewards/${id}`}>Dashboard</Button>
         <Button component={Link} to={`/r/${hash}`}>View</Button>
       </Actions>
     </Box>

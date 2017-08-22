@@ -1,6 +1,6 @@
-import Task from './Task'
+import Reward from './Reward'
 import User from './User'
-import TaskInput from './TaskInput'
+import RewardInput from './RewardInput'
 import Lead from './Lead'
 import LeadInput from './LeadInput'
 import CreateUserInput from './CreateUserInput'
@@ -23,9 +23,9 @@ type Mutation {
     input: CreateUserInput
   ): User
 
-  createTask(
-    input: TaskInput
-  ): Task
+  createReward(
+    input: RewardInput
+  ): Reward
 
   createLead(
     input: LeadInput
@@ -36,7 +36,7 @@ type Mutation {
 export default [
   Mutation,
   ...User, CreateUserInput,
-  ...Task, TaskInput,
+  ...Reward, RewardInput,
   ...Lead, LeadInput,
   Token,
 ]

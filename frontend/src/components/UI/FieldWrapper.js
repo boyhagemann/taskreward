@@ -1,5 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
+import TextInput from './TextInput'
+import Box from './Box'
 
 const Wrapper = styled.div`
   margin-bottom: 20px;
@@ -27,11 +29,39 @@ const Warning = Message.extend`
   color: orange;
 `
 
-export default ({ component: Component, ...props }) => (
-  <Wrapper>
-    { props.label && <Label>{props.label}</Label> }
-    <Component { ...props } />
-    { props.error && <Error>{props.error}</Error> }
-    { props.warning && <Warning>{props.warning}</Warning> }
-  </Wrapper>
-)
+const Description = styled.p`
+  color: ${ ({ theme}) => theme.input.description.color};
+  font-size: 0.9em;
+  margin: 0 20px;
+`
+
+const renderField = props => {
+  switch(props.type) {
+    default:
+      return <TextInput { ...props } />
+  }
+}
+
+export default ({ component: Component, input, type, label, description, placeholder, meta }) => {
+
+    const error = meta.touched && meta.error
+    const warning = meta.touched && meta.warning
+
+    return <Wrapper>
+      { label && <Label>{label}</Label> }
+      <Box width={1/2}>
+        <Component
+          { ...input }
+          type={type}
+          placeholder={placeholder}
+          error={error}
+          warning={warning}
+        />
+        { error && <Error>{error}</Error> }
+        { warning && <Warning>{warning}</Warning> }
+      </Box>
+      <Box width={1/2}>
+        { description && <Description>{description}</Description>}
+      </Box>
+    </Wrapper>
+}

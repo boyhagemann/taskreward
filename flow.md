@@ -1,4 +1,4 @@
-1. A adds task
+1. A adds reward
 2. A puts link on social media
 3. C clicks link
 

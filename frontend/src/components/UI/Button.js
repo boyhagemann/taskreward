@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const Component = ({ component: Component = 'button', primary, huge, ...props}) => {
+const Component = ({ component: Component = 'button', primary, positive, huge, ...props}) => {
   return <Component {...props} />
 }
 
@@ -10,8 +10,34 @@ export default styled(Component)`
   display: inline-box;
   box-sizing: border-box;
   cursor: pointer;
-  background: ${ props => props.primary ? '#39f' : '#ddd' };
-  color: ${ props => props.primary ? '#fff' : '#666' };
+  background: ${ props => {
+    switch(true) {
+
+      case (props.primary):
+        return props.theme.button.primary.background || '#06c'
+
+      case (props.positive):
+        return props.theme.button.positive.background || 'green'
+
+      default:
+        return props.theme.button.default.background || '#ddd'
+
+      }
+  } };
+  color: ${ props => {
+    switch(true) {
+
+      case (props.primary):
+        return props.theme.button.primary.color || '#fff'
+
+      case (props.positive):
+        return props.theme.button.positive.color || '#fff'
+
+      default:
+        return props.theme.button.default.color || '#666'
+
+      }
+  } };
   padding: ${ props => props.huge ? '20px' : '10px' };
   opacity: ${ props => props.disabled ? 0.5 : 1 };
   font-size: ${ props => props.huge ? '1.5em' : '1em' };

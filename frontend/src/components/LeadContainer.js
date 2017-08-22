@@ -6,7 +6,7 @@ export default graphql(gql`
     lead(id: $id) {
       id
       hash
-      task {
+      reward {
         id
         name
         description
