@@ -4,19 +4,14 @@ import FieldWrapper from './UI/FieldWrapper'
 import TextInput from './UI/TextInput'
 import TextArea from './UI/TextArea'
 import Button from './UI/Button'
-import Container from './UI/Container'
 import Box from './UI/Box'
 
-export default ({ handleSubmit, reward, ...props }) => {
+export default ({ remove, name, ...props }) => {
 
   return (
-  <form onSubmit={handleSubmit}>
-
-    <Container>
-
-      <Box width={2/3}>
+      <Box>
         <Field
-          name="name"
+          name={`${name}.name`}
           label="Name"
           component={ props => <FieldWrapper component={TextInput} {...props} />}
           description={`
@@ -26,7 +21,7 @@ export default ({ handleSubmit, reward, ...props }) => {
           />
 
         <Field
-          name="description"
+          name={`${name}.description`}
           label="Description"
           rows={10}
           component={ props => <FieldWrapper component={TextArea} {...props} />}
@@ -38,7 +33,7 @@ export default ({ handleSubmit, reward, ...props }) => {
           />
 
         <Field
-          name="reward"
+          name={`${name}.value`}
           label="Reward"
           component={ props => <FieldWrapper component={TextInput} {...props} />}
           description={`
@@ -47,10 +42,7 @@ export default ({ handleSubmit, reward, ...props }) => {
           `}
           />
 
-        <Button primary type="submit">Create</Button>
-        </Box>
+        <Button negative onClick={() => remove() }>Remove</Button>
 
-    </Container>
-
-  </form>
+      </Box>
 )}

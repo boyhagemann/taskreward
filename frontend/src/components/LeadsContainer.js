@@ -4,10 +4,19 @@ import Leads from './Leads'
 export default graphql(gql`
   query Leads {
     viewer {
-      leads {
-        name
-        description
+      profile {
+        leads {
+          hash
+          user {
+            name
+            email
+          }
+        }
       }
     }
   }
-`)(Profile)
+`, {
+  props: ({ data: { loading, viewer = {} } }) => ({
+    loading, leads: viewer.profile ? viewer.profile.leads : []
+  })
+})(Leads)

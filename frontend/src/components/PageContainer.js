@@ -1,10 +1,10 @@
 import { gql, graphql } from 'react-apollo'
 import { reduxForm } from 'redux-form'
-import Profile from './Profile'
+import Page from './Page'
 
 const WithForm = reduxForm({
-  form: 'profile',
-})(Profile)
+  form: 'page',
+})(Page)
 
 export default graphql(gql`
   query Profile {

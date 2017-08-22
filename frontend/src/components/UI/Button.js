@@ -19,6 +19,9 @@ export default styled(Component)`
       case (props.positive):
         return props.theme.button.positive.background || 'green'
 
+      case (props.negative):
+        return props.theme.button.negative.background || 'red'
+
       default:
         return props.theme.button.default.background || '#ddd'
 
@@ -32,6 +35,9 @@ export default styled(Component)`
 
       case (props.positive):
         return props.theme.button.positive.color || '#fff'
+
+      case (props.negative):
+        return props.theme.button.negative.color || '#fff'
 
       default:
         return props.theme.button.default.color || '#666'

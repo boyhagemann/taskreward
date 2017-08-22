@@ -1,22 +1,46 @@
 import React from 'react'
-import { Field } from 'redux-form'
+import styled from 'styled-components'
+import { Field, FieldArray } from 'redux-form'
 import FieldWrapper from './UI/FieldWrapper'
 import TextInput from './UI/TextInput'
 import TextArea from './UI/TextArea'
+import Heading from './UI/Heading'
 import Button from './UI/Button'
 import Container from './UI/Container'
 import Box from './UI/Box'
+import RewardForm from './RewardForm'
 
-export default ({ handleSubmit, reward, ...props }) => {
+const Reward = styled.div`
+  margin-bottom: 30px;
+  padding: 20px;
+  background: ${ ({ theme }) => theme.profile.reward.background };
+`
+const Line = styled.hr`
 
-  console.log(props)
+`
+
+
+const renderRewards = ({ fields }) => (
+  <Box>
+    { fields.map( (reward, index) => (
+      <Reward>
+        <RewardForm name={reward} remove={ () => fields.remove(index) } />
+      </Reward>
+    )) }
+    <Button positive onClick={ () => fields.push() }>Add a reward</Button>
+  </Box>
+)
+
+export default ({ handleSubmit, loading }) => {
 
   return (
   <form onSubmit={handleSubmit}>
 
     <Container>
 
-        <Box width={2/3}>
+        <Box>
+
+          <Heading>Profile</Heading>
           <Field
             name="name"
             label="Name"
@@ -39,7 +63,17 @@ export default ({ handleSubmit, reward, ...props }) => {
             `}
             />
 
-          <Button primary type="submit">Save</Button>
+            <Button primary huge type="submit">Save</Button>
+
+
+          <Heading>Rewards</Heading>
+          <FieldArray
+            name={`rewards`}
+            component={renderRewards}
+          />
+
+          <Button primary huge type="submit">Save</Button>
+
         </Box>
 
     </Container>

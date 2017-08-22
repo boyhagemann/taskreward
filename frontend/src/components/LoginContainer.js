@@ -44,7 +44,7 @@ const WithGraphql = withApollo(graphql(requestToken, {
 })(WithReduxForm))
 
 const mapDispatchToProps = dispatch => ({
-  redirect: () => dispatch(push('/rewards'))
+  redirect: () => dispatch(push('/dashboard'))
 })
 
 export default connect(null, mapDispatchToProps)(WithGraphql)

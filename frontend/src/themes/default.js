@@ -5,6 +5,7 @@ const colors = {
   canvas: '#f3f1eb',
   pencil: '#456',
   ocean: '#39f',
+  heart: '#d85b5b',
   bleech: '#fff',
   dirt: '#bdb289',
   grass: '#89c552',
@@ -47,13 +48,9 @@ export default {
       },
     }
   },
-  reward: {
-    list: {
-      item: {
-        heading: {
-          color: colors.pencil,
-        }
-      }
+  profile: {
+    reward: {
+      background: color(colors.canvas).darken(0.05).string(),
     }
   },
   button: {
@@ -67,6 +64,10 @@ export default {
     },
     positive: {
       background: color(colors.grass).string(),
+      color: colors.bleech,
+    },
+    negative: {
+      background: color(colors.heart).string(),
       color: colors.bleech,
     },
   },

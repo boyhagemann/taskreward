@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 import Container from './UI/Container'
-import { NavLink } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 import Box from './UI/Box'
-import Profile from './Profile'
+import Button from './UI/Button'
 
 const Bar = styled(Container)`
   position: fixed;
@@ -29,11 +29,14 @@ const Account = Box.extend`
 
 export default ({ loading, viewer }) => loading ? null : (
   <Bar>
+    { console.log(viewer) }
     <Box width={9/12}>
       { viewer
         ? [
           <Tab exact to={`/dashboard`}>Dashboard</Tab>,
-          <Tab to={`/manage`}>Manage</Tab>
+          <Tab to={`/profile`}>Profile</Tab>,
+          <Tab to={`/page`}>My page</Tab>,
+          <Tab to={`/leads`}>Leads</Tab>,
         ]
         : <Tab exact to={`/`}>Home</Tab>
       }

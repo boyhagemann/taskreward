@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import ProfileContainer from './ProfileContainer'
-import RewardsContainer from './RewardsContainer'
+import PageContainer from './PageContainer'
 import LeadContainer from './LeadContainer'
+import LeadsContainer from './LeadsContainer'
 import RedirectContainer from './RedirectContainer'
 import HomeContainer from './HomeContainer'
 import LoginContainer from './LoginContainer'
@@ -48,7 +49,7 @@ class App extends Component {
                   <Route exact path={`/`} component={HomeContainer}/>
                   <Route path={'/dashboard'} component={AdminCanView(DashboardContainer)} />
                   <Route path={'/profile'} component={AdminCanView(ProfileContainer)} />
-                  <Route path={`/rewards`} component={AdminCanView(RewardsContainer)}/>
+                  <Route path={'/page'} component={AdminCanView(PageContainer)} />
                   <Route exact path={'/leads'} component={AdminCanView(LeadsContainer)} />
                   <Route path={'/login'} component={LoginContainer} />
                   <Route path={'/logout'} component={Logout} />
