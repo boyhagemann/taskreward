@@ -6,6 +6,7 @@ const colors = {
   pencil: '#456',
   ocean: '#39f',
   heart: '#d85b5b',
+  love: '#d36eb6',
   bleech: '#fff',
   dirt: '#bdb289',
   grass: '#89c552',
