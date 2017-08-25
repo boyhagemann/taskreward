@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import Box from './Box'
+import { Grid as Box } from 'grid-styled'
 import TextInput from './TextInput'
 
 const Wrapper = styled.div`
@@ -30,9 +30,8 @@ const Warning = Message.extend`
 `
 
 const Description = styled.p`
-  color: ${ ({ theme}) => theme.input.description.color};
   font-size: 0.9em;
-  margin: 0 20px;
+  margin: 5px 0 0;
 `
 
 export default ({ component: Component = TextInput, input, type, label, description, placeholder, meta }) => {
@@ -42,7 +41,7 @@ export default ({ component: Component = TextInput, input, type, label, descript
 
     return <Wrapper>
       { label && <Label>{label}</Label> }
-      <Box width={1/2}>
+      <Box>
         <Component
           { ...input }
           type={type}
@@ -53,7 +52,7 @@ export default ({ component: Component = TextInput, input, type, label, descript
         { error && <Error>{error}</Error> }
         { warning && <Warning>{warning}</Warning> }
       </Box>
-      <Box width={1/2}>
+      <Box>
         { description && <Description>{description}</Description>}
       </Box>
     </Wrapper>

@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "color": "^2.0.0",
+    "grid-styled": "^2.0.0-10",
     "history": "^4.6.3",
     "react": "^15.6.1",
     "react-apollo": "^1.4.8",
@@ -13,7 +14,8 @@
     "react-router-redux": "next",
     "redux": "^3.7.2",
     "redux-form": "^7.0.3",
-    "styled-components": "^2.1.2"
+    "styled-components": "^2.1.2",
+    "styled-system": "^1.0.0-13"
   },
   "devDependencies": {
     "@storybook/react": "^3.2.3",

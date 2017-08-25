@@ -30,10 +30,12 @@ injectGlobal([`
     font-size: 16px;
     color: #456;
     background: #f3f1eb;
+
   }
 `])
 
 const Content = styled.div`
+  padding-top: 70px;
 `
 
 class App extends Component {
@@ -49,7 +51,7 @@ class App extends Component {
                   <Route exact path={`/`} component={HomeContainer}/>
                   <Route path={'/dashboard'} component={AdminCanView(DashboardContainer)} />
                   <Route path={'/profile'} component={AdminCanView(ProfileContainer)} />
-                  <Route path={'/page'} component={AdminCanView(PageContainer)} />
+                  <Route path={'/page/:action?'} component={AdminCanView(PageContainer)} />
                   <Route exact path={'/leads'} component={AdminCanView(LeadsContainer)} />
                   <Route exact path={'/claims'} component={AdminCanView(() => (<div>Claims</div>))} />
                   <Route path={'/login'} component={LoginContainer} />

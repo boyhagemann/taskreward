@@ -4,7 +4,7 @@ import FieldWrapper from './UI/FieldWrapper'
 import TextInput from './UI/TextInput'
 import TextArea from './UI/TextArea'
 import Button from './UI/Button'
-import Box from './UI/Box'
+import { Grid as Box } from 'grid-styled'
 
 export default ({ remove, name, ...props }) => {
 

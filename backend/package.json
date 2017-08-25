@@ -2,7 +2,8 @@
   "scripts": {
     "start": "nodemon -L src/index.js --exec babel-node",
     "build": "babel src -d build",
-    "seed": "babel-node src/seeds/index.js"
+    "seed": "babel-node src/seeds/index.js",
+    "dev": "yarn seed && yarn start"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",

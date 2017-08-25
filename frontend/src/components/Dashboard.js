@@ -1,9 +1,9 @@
 import React from 'react'
-import Container from './UI/Container'
 import Heading from './UI/Heading'
+import MaxBox from './UI/MaxBox'
 
 export default () => (
-  <Container>
+  <MaxBox>
     <Heading>Dashboard</Heading>
 
     <p>
@@ -13,5 +13,5 @@ export default () => (
     <p>
       And also some useful statistics and graphs.
     </p>
-  </Container>
+  </MaxBox>
 )

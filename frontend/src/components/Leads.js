@@ -1,14 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import { Grid as Box } from 'grid-styled'
 import Card from './UI/Card'
-import Box from './UI/Box'
+import MaxBox from './UI/MaxBox'
 import Button from './UI/Button'
-import Container from './UI/Container'
 import Heading from './UI/Heading'
 import TextInput from './UI/TextInput'
 
-const SearchBox = styled(Container)`
+const SearchBox = styled.div`
   background: #ddd;
   margin: 10px 0 20px;
 `
@@ -18,7 +18,7 @@ const Email = styled.span`
   margin-left: 5px;
 `
 
-const Actions = styled(Box)`
+const Actions = Box.extend`
   text-align: right;
 
   > ${Button} {
@@ -26,10 +26,8 @@ const Actions = styled(Box)`
   }
 `
 
-const Leads = styled(Container)``
-
 export default ({ loading, leads = [] }) => loading ? null : (
-  <Leads>
+  <MaxBox>
     <Heading>Leads</Heading>
     <SearchBox>
     <TextInput name="q" placeholder="Search for email or telephone..." />
@@ -49,5 +47,5 @@ export default ({ loading, leads = [] }) => loading ? null : (
         </Actions>
       </Card>
     )) }
-  </Leads>
+  </MaxBox>
 )

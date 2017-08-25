@@ -14,16 +14,16 @@ export default styled(Component)`
     switch(true) {
 
       case (props.primary):
-        return props.theme.button.primary.background || '#06c'
+        return props.theme.colors.ocean || '#000'
 
       case (props.positive):
-        return props.theme.button.positive.background || 'green'
+        return 'green'
 
       case (props.negative):
-        return props.theme.button.negative.background || 'red'
+        return 'red'
 
       default:
-        return props.theme.button.default.background || '#ddd'
+        return '#ddd'
 
       }
   } };
@@ -31,16 +31,16 @@ export default styled(Component)`
     switch(true) {
 
       case (props.primary):
-        return props.theme.button.primary.color || '#fff'
+        return '#fff'
 
       case (props.positive):
-        return props.theme.button.positive.color || '#fff'
+        return '#fff'
 
       case (props.negative):
-        return props.theme.button.negative.color || '#fff'
+        return '#fff'
 
       default:
-        return props.theme.button.default.color || '#666'
+        return '#666'
 
       }
   } };

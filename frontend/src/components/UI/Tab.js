@@ -1,19 +1,20 @@
-import React from 'react'
 import styled from 'styled-components'
-import Button from './Button'
+import { space, width, fontSize, color } from 'styled-system'
+import { NavLink } from 'react-router-dom'
 
-const Component = ({ component: Component, ...props }) => <Component { ...props } />
+const activeColor = props => color({ ...props, color: props.activeColor })
 
-export default styled(Component)`
+export default styled(NavLink)`
   display: inline-block;
   margin-right: 3px;
-  background: ${ ({ theme }) => theme.tab.default.background };
-  color: ${ ({ theme }) => theme.tab.default.color };
   padding: 10px;
   text-decoration: none;
+  ${space}
+  ${width}
+  ${fontSize}
+  ${color}
 
-  &.${ ({ theme }) => theme.tab.active.className || 'active' } {
-    background: ${ ({ theme }) => theme.tab.active.background };
-    color: ${ ({ theme }) => theme.tab.active.color };
+  &.active {
+    ${activeColor}
   }
 `

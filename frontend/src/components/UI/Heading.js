@@ -1,7 +1,9 @@
 import styled from 'styled-components'
+import { space, fontSize, color } from 'styled-system'
 
 export default styled.h1`
-  font-size: 2.5em;
   font-weight: normal;
-  margin: 0.8em 0 0.8em 0;
+  ${space}
+  ${fontSize}
+  ${color}
 `

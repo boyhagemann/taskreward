@@ -1,10 +1,13 @@
+// import { Grid } from 'grid-styled'
 import styled from 'styled-components'
+import { space, width, fontSize, color } from 'styled-system'
 
 export default styled.div`
   display: inline-block;
-  box-sizing: border-box;
-  width: ${ ({ width = 1 }) => width <= 1 ? (width * 100) + '%' : width + 'px' };
-  max-width: ${ ({ max }) => max ? max + 'px' : null };
-  text-align: left;
   vertical-align: top;
+  box-sizing: border-box;
+  ${space}
+  ${width}
+  ${fontSize}
+  ${color}
 `

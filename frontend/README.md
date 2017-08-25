@@ -75,6 +75,9 @@ This can be done in three ways:
 
 Patreon:
 - Has multiple products and milestones (member count)
+- Has a nice profile page with products
+- Has a blog or news feed on the profile page
+- They have similar backend things to manage
 
 MailChimp:
 - it focusses on one thing
@@ -95,6 +98,24 @@ Deliver us 1000 views and you will receive 10 euro.
 When a person comes to the office, you will receive 20 euro.  
 
 
+
+## Example profiles
+- company that has services (Bas)
+- freelancers with services (Rick)
+- people selling their house
+- people selling second hand stuff (Marktplaats)
+- people selling creative stuff (Patreon)
+
+# Facts / Assumptions
+- Small companies/freelancers want simple and affordable management systems.
+- Companies/freelancers are willing to try things on a no cure no pay basis.
+- Consumers are sharing and mentioning things on social media, but they don't get paid for it.
+- Consumers are competitive and like incentives.
+- A company sharing products on social media is not targeted.
+
+Ideas
+- Rewarding freelancer to freelancer network?
+- Do we need a bonus or discount for the end customer to trigger signing up?
 
 
 ## Viewer

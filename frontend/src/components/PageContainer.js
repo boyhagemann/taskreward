@@ -21,9 +21,10 @@ export default graphql(gql`
     }
   }
 `, {
-  props: ({ data: { loading, viewer = {} } }) => ({
+  props: ({ data: { loading, viewer = {} }, ownProps }) => ({
     loading,
     profile: viewer.profile,
-    initialValues: viewer.profile
+    initialValues: viewer.profile,
+    action: ownProps.match.params.action,
   })
 })(WithForm)
