@@ -5,6 +5,7 @@ import MaxBox from './UI/MaxBox'
 import Card from './UI/Card'
 import { isRequired, isEmail } from '../utils/validation'
 import Heading from './UI/Heading'
+import TextInput from './UI/TextInput'
 import FieldWrapper from './UI/FieldWrapper'
 
 
@@ -23,6 +24,7 @@ export default ({ handleSubmit, errors, pristine, submitting }) => (
             { errors }
             <Field
               component={FieldWrapper}
+              field={TextInput}
               type="email"
               name="email"
               validate={[isRequired, isEmail]}
@@ -31,6 +33,7 @@ export default ({ handleSubmit, errors, pristine, submitting }) => (
           <div>
             <Field
               component={FieldWrapper}
+              field={TextInput}
               type="password"
               name="password"
               validate={[isRequired]}

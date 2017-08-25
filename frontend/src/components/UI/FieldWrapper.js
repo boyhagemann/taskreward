@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import Box from './Box'
-import TextInput from './TextInput'
 import Text from './Text'
 
 const Wrapper = Box.extend`
@@ -31,7 +30,7 @@ const Warning = Message.extend`
 
 const Description = props => <Text { ...props} fontSize={1} color={'pencil++++'} />
 
-export default ({ component: Component = TextInput, input, type, label, description, placeholder, meta }) => {
+export default ({ field: Component, input, type, label, description, placeholder, meta }) => {
 
     const error = meta.touched && meta.error
     const warning = meta.touched && meta.warning

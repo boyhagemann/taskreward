@@ -13,7 +13,8 @@ export default ({ remove, name, ...props }) => {
         <Field
           name={`${name}.name`}
           label="Name"
-          component={ props => <FieldWrapper component={TextInput} {...props} />}
+          component={FieldWrapper}
+          field={TextInput}
           description={`
             Give your reward a nice and catchy name.
             This name will be visible for everyone.
@@ -24,7 +25,8 @@ export default ({ remove, name, ...props }) => {
           name={`${name}.description`}
           label="Description"
           rows={10}
-          component={ props => <FieldWrapper component={TextArea} {...props} />}
+          component={FieldWrapper}
+          field={TextArea}
           description={`
             This is the main text everyone will see.
             Tell them something that excites them about this reward.
@@ -35,7 +37,8 @@ export default ({ remove, name, ...props }) => {
         <Field
           name={`${name}.value`}
           label="Reward"
-          component={ props => <FieldWrapper component={TextInput} {...props} />}
+          component={FieldWrapper}
+          field={TextInput}
           description={`
             Enter the reward that a person gets when he or she helps finding the right person for the job.
             Please note that additional costs will be in place, in order to pay out everyone who was involved.

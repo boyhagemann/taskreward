@@ -36,6 +36,7 @@ export default ({ handleSubmit, loading }) => {
           name="name"
           label="Name"
           component={FieldWrapper}
+          field={TextInput}
           width={1}
           description={`
             Give your reward a nice and catchy name.
@@ -47,7 +48,8 @@ export default ({ handleSubmit, loading }) => {
           name="description"
           label="Description"
           rows={10}
-          component={ props => <FieldWrapper component={TextArea} {...props} />}
+          component={FieldWrapper}
+          field={TextArea}
           description={`
             This is the main text everyone will see.
             Tell them something that excites them about this reward.
