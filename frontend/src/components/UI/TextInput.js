@@ -1,24 +1,4 @@
-import styled from 'styled-components'
-import { space, width, fontSize, color } from 'styled-system'
+import React from 'react'
+import Input from './Input'
 
-export default styled.input`
-  ${space}
-  ${width}
-  ${fontSize}
-  ${color}
-  font-size: 1em;
-  font-family: Verdana;
-  box-sizing: border-box;
-  background: #fff;
-  border: 1px solid;
-  border-color: ${ props => props.error ? "#c66" : props.warning ? "orange" : "#c5c7c9" };
-  padding: 10px;
-  color: ${ props => props.error ? "#c66" : props.warning ? "orange" : "#000" };
-
-  ::-webkit-input-placeholder {
-    color: #ccc;
-  }
-  :focus {
-    outline: none;
-  }
-`
+export default props => <Input width={1} p={1} fontSize={2} color={`pencil++`} bc={`canvas---`} { ...props } />

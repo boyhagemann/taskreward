@@ -3,7 +3,7 @@ import color from 'color'
 const colors = {
   night: '#234',
   canvas: '#f3f1eb',
-  pencil: '#456',
+  pencil: '#606e7a',
   ocean: '#39f',
   heart: '#d85b5b',
   love: '#d36eb6',
@@ -13,15 +13,15 @@ const colors = {
 }
 
 const offsets = [
-  { alias: '----', offset: -1 },
-  { alias: '---', offset: -0.5 },
-  { alias: '--', offset: -0.1 },
-  { alias: '-', offset: -0.05 },
+  { alias: '----', offset: -.5 },
+  { alias: '---', offset: -.2 },
+  { alias: '--', offset: -.1 },
+  { alias: '-', offset: -.05 },
   { alias: '', offset: 0 },
-  { alias: '+', offset: 0.05 },
-  { alias: '++', offset: 0.1 },
-  { alias: '+++', offset: 0.5 },
-  { alias: '++++', offset: 1 },
+  { alias: '+', offset: .05 },
+  { alias: '++', offset: .1 },
+  { alias: '+++', offset: .2 },
+  { alias: '++++', offset: .5 },
 ]
 
 const generateColors = (name, value) => offsets

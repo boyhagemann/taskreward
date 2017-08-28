@@ -1,20 +1,6 @@
-import styled from 'styled-components'
+import React from 'react'
+import Input from './Input'
 
-export default styled.textarea`
-  font-size: 1em;
-  font-family: Verdana;
-  box-sizing: border-box;
-  background: #fff;
-  border: 1px solid;
-  width: 100%;
-  border-color: ${ props => props.error ? "#c66" : props.warning ? "orange" : "#c5c7c9" };
-  padding: 10px;
-  color: ${ props => props.error ? "#c66" : props.warning ? "orange" : "#000" };
+const TextArea = Input.withComponent('textarea')
 
-  ::-webkit-input-placeholder {
-    color: #ccc;
-  }
-  :focus {
-    outline: none;
-  }
-`
+export default props => <TextArea width={1} p={1} fontSize={2} color={`pencil++`} bc={`canvas---`} { ...props } />

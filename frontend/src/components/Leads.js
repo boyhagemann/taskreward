@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import { Grid as Box } from 'grid-styled'
+import Box from './UI/Box'
 import Card from './UI/Card'
 import MaxBox from './UI/MaxBox'
 import Button from './UI/Button'
@@ -26,6 +26,8 @@ const Actions = Box.extend`
   }
 `
 
+const Row = props => <Box width={1} bg={`bleech`} p={1} { ...props } />
+
 export default ({ loading, leads = [] }) => loading ? null : (
   <MaxBox>
     <Heading>Leads</Heading>
@@ -34,18 +36,18 @@ export default ({ loading, leads = [] }) => loading ? null : (
     </SearchBox>
     { leads.map(lead => (
 
-      <Card key={lead.hash}>
-        <Box width={2/8}>
+      <Row key={lead.hash}>
+        <Box width={2/8} pt={1}>
           {lead.user.name}
           <Email>({lead.user.email})</Email>
         </Box>
-        <Box width={2/8}>{lead.status}</Box>
-        <Box width={2/8}>{lead.depth}</Box>
+        <Box width={2/8} pt={1}>{lead.status}</Box>
+        <Box width={2/8} pt={1}>{lead.depth}</Box>
         <Actions width={2/8}>
           <Button primary component={Link} to={`/leads/${lead.id}`}>Accept</Button>
           <Button component={Link} to={`/leads/${lead.id}`}>View page</Button>
         </Actions>
-      </Card>
+      </Row>
     )) }
   </MaxBox>
 )

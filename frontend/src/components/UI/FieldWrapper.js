@@ -28,9 +28,9 @@ const Warning = Message.extend`
   color: orange;
 `
 
-const Description = props => <Text { ...props} fontSize={1} color={'pencil++++'} />
+const Description = props => <Text my={1} fontSize={0} color={'pencil++++'} { ...props} />
 
-export default ({ field: Component, input, type, label, description, placeholder, meta }) => {
+export default ({ field: Component, input, type, label, description, placeholder, meta, ...fieldProps }) => {
 
     const error = meta.touched && meta.error
     const warning = meta.touched && meta.warning
@@ -44,6 +44,7 @@ export default ({ field: Component, input, type, label, description, placeholder
           placeholder={placeholder}
           error={error}
           warning={warning}
+          { ...fieldProps }
         />
         { error && <Error>{error}</Error> }
         { warning && <Warning>{warning}</Warning> }

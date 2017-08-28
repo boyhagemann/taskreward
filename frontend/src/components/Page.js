@@ -38,6 +38,10 @@ const VisualText = styled(props => (
   bottom: 0;
 `
 
+const VisualAction = styled(Box)`
+  text-align: right;
+`
+
 const Actions = styled(props => (
   <Box { ...props } width={1} p={1} bg={`night`} c={`bleech`} pb={200} />
 ))`
@@ -70,19 +74,29 @@ const renderLeadForm = ({ fields }) => (
   </Box>
 )
 
-export default ({ handleSubmit, loading, profile, action }) => loading ? null : (
+export default ({ handleSubmit, loading, profile, action, size }) => loading ? null : (
   <Box width={1}>
+    { console.log(size) }
     <Visual>
       <VisualText color={`bleech`}>
         <MaxBox>
-          <Heading fontSize={7}>{ profile.name }</Heading>
+          <Box width={[1, 3/5]}>
+            <Heading fontSize={7}>{ profile.name }</Heading>
+          </Box>
+
+          <VisualAction width={[1, 2/5]}>
+            <Button mt={3} primary huge>
+              <Text m={0}>Recommend a friend</Text>
+              <Text m={0} color={`ocean+++`} fontSize={1}>You will be rewarded!</Text>
+            </Button>
+          </VisualAction>
         </MaxBox>
       </VisualText>
     </Visual>
 
 
     <MaxBox>
-      <Description fontSize={3}>{ profile.description }</Description>
+        <Description fontSize={3}>{ profile.description }</Description>
     </MaxBox>
 
     <MaxBox>

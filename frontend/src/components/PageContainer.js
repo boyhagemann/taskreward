@@ -1,4 +1,5 @@
 import { gql, graphql } from 'react-apollo'
+import { connect } from 'react-redux'
 import { reduxForm } from 'redux-form'
 import Page from './Page'
 
@@ -6,7 +7,7 @@ const WithForm = reduxForm({
   form: 'page',
 })(Page)
 
-export default graphql(gql`
+const WithGraphQl = graphql(gql`
   query Profile {
     viewer {
       profile {
@@ -28,3 +29,7 @@ export default graphql(gql`
     action: ownProps.match.params.action,
   })
 })(WithForm)
+
+export default connect( state => ({
+  size: state.size,
+}))(WithGraphQl)

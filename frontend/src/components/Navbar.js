@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import Tab from './UI/Tab'
 import MaxBox from './UI/MaxBox'
 import Box from './UI/Box'
+import Badge from './UI/Badge'
 import Button from './UI/Button'
 
 
@@ -24,13 +25,16 @@ const Name = styled.span`
   font-weight: bold;
 `
 
-const renderTab = ({ to, label }) => <Tab key={to} exact to={to} color={`pencil++++`} activeColor={`night`}>{label}</Tab>
+const renderTab = ({ to, label, badge }) => <Tab key={to} exact to={to} color={`pencil++++`} activeColor={`night`}>
+  {label} { badge && <Badge bg={badge.background}>{badge.count}</Badge>}
+</Tab>
+
 const tabs = [
   { to: '/dashboard', label: 'Dashboard' },
   { to: '/profile', label: 'Profile' },
   { to: '/page', label: 'My page' },
-  { to: '/leads', label: 'Leads' },
-  { to: '/claims', label: 'Claims' },
+  { to: '/leads', label: 'Leads', badge: { background: 'grass', count: 12 } },
+  { to: '/claims', label: 'Claims', badge: { background: 'heart', count: 4 } },
 ]
 
 export default ({ loading, viewer = {} }) => loading ? null : (

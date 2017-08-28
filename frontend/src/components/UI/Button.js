@@ -1,11 +1,16 @@
 import React from 'react'
 import styled from 'styled-components'
+import { space, width, fontSize, color } from 'styled-system'
 
 const Component = ({ component: Component = 'button', primary, positive, negative, huge, ...props}) => {
   return <Component {...props} />
 }
 
 export default styled(Component)`
+  ${space}
+  ${width}
+  ${fontSize}
+  ${color}
   border: none;
   display: inline-box;
   box-sizing: border-box;
