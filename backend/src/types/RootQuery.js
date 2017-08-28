@@ -10,7 +10,7 @@ type RootQuery {
   reward(id: ID!): Reward
   users: [User]
   leads: [Lead]
-  lead(id: ID!): Lead
+  lead(hash: String!): Lead
 }
 `
 

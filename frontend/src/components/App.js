@@ -57,7 +57,7 @@ class App extends Component {
                   <Route path={'/login'} component={LoginContainer} />
                   <Route path={'/logout'} component={Logout} />
 
-                  <Route path={`/leads/:id`} component={AdminCanView(LeadContainer)}/>
+                  <Route path={`/leads/:hash`} component={AdminCanView(LeadContainer)}/>
                   <Route path={`/r/:hash`} render={ ({ match }) => <RedirectContainer hash={match.params.hash} /> } />
                 </Content>
               </div>

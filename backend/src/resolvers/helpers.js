@@ -49,7 +49,7 @@ export const transformOne = (result, session) => {
 
   const singleRecord = result.records[0]
 
-  if(!singleRecord) throw new TransformException('Record does not exist')
+  if(!singleRecord) throw new TransformException(`Record does not exist: ${ JSON.stringify(result)}`)
 
   return mapRecord(singleRecord)
 }

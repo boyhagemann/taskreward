@@ -6,6 +6,7 @@ export default graphql(gql`
     viewer {
       profile {
         leads {
+          id
           hash
           user {
             name

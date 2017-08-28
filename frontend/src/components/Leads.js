@@ -44,8 +44,8 @@ export default ({ loading, leads = [] }) => loading ? null : (
         <Box width={2/8} pt={1}>{lead.status}</Box>
         <Box width={2/8} pt={1}>{lead.depth}</Box>
         <Actions width={2/8}>
-          <Button primary component={Link} to={`/leads/${lead.id}`}>Accept</Button>
-          <Button component={Link} to={`/leads/${lead.id}`}>View page</Button>
+          <Button primary component={Link} to={`/leads/${lead.hash}`}>Accept</Button>
+          <Button component={Link} to={`/leads/${lead.hash}`}>View page</Button>
         </Actions>
       </Row>
     )) }

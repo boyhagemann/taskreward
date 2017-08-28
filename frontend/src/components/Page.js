@@ -101,7 +101,7 @@ export default ({ handleSubmit, loading, profile, action, size }) => loading ? n
 
     <MaxBox>
       { profile.rewards.map( reward => (
-        <Box mt={2} pr={3} pb={4} width={[1, 1/2, 1/3]}>
+        <Box key={reward.id} mt={2} pr={3} pb={4} width={[1, 1/2, 1/3]}>
           <Card key={reward.name} bg={`bleech`} width={1}>
             <SubHeading m={0} p={2} fontSize={5}>{ reward.name }</SubHeading>
             <Text px={2}>{ reward.description }</Text>

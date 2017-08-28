@@ -28,4 +28,4 @@ export const store = createStore(rootReducer, applyMiddleware(middleware))
 store.dispatch(createSizeAction(window))
 
 // Dispatch an action every 50ms when window size changes.
-listenResize(store, window, 50)
+// listenResize(store, window, 50)

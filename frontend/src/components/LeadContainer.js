@@ -1,33 +1,36 @@
-import {  gql, graphql } from 'react-apollo'
-import Lead from './Lead'
+import { gql, graphql } from 'react-apollo'
+import { connect } from 'react-redux'
+import { reduxForm } from 'redux-form'
+import Page from './Page'
 
-export default graphql(gql`
-  query Lead($id: ID!) {
-    lead(id: $id) {
-      id
-      hash
-      reward {
-        id
+const WithForm = reduxForm({
+  form: 'page',
+})(Page)
+
+const WithGraphQl = graphql(gql`
+  query Profile($hash: String!) {
+    lead(hash: $hash) {
+      profile {
         name
         description
-        link
-        reward
-        owner {
+        rewards {
+          id
           name
-        }
-      }
-      user {
-        name
-      }
-      parent {
-        user {
-          name
+          description
+          value
         }
       }
     }
   }
 `, {
-  options: props => ({
-    variables: props.match.params
+  props: ({ data: { loading, lead } }) => ({
+    loading,
+    lead,
+    profile: lead && lead.profile
   })
-})(Lead)
+})(WithForm)
+
+export default connect( (state, props) => ({
+  size: state.size,
+  hash: props.match.params.hash,
+}))(WithGraphQl)

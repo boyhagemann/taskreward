@@ -14,6 +14,7 @@ const WithGraphQl = graphql(gql`
         name
         description
         rewards {
+          id
           name
           description
           value

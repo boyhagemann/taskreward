@@ -6,7 +6,7 @@ import Redirect from './Redirect'
 const redirect = gql(`
   mutation redirect($hash: String!, $session: String!) {
     redirect(hash: $hash, session: $session) {
-      id
+      hash
     }
   }
 `)
@@ -19,8 +19,8 @@ const withRedirectMutation = graphql(redirect, {
     } })
       .then(response => {
         const data = response.data.redirect
-        if(data.id) {
-          ownProps.redirect(data.id)
+        if(data.hash) {
+          ownProps.redirect(data.hash)
         }
       })
       .catch(error => console.error('Got error', error))
@@ -28,7 +28,7 @@ const withRedirectMutation = graphql(redirect, {
 })(Redirect)
 
 const mapDispatchToProps = dispatch => ({
-  redirect: id => dispatch(replace(`/leads/${id}`))
+  redirect: hash => dispatch(replace(`/leads/${hash}`))
 })
 
 export default connect(null, mapDispatchToProps)(withRedirectMutation)

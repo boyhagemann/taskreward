@@ -9,11 +9,10 @@ import rewards from './rewards'
 import leads from './leads'
 
 console.log('Truncating first...')
-
 session
   .run(`
-    MATCH (n)
-    DETACH DELETE n
+  MATCH (n)
+  DETACH DELETE n
   `)
   .then(result => console.log('Data truncated!'))
   .then()

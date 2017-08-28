@@ -1,6 +1,7 @@
 import { session, transformOne, transformMany, id, handleError, cookieExists, getUserFromCookie, } from './helpers'
 import { getUser, createUserFromSession } from './User'
 import { getReward } from './Reward'
+import { getProfileByLead } from './Profile'
 import { unique } from 'shorthash'
 
 export const createLead = (_, { input }) => session
@@ -14,8 +15,12 @@ export const createLead = (_, { input }) => session
   `,
     {
       user: input.user,
-      hash: input.hash,
-      props: { id: id(), hash: unique(id()),  ...input }
+      hash: input.parentHash,
+      props: {
+        id: id(),
+        hash: input.hash || unique(id()),
+        ...input
+      }
     }
   )
   .then(result => transformOne(result, session))
@@ -44,6 +49,14 @@ export const getLead = id => session
     MATCH (a)<-[HAS_LEAD*]-(b:Reward)
     RETURN a, b.id AS reward
   `, { id })
+  .then(result => transformOne(result, session))
+  .catch(handleError)
+
+export const getLeadByHash = hash => session
+  .run(`
+    MATCH (a:Lead { hash: $hash })
+    RETURN a
+  `, { hash })
   .then(result => transformOne(result, session))
   .catch(handleError)
 
@@ -88,7 +101,7 @@ export const redirect = async (hash, session, user) => {
 }
 
 export default {
-  // profile: (lead) => get(lead.reward),
+  profile: (lead) => getProfileByLead(lead.id),
   user: (lead) => getUser(lead.user),
   parent: (lead) => getParent(lead.id),
 }

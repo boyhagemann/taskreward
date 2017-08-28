@@ -19,7 +19,7 @@ export const createProfile = (_, { input }) => session
       props: { id: id(), ...input },
       lead: {
         id: input.id || id(),
-        hash: unique(id()),
+        hash: input.hash || unique(id()),
         user: input.user,
         status: 'some-status'
       }
@@ -49,6 +49,14 @@ export const getProfileByUser = user => session
     MATCH (a:Profile)<-[:HAS_PROFILE]-(b:User { id: $user })
     RETURN a LIMIT 1
   `, { user })
+  .then(result => transformOne(result, session))
+  .catch(handleError)
+
+export const getProfileByLead = lead => session
+  .run(`
+    MATCH (a:Profile)-[:HAS_LEAD*]->(b:Lead { id: $lead })
+    RETURN a LIMIT 1
+  `, { lead })
   .then(result => transformOne(result, session))
   .catch(handleError)
 
