@@ -3,18 +3,20 @@ import { Field } from 'redux-form'
 import FieldWrapper from './UI/FieldWrapper'
 import TextInput from './UI/TextInput'
 import TextArea from './UI/TextArea'
+import Heading from './UI/Heading'
 import Button from './UI/Button'
 
-export default ({ handleSubmit, remove, name, ...props }) => {
+export default ({ handleSubmit, loading }) => {
 
   return (
   <form onSubmit={handleSubmit}>
-
+      <Heading fontSize={5}>Profile</Heading>
       <Field
-        name={`name`}
+        name="name"
         label="Name"
         component={FieldWrapper}
         field={TextInput}
+        width={1}
         description={`
           Give your reward a nice and catchy name.
           This name will be visible for everyone.
@@ -22,7 +24,7 @@ export default ({ handleSubmit, remove, name, ...props }) => {
         />
 
       <Field
-        name={`description`}
+        name="description"
         label="Description"
         rows={10}
         component={FieldWrapper}
@@ -34,19 +36,6 @@ export default ({ handleSubmit, remove, name, ...props }) => {
         `}
         />
 
-      <Field
-        name={`value`}
-        label="Reward"
-        component={FieldWrapper}
-        field={TextInput}
-        description={`
-          Enter the reward that a person gets when he or she helps finding the right person for the job.
-          Please note that additional costs will be in place, in order to pay out everyone who was involved.
-        `}
-        />
-
-      <Button primary type="submit">Save</Button>
-      <Button negative onClick={() => remove() }>Remove</Button>
-
-    </form>
+      <Button primary huge type="submit">Save</Button>
+  </form>
 )}

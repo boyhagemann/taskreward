@@ -19,6 +19,7 @@ import NavbarContainer from './NavbarContainer'
 import { ThemeProvider } from 'styled-components'
 import defaultTheme from '../themes/default'
 import Allowed from './Allowed'
+import ModalContainer from './Modals/ModalContainer'
 
 const AdminCanView = component => Allowed(['admin'])(component)
 
@@ -59,6 +60,7 @@ class App extends Component {
                   <Route path={`/leads/:hash`} component={AdminCanView(LeadContainer)}/>
                   <Route path={`/r/:hash`} render={ ({ match }) => <RedirectContainer hash={match.params.hash} /> } />
                 </Content>
+                <ModalContainer />
               </div>
             </ThemeProvider>
           </Router>

@@ -28,6 +28,17 @@ export const createProfile = (_, { input }) => session
   .then(result => transformOne(result, session))
   .catch(handleError)
 
+export const updateProfile = (_, { input }) => session
+  .run(`
+    MATCH (a:Profile { id: $id })
+    SET a = $props
+    RETURN a
+  `,
+    { id: input.id, props: input }
+  )
+  .then(result => transformOne(result, session))
+  .catch(handleError)
+
 export const getRewards = () => session
   .run(`
     MATCH (a:Profile)

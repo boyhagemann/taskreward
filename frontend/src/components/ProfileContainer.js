@@ -1,18 +1,15 @@
 import { gql, graphql } from 'react-apollo'
-import { reduxForm } from 'redux-form'
 import Profile from './Profile'
-
-const WithForm = reduxForm({
-  form: 'profile',
-})(Profile)
 
 export default graphql(gql`
   query Profile {
     viewer {
       profile {
+        id
         name
         description
         rewards {
+          id
           name
           description
           value
@@ -23,7 +20,6 @@ export default graphql(gql`
 `, {
   props: ({ data: { loading, viewer = {} } }) => ({
     loading,
-    profile: viewer.profile,
-    initialValues: viewer.profile
+    profile: viewer.profile
   })
-})(WithForm)
+})(Profile)

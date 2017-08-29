@@ -3,6 +3,7 @@ import { reducer as formReducer } from 'redux-form'
 
 import createHistory from 'history/createBrowserHistory'
 import {routerReducer, routerMiddleware } from 'react-router-redux'
+import modalReducer from '../redux/modal'
 
 import windowSize, { REDUCER_KEY, createSizeAction, listenResize } from 'redux-windowsize'
 
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   // for custom keys look up the docs for 'getFormState'
   form: formReducer,
   router: routerReducer,
+  modal: modalReducer,
   [REDUCER_KEY]: windowSize,
 })
 

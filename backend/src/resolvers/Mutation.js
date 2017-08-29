@@ -1,7 +1,8 @@
 import { requestToken } from './Token'
 import { createUser } from './User'
-import { createReward } from './Reward'
+import { createReward, updateReward } from './Reward'
 import { createLead, redirect } from './Lead'
+import { updateProfile } from './Profile'
 
 export default {
   requestToken,
@@ -9,4 +10,6 @@ export default {
   createUser,
   createReward,
   createLead,
+  updateProfile,
+  updateReward,
 }

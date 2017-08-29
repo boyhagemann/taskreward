@@ -4,6 +4,8 @@ import RewardInput from './RewardInput'
 import Lead from './Lead'
 import LeadInput from './LeadInput'
 import CreateUserInput from './CreateUserInput'
+import UpdateProfileInput from './UpdateProfileInput'
+import UpdateRewardInput from './UpdateRewardInput'
 import Token from './Token'
 
 const Mutation = `
@@ -30,13 +32,22 @@ type Mutation {
   createLead(
     input: LeadInput
   ): Lead
+
+  updateProfile(
+    input: UpdateProfileInput
+  ): Profile
+
+  updateReward(
+    input: UpdateRewardInput
+  ): Reward
 }
 `
 
 export default [
   Mutation,
   ...User, CreateUserInput,
-  ...Reward, RewardInput,
+  ...Reward, RewardInput, UpdateRewardInput,
   ...Lead, LeadInput,
+  UpdateProfileInput,
   Token,
 ]

@@ -1,4 +1,6 @@
 import { gql, graphql } from 'react-apollo'
+import { connect } from 'react-redux'
+import { open } from '../redux/modal'
 import { reduxForm } from 'redux-form'
 import Page from './Page'
 import WithWindowSize from './WithWindowSize'
@@ -31,4 +33,10 @@ const WithGraphQl = graphql(gql`
   })
 })(WithForm)
 
-export default WithWindowSize(WithGraphQl)
+const mapDispatchToProps = dispatch => ({
+  open: (type, properties) => dispatch(open(type, properties))
+})
+
+const WithRedux = connect(null, mapDispatchToProps)(WithGraphQl)
+
+export default WithWindowSize(WithRedux)

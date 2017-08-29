@@ -12,7 +12,7 @@ import Login from '../components/Login'
 import LoginContainer from '../components/LoginContainer'
 import Card from '../components/UI/Card'
 
-import store from '../configuration/redux'
+import { store } from '../configuration/redux'
 import { Provider } from 'react-redux'
 
 storiesOf('Welcome', module).add('to Storybook', () => <Welcome showApp={linkTo('Button')} />)

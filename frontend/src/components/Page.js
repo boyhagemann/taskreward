@@ -1,7 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Field, FieldArray } from 'redux-form'
-import TextInput from './UI/TextInput'
 import Text from './UI/Text'
 import Heading from './UI/Heading'
 import SubHeading from './UI/SubHeading'
@@ -13,10 +11,6 @@ import Card from './UI/Card'
 import background from '../assets/images/bg.jpg'
 
 const Description = props => <Text { ...props } />
-
-const renderField = ({ input, placeholder, meta }) => (
-  <TextInput { ...input } placeholder={placeholder} />
-)
 
 const Visual = styled(props => (
   <Box { ...props } width={1} />
@@ -46,33 +40,7 @@ const Actions = styled(props => (
   text-align: center;
 `
 
-const renderLeadForm = ({ fields }) => (
-  <Box width={[1, 1/2]}>
-    { fields.map( (name, index) => (
-      <Box key={index} width={1}>
-        <Box width={1/2}>
-          <Field
-            component={renderField}
-            type="text"
-            name={`${name}.email`}
-            placeholder="Email address..." />
-        </Box>
-        <Box width={1/2}>
-          <Field
-            component={renderField}
-            type="text"
-            name={`${name}.telephone`}
-            placeholder="Telephone..." />
-        </Box>
-      </Box>
-    )) }
-    <Box width={1}>
-      <Button primary huge onClick={ () => fields.push() }>Add a friend (or yourself)</Button>
-    </Box>
-  </Box>
-)
-
-export default ({ handleSubmit, loading, profile, action, windowSize }) => loading ? null : (
+export default ({ handleSubmit, loading, profile, action, windowSize, open }) => loading ? null : (
   <Box width={1}>
     <Visual height={windowSize.height}>
       <VisualText color={`bleech`}>
@@ -82,7 +50,12 @@ export default ({ handleSubmit, loading, profile, action, windowSize }) => loadi
           </Box>
 
           <VisualAction width={[1, 2/5]}>
-            <Button mt={3} primary huge>
+            <Button
+              mt={3}
+              primary
+              huge
+              onClick={ () => open('refer') }
+            >
               <Text m={0}>Recommend a friend</Text>
               <Text m={0} color={`ocean+++`} fontSize={1}>You will be rewarded!</Text>
             </Button>
@@ -114,16 +87,18 @@ export default ({ handleSubmit, loading, profile, action, windowSize }) => loadi
           <Box width={[1]} p={1}>
             <SubHeading fontSize={6} color={`bleech`}>Let us know who is interested...</SubHeading>
             <Description>Tell here about the reward...</Description>
-            <FieldArray
-              component={renderLeadForm}
-              name={`leads`}
-              />
           </Box>
 
           <Box width={[1]} p={1}>
             <SubHeading fontSize={5} color={`bleech`}>...or share this page</SubHeading>
             <Description>Tell here about the reward (10%) and show how you can share this page...</Description>
           </Box>
+
+          <Button
+            type="button"
+            primary
+            onClick={ () => open('refer') }
+          >Add a friend</Button>
 
       </MaxBox>
     </Actions>
