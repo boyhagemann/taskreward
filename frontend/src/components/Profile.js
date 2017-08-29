@@ -1,5 +1,4 @@
 import React from 'react'
-import styled from 'styled-components'
 import { Field, FieldArray } from 'redux-form'
 import FieldWrapper from './UI/FieldWrapper'
 import TextInput from './UI/TextInput'

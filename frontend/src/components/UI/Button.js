@@ -1,9 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
-import { space, width, fontSize, color } from 'styled-system'
+import { space, width, fontSize, color, removeProps } from 'styled-system'
 
 const Component = ({ component: Component = 'button', primary, positive, negative, huge, ...props}) => {
-  return <Component {...props} />
+  const cleanProps = removeProps(props)
+  return <Component {...cleanProps} />
 }
 
 export default styled(Component)`

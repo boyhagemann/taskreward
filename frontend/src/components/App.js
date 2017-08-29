@@ -30,7 +30,6 @@ injectGlobal([`
     font-size: 16px;
     color: #456;
     background: #f3f1eb;
-
   }
 `])
 

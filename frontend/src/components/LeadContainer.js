@@ -2,6 +2,7 @@ import { gql, graphql } from 'react-apollo'
 import { connect } from 'react-redux'
 import { reduxForm } from 'redux-form'
 import Page from './Page'
+import WithWindowSize from './WithWindowSize'
 
 const WithForm = reduxForm({
   form: 'page',
@@ -33,4 +34,4 @@ const WithGraphQl = graphql(gql`
 export default connect( (state, props) => ({
   size: state.size,
   hash: props.match.params.hash,
-}))(WithGraphQl)
+}))(WithWindowSize(WithGraphQl))

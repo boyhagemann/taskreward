@@ -1,8 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { space, fontSize, color } from 'styled-system'
 import { Field, FieldArray } from 'redux-form'
-import { Link } from 'react-router-dom'
 import TextInput from './UI/TextInput'
 import Text from './UI/Text'
 import Heading from './UI/Heading'
@@ -27,7 +25,7 @@ const Visual = styled(props => (
   background-image: url(${background});
   background-size: cover;
   background-position: center;
-  height: 500px;
+  height: ${ props => props.height - 70 || 500}px;
 `
 
 const VisualText = styled(props => (
@@ -74,10 +72,9 @@ const renderLeadForm = ({ fields }) => (
   </Box>
 )
 
-export default ({ handleSubmit, loading, profile, action, size }) => loading ? null : (
+export default ({ handleSubmit, loading, profile, action, windowSize }) => loading ? null : (
   <Box width={1}>
-    { console.log(size) }
-    <Visual>
+    <Visual height={windowSize.height}>
       <VisualText color={`bleech`}>
         <MaxBox>
           <Box width={[1, 3/5]}>
