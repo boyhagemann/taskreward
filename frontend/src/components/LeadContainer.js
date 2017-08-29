@@ -1,12 +1,8 @@
 import { gql, graphql } from 'react-apollo'
 import { connect } from 'react-redux'
-import { reduxForm } from 'redux-form'
+import { open } from '../redux/modal'
 import Page from './Page'
 import WithWindowSize from './WithWindowSize'
-
-const WithForm = reduxForm({
-  form: 'page',
-})(Page)
 
 const WithGraphQl = graphql(gql`
   query Profile($hash: String!) {
@@ -29,9 +25,17 @@ const WithGraphQl = graphql(gql`
     lead,
     profile: lead && lead.profile
   })
-})(WithForm)
+})(Page)
 
-export default connect( (state, props) => ({
+const mapStateToProps = (state, props) => ({
   size: state.size,
   hash: props.match.params.hash,
-}))(WithWindowSize(WithGraphQl))
+})
+
+const mapDispatchToProps = dispatch => ({
+  open: (type, properties) => dispatch(open(type, properties))
+})
+
+const WithRedux = connect(mapStateToProps, mapDispatchToProps)(WithGraphQl)
+
+export default WithWindowSize(WithRedux)
