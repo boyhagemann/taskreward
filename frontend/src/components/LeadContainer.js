@@ -8,6 +8,11 @@ import WithWindowSize from './WithWindowSize'
 const profileQuery = gql`
 query Profile($hash: String!) {
   lead(hash: $hash) {
+    invited {
+      user {
+        name
+      }
+    }
     profile {
       name
       description
@@ -38,7 +43,6 @@ const mapStateToProps = (state, props) => ({
 const mapDispatchToProps = (dispatch, props) => ({
   openReferModal: () => {
     const hash = props.match.params.hash
-    console.log('hash', hash)
     dispatch(open('refer', { hash }))
   }
 })

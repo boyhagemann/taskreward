@@ -72,6 +72,14 @@ export const getParent = id => session
   .then(result => transformOne(result, session))
   .catch(handleError)
 
+export const getChildrenBySource = (id, source) => session
+  .run(`
+    MATCH (a:Lead { source: $source })<-[:HAS_LEAD]-(:Lead { id: $id })
+    RETURN a
+  `, { id, source })
+  .then(result => transformMany(result, session))
+  .catch(handleError)
+
 export const findLeadForUserAndHash = (userId, hash) => session
   .run(`
     MATCH (:User { id: $userId })-[:HAS_LEAD]->(a:Lead)<-[r:HAS_LEAD*]-(:Lead { hash: $hash })
@@ -107,4 +115,5 @@ export default {
   profile: (lead) => getProfileByLead(lead.id),
   user: (lead) => getUser(lead.user),
   parent: (lead) => getParent(lead.id),
+  invited: (lead) => getChildrenBySource(lead.id, 'invitation')
 }

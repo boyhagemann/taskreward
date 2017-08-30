@@ -11,6 +11,7 @@ type Lead {
   parent: Lead
   status: String
   depth: Int
+  invited: [Lead]
   events: [Event]
 }
 `

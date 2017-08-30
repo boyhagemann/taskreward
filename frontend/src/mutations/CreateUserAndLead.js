@@ -17,7 +17,7 @@ export default graphql(createLeadMutation, {
       const { firstName, middleName, lastName, email, telephone, hash, user } = values
       mutate({ variables: {
         user: { id: user, firstName, middleName, lastName, email, telephone },
-        lead: { hash, user }
+        lead: { hash, user, source: 'invitation' }
       } })
     }
   })
