@@ -1,41 +1,53 @@
 import { gql, graphql } from 'react-apollo'
+import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { open } from '../redux/modal'
 import Page from './Page'
 import WithWindowSize from './WithWindowSize'
 
-const WithGraphQl = graphql(gql`
-  query Profile($hash: String!) {
-    lead(hash: $hash) {
-      profile {
+const profileQuery = gql`
+query Profile($hash: String!) {
+  lead(hash: $hash) {
+    profile {
+      name
+      description
+      rewards {
+        id
         name
         description
-        rewards {
-          id
-          name
-          description
-          value
-        }
+        value
       }
     }
   }
-`, {
+}
+`
+
+const WithProfile = graphql(profileQuery, {
   props: ({ data: { loading, lead } }) => ({
     loading,
-    lead,
     profile: lead && lead.profile
   })
-})(Page)
+})
+
 
 const mapStateToProps = (state, props) => ({
   size: state.size,
   hash: props.match.params.hash,
 })
 
-const mapDispatchToProps = dispatch => ({
-  open: (type, properties) => dispatch(open(type, properties))
+const mapDispatchToProps = (dispatch, props) => ({
+  openReferModal: () => {
+    const hash = props.match.params.hash
+    console.log('hash', hash)
+    dispatch(open('refer', { hash }))
+  }
 })
 
-const WithRedux = connect(mapStateToProps, mapDispatchToProps)(WithGraphQl)
+const WithRedux = connect(mapStateToProps, mapDispatchToProps)
 
-export default WithWindowSize(WithRedux)
+
+export default compose(
+  WithRedux,
+  WithProfile,
+  WithWindowSize
+)(Page)

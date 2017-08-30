@@ -1254,6 +1254,10 @@ graphql-tools@^1.1.0:
   optionalDependencies:
     "@types/graphql" "^0.9.0"
 
+graphql-type-factory@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/graphql-type-factory/-/graphql-type-factory-0.1.0.tgz#bb4656dcb4bc7eed64f5dc82f956267a6001e80a"
+
 graphql@^0.10.5:
   version "0.10.5"
   resolved "https://registry.yarnpkg.com/graphql/-/graphql-0.10.5.tgz#c9be17ca2bdfdbd134077ffd9bbaa48b8becd298"

@@ -11,6 +11,7 @@ export default graphql(gql`
           user {
             name
             email
+            telephone
           }
         }
       }

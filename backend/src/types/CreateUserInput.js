@@ -1,7 +1,13 @@
 
 export default `
 input CreateUserInput {
-  email: Email!
+  id: ID!
+  email: Email
   password: String
+  role: String
+  firstName: String
+  middleName: String
+  lastName: String
+  telephone: String
 }
 `

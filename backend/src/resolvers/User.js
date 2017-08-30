@@ -11,6 +11,8 @@ const withPassword = (data, password) => {
 
 export const createUser = (_, { input }) => {
 
+  console.log('Creating User', input)
+
   const data = { id: id(), ...input }
   const props = input.password ? withPassword(data, input.password) : data
 
@@ -70,6 +72,7 @@ export const getUserByToken = token => {
 }
 
 export default {
+  name: ({ firstName, middleName, lastName }) => [firstName, middleName, lastName].filter(value => value).join(' '),
   profile: (user) => getProfileByUser(user.id)
   // rewards: (user) => findRewardsByUser(user.id)
 }

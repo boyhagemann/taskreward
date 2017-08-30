@@ -29,7 +29,7 @@ const WithGraphQl = graphql(gql`
 })(Page)
 
 const mapDispatchToProps = dispatch => ({
-  open: (type, properties) => dispatch(open(type, properties))
+  openReferModal: () => dispatch(open('refer'))
 })
 
 const WithRedux = connect(null, mapDispatchToProps)(WithGraphQl)

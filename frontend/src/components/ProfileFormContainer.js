@@ -20,6 +20,5 @@ const WithReduxForm = reduxForm({
 export default withApollo(graphql(updateProfile, {
   props: ({ mutate, ownProps }) => ({
     request: (values) => mutate({ variables: { input: values } })
-      .catch(error => console.error('Got error', error))
   })
 })(WithReduxForm))

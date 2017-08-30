@@ -5,8 +5,12 @@ import Profile from './Profile'
 const User = `
 type User {
   id: ID!
-  email: String
   name: String
+  firstName: String
+  middleName: String
+  lastName: String
+  email: String
+  telephone: String
   role: String
   rewards: [Reward]
   sentLeads: [Lead]

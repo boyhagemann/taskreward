@@ -28,14 +28,14 @@ const Warning = Message.extend`
   color: orange;
 `
 
-const Description = props => <Text my={1} fontSize={0} color={'pencil++++'} { ...props} />
+const Description = props => <Text mt={1} mb={2} fontSize={0} color={'pencil++++'} { ...props} />
 
-export default ({ field: Component, input, type, label, description, placeholder, meta, ...fieldProps }) => {
+export default ({ field: Component, input, type, label, description, placeholder, meta, wrapper = {}, ...fieldProps }) => {
 
     const error = meta.touched && meta.error
     const warning = meta.touched && meta.warning
 
-    return <Wrapper width={1} mb={2}>
+    return <Wrapper width={1} { ...wrapper }>
       { label && <Label>{label}</Label> }
       <Box width={1}>
         <Component

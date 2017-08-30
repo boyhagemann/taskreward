@@ -40,7 +40,7 @@ const Actions = styled(props => (
   text-align: center;
 `
 
-export default ({ handleSubmit, loading, profile, action, windowSize, open }) => loading ? null : (
+export default ({ handleSubmit, loading, profile, action, windowSize, openReferModal }) => loading ? null : (
   <Box width={1}>
     <Visual height={windowSize.height}>
       <VisualText color={`bleech`}>
@@ -54,7 +54,7 @@ export default ({ handleSubmit, loading, profile, action, windowSize, open }) =>
               mt={3}
               primary
               huge
-              onClick={ () => open('refer') }
+              onClick={openReferModal}
             >
               <Text m={0}>Recommend a friend</Text>
               <Text m={0} color={`ocean+++`} fontSize={1}>You will be rewarded!</Text>
@@ -97,7 +97,7 @@ export default ({ handleSubmit, loading, profile, action, windowSize, open }) =>
           <Button
             type="button"
             primary
-            onClick={ () => open('refer') }
+            onClick={openReferModal}
           >Add a friend</Button>
 
       </MaxBox>

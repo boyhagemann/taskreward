@@ -4,7 +4,9 @@ import { getReward } from './Reward'
 import { getProfileByLead } from './Profile'
 import { unique } from 'shorthash'
 
-export const createLead = (_, { input }) => session
+export const createLead = (_, { input }) => {
+  console.log('Creating Lead', input)
+  session
   .run(`
     MATCH (b:Lead { hash: $hash })
     MATCH (c:User { id: $user })
@@ -15,16 +17,17 @@ export const createLead = (_, { input }) => session
   `,
     {
       user: input.user,
-      hash: input.parentHash,
+      hash: input.hash,
       props: {
+        ...input,
         id: id(),
-        hash: input.hash || unique(id()),
-        ...input
+        hash: input.ownHash || unique(id()),
       }
     }
   )
   .then(result => transformOne(result, session))
   .catch(handleError)
+}
 
 export const getLeads = () => session
   .run(`

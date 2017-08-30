@@ -25,7 +25,7 @@ const Actions = Box.extend`
   }
 `
 
-const Row = props => <Box width={1} bg={`bleech`} p={1} { ...props } />
+const Row = props => <Box width={1} bg={`bleech`} p={1} mb={1} { ...props } />
 
 export default ({ loading, leads = [] }) => loading ? null : (
   <MaxBox>

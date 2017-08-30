@@ -2,7 +2,7 @@ import Reward from './Reward'
 import User from './User'
 import RewardInput from './RewardInput'
 import Lead from './Lead'
-import LeadInput from './LeadInput'
+import CreateLeadInput from './CreateLeadInput'
 import CreateUserInput from './CreateUserInput'
 import UpdateProfileInput from './UpdateProfileInput'
 import UpdateRewardInput from './UpdateRewardInput'
@@ -30,7 +30,7 @@ type Mutation {
   ): Reward
 
   createLead(
-    input: LeadInput
+    input: CreateLeadInput
   ): Lead
 
   updateProfile(
@@ -47,7 +47,7 @@ export default [
   Mutation,
   ...User, CreateUserInput,
   ...Reward, RewardInput, UpdateRewardInput,
-  ...Lead, LeadInput,
+  ...Lead, CreateLeadInput,
   UpdateProfileInput,
   Token,
 ]

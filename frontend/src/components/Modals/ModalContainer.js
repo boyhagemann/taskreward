@@ -1,6 +1,7 @@
 import { connect } from 'react-redux'
 import { open, close } from '../../redux/modal'
 import Modal from './Modal'
+import WithWindowSize from '../WithWindowSize'
 
 const mapStateToProps = state => state.modal
 
@@ -9,4 +10,4 @@ const mapDispatchToProps = dispatch => ({
   close: () => dispatch(close())
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Modal)
+export default connect(mapStateToProps, mapDispatchToProps)(WithWindowSize(Modal))
