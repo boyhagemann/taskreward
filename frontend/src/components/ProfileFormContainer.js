@@ -6,6 +6,7 @@ import ProfileForm from './ProfileForm'
 const updateProfile = gql(`
   mutation updateProfile($input: UpdateProfileInput) {
     updateProfile(input: $input) {
+      id
       name
       description
     }

@@ -6,6 +6,7 @@ import RewardForm from './RewardForm'
 const updateReward = gql(`
   mutation updateReward($input: UpdateRewardInput) {
     updateReward(input: $input) {
+      id
       name
       description
       value

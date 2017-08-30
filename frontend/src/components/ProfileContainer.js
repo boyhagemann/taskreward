@@ -4,6 +4,7 @@ import Profile from './Profile'
 export default graphql(gql`
   query Profile {
     viewer {
+      id
       profile {
         id
         name

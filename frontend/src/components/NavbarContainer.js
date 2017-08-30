@@ -4,6 +4,7 @@ import Navbar from './Navbar'
 export default graphql(gql`
   query Profile {
     viewer {
+      id
       name
     }
   }

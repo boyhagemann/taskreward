@@ -5,6 +5,7 @@ import { Redirect } from 'react-router-dom'
 const AllowedWithGraphql = graphql(gql`
   query Viewer {
     viewer {
+      id
       role
     }
   }
