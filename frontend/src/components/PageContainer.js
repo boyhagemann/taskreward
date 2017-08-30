@@ -7,7 +7,9 @@ import WithWindowSize from './WithWindowSize'
 const WithGraphQl = graphql(gql`
   query Profile {
     viewer {
+      id
       profile {
+        id
         name
         description
         rewards {
