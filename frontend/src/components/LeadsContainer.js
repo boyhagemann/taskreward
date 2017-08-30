@@ -4,11 +4,14 @@ import Leads from './Leads'
 export default graphql(gql`
   query Leads {
     viewer {
+      id
       profile {
+        id
         leads {
           id
           hash
           user {
+            id
             name
             email
             telephone
