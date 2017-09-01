@@ -8,6 +8,7 @@ type Profile {
   description: String
   rewards: [Reward]
   leads: [Lead]
+  lead(id: ID!): Lead
   user: User
 }
 `

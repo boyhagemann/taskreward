@@ -1,42 +1,31 @@
 import React from 'react'
 import styled from 'styled-components'
-import Button from './UI/Button'
-import { redirectUrl } from '../utils/routes'
+import { Link } from 'react-router-dom'
+import Box from './UI/Box'
+import MaxBox from './UI/MaxBox'
+import CreatedLead from './Events/CreatedLead'
 
-const Separator = styled.span`
+const Breadcrumb = props => <Box width={1} my={2} { ...props } />
 
-`
+const events = {
+  CreatedLead,
+}
 
-const getUserName = lead => lead.parent
-  ? lead.parent.user.name
-  : lead.reward.owner.name
+const renderEvent = ({ __typename, ...props }) => {
+  const Component = events[__typename]
+  return <Component key={props.id} { ...props } />
+}
 
-export default ({ data: { loading, lead } }) => !loading ? (
-  <div>
-    <div>
+export default ({ loading, profile }) => loading ? null : (
+  <MaxBox>
 
-      { lead.user && lead.user.name
-        ? <h1>Hey {lead.user.name}, {getUserName(lead)} shared this with you...</h1>
-        : <h1>Hey, {getUserName(lead)}</h1>
-      }
+    <Breadcrumb>
+      <Link to={`/leads`}>Leads</Link>
+    </Breadcrumb>
 
-      <h2>{ lead.reward.name }</h2>
-      <p>{ lead.reward.description }</p>
-      <h4>Reward: {lead.reward.reward}</h4>
+    <h2>{ profile.name }</h2>
 
-      <p>
-        Share this link on your social media: <strong>{redirectUrl(lead.hash)}</strong>
-      </p>
-
-      <div>
-        <Button primary huge>View page</Button>
-        <Separator> - or - </Separator>
-        <Button primary huge>Share it</Button>
-        <Separator> - or - </Separator>
-        <Button primary huge>Invite people</Button>
-      </div>
-
-    </div>
-
-  </div>
-) : null
+    <h2>Stream</h2>
+    { profile.lead.events.map(renderEvent)}
+  </MaxBox>
+)

@@ -1,7 +1,7 @@
 import { session, transformOne, transformMany, id, handleError } from './helpers'
 import { getUser } from './User'
 import { findRewardsByProfile } from './Reward'
-import { findLeadsForProfile } from './Lead'
+import { findLeadsForProfile, getLead } from './Lead'
 import { unique } from 'shorthash'
 
 export const createProfile = (_, { input }) => session
@@ -75,4 +75,5 @@ export default {
   user: (profile) => getUser(profile.user),
   rewards: (profile) => findRewardsByProfile(profile.id),
   leads: (profile) => findLeadsForProfile(profile.id),
+  lead: (_, { id }) => getLead(id),
 }

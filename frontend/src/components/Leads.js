@@ -27,7 +27,11 @@ const Actions = Box.extend`
 
 const Row = props => <Box width={1} bg={`bleech`} p={1} mb={1} { ...props } />
 
-export default ({ loading, leads = [] }) => loading ? null : (
+const Name = styled.div`
+  cursor: pointer;
+`
+
+export default ({ view, loading, leads = [] }) => loading ? null : (
   <MaxBox>
     <Heading>Leads</Heading>
     <SearchBox>
@@ -37,14 +41,16 @@ export default ({ loading, leads = [] }) => loading ? null : (
 
       <Row key={lead.hash}>
         <Box width={2/8} pt={1}>
-          {lead.user.name}
-          <Email>({lead.user.email})</Email>
+          <Name onClick={ () => view(lead.id) }>
+            {lead.user.name}
+            <Email>({lead.user.email})</Email>
+          </Name>
         </Box>
         <Box width={2/8} pt={1}>{lead.status}</Box>
         <Box width={2/8} pt={1}>{lead.depth}</Box>
         <Actions width={2/8}>
-          <Button primary component={Link} to={`/leads/${lead.hash}`}>Accept</Button>
-          <Button component={Link} to={`/leads/${lead.hash}`}>View page</Button>
+          <Button primary component={Link} to={`/leads/${lead.id}`}>View</Button>
+          <Button component={Link} to={`/page/${lead.hash}`}>View page</Button>
         </Actions>
       </Row>
     )) }

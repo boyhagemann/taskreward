@@ -1,7 +1,10 @@
 import { gql, graphql } from 'react-apollo'
+import { compose } from 'redux'
+import { connect } from 'react-redux'
+import { push } from 'react-router-redux'
 import Leads from './Leads'
 
-export default graphql(gql`
+const WithQuery = graphql(gql`
   query Leads {
     viewer {
       id
@@ -24,4 +27,15 @@ export default graphql(gql`
   props: ({ data: { loading, viewer = {} } }) => ({
     loading, leads: viewer.profile ? viewer.profile.leads : []
   })
-})(Leads)
+})
+
+const mapDispatchToProps = dispatch => ({
+  view: id => dispatch(push(`/leads/${id}`))
+})
+
+const WithRedux = connect(null, mapDispatchToProps)
+
+export default compose(
+  WithQuery,
+  WithRedux
+)(Leads)

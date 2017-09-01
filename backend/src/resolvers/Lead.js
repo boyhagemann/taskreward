@@ -7,8 +7,6 @@ import { unique } from 'shorthash'
 import moment from 'moment'
 
 export const createLead = (_, { input }) => {
-  console.log('Creating Lead', input)
-  console.log('Moment', moment().format())
   session
   .run(`
     MATCH (b:Lead { hash: $hash })
@@ -57,8 +55,7 @@ export const findLeadsForProfile = id => session
 export const getLead = id => session
   .run(`
     MATCH (a:Lead { id: $id })
-    MATCH (a)<-[HAS_LEAD*]-(b:Reward)
-    RETURN a, b.id AS reward
+    RETURN a
   `, { id })
   .then(result => transformOne(result, session))
   .catch(handleError)
