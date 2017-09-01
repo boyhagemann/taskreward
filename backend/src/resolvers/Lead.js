@@ -2,26 +2,34 @@ import { session, transformOne, transformMany, id, handleError, cookieExists, ge
 import { getUser, createUserFromSession } from './User'
 import { getReward } from './Reward'
 import { getProfileByLead } from './Profile'
+import { getEventsForLead } from './Event'
 import { unique } from 'shorthash'
+import moment from 'moment'
 
 export const createLead = (_, { input }) => {
   console.log('Creating Lead', input)
+  console.log('Moment', moment().format())
   session
   .run(`
     MATCH (b:Lead { hash: $hash })
     MATCH (c:User { id: $user })
-    CREATE (a:Lead $props)
+    CREATE (a:Lead $lead)
     CREATE (b)-[:HAS_LEAD]->(a)
-    CREATE (c)-[:HAS_LEAD]->(a)
+    CREATE (c)-[:CREATED_LEAD $createdLead ]->(a)
     RETURN a
   `,
     {
       user: input.user,
       hash: input.hash,
-      props: {
+      lead: {
         ...input,
+        createdAt: moment().format(),
         id: id(),
         hash: input.ownHash || unique(id()),
+      },
+      createdLead: {
+        id: id(),
+        createdAt: moment().format(),
       }
     }
   )
@@ -82,7 +90,7 @@ export const getChildrenBySource = (id, source) => session
 
 export const findLeadForUserAndHash = (userId, hash) => session
   .run(`
-    MATCH (:User { id: $userId })-[:HAS_LEAD]->(a:Lead)<-[r:HAS_LEAD*]-(:Lead { hash: $hash })
+    MATCH (:User { id: $userId })-[:CREATES]->(a:Lead)<-[r:HAS_LEAD*]-(:Lead { hash: $hash })
     RETURN a
   `, { userId, hash })
   .then(result => transformOne(result, session))
@@ -115,5 +123,6 @@ export default {
   profile: (lead) => getProfileByLead(lead.id),
   user: (lead) => getUser(lead.user),
   parent: (lead) => getParent(lead.id),
-  invited: (lead) => getChildrenBySource(lead.id, 'invitation')
+  invited: (lead) => getChildrenBySource(lead.id, 'invitation'),
+  events: lead => getEventsForLead(lead.id),
 }

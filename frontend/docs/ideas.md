@@ -33,18 +33,24 @@ On existing chat pages, create a bot that handles all leads for you.
 This can also be integrated on our own profile page.
 
 ## Example lead flow
-- A views profile
-- A invites B
-- B views email
-- B views profile
-- B invites C with motivation
+- A views profile                                             createLead(user, profile)              (:User)-[:CREATES_LEAD]->(:Lead)
+- A updates own account                                       updateUser(user)                       (:User)-[:UPDATES_USER]->(:User)
+- A invites B                                                 createInvitation(user, profile)        (:User)-[:CREATES_INVITATION]->(:Lead)
+- B views email                                               viewInvitation(lead)                   (:User)-[:VIEWS_EMAIL]->(:Email)
+- B views profile                                             ...                                      
+- B invites C with motivation                                 ...                                 
 ----------------------------------
-- Company views lead
-- Company comments: "interesting, must call"
-- Company makes Favorite
-- Company sets status: Called
-- Company comments: "had a great call, call back tomorrow"
-- Company comments: "person comes over to office"
-- Company sets status: Office visit
-- Company comments: "gread conversation, looking good"
-- Company sets status: Sale product X
+- Company views lead                                          getLead(user, lead)                    (:User)-[:VIEWS_LEAD]->(:Lead)
+- Company comments: "interesting, must call"                  commentLead(user, lead, message)       (:User)-[:COMMENTS_LEAD { message }]->(:Lead)
+- Company makes Favorite                                      favoriteLead(user, lead)               (:User)-[:FAVORITES_LEAD]->(:Lead)
+- Company unmakes Favorite                                    unfavoriteLead(user, lead)             (:User)-[:UNFAVORITES_LEAD]->(:Lead)
+- Company sets status: Called                                 statusLead(user, lead, status)         (:User)-[:SETS_LEAD_STATUS]->(:Lead)
+- Company comments: "had a great call, call back tomorrow"    ...                               
+- Company comments: "person comes over to office"             ...                                  
+- Company sends email message to B                            sendMessage(to, lead, message, medium) (:User)-[:SENDS_MESSAGE { message }]->(:Lead)
+- B replies to mail                                           ...
+- B has question and sends message thru website               ...
+- Company sends sms message                                   ...
+- Company sets status: Office visit                           ...
+- Company comments: "gread conversation, looking good"        ...
+- Company sets status: Sale product X                         ...

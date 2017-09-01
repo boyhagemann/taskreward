@@ -19,8 +19,12 @@ export const mapRecord = ({ keys, _fields, _fieldLookup }) => keys
     const type = field.constructor.name
 
     switch(type) {
+
       case 'Node':
         return field.properties
+
+      case 'Relationship':
+        return { ...field.properties, type: field.type }
 
       case 'Integer':
         return {[key]: field.low }

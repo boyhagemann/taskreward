@@ -1,6 +1,6 @@
 import User from './User'
 import Profile from './Profile'
-// import Event from './Event'
+import Event from './Event'
 
 const Lead = `
 type Lead {
@@ -16,4 +16,4 @@ type Lead {
 }
 `
 
-export default [Lead]
+export default [Lead, ...Event]

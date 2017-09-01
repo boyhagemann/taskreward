@@ -5,6 +5,8 @@ import User from './User'
 import Profile from './Profile'
 import Lead from './Lead'
 import Mutation from './Mutation'
+import Event from './Event'
+import CreatedLead from './CreatedLead'
 
 export default {
   Email,
@@ -14,4 +16,6 @@ export default {
   Reward,
   Lead,
   Mutation,
+  Event,
+  CreatedLead,
 }

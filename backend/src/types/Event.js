@@ -1,10 +1,7 @@
+import CreatedLead from './CreatedLead'
 
 const Event = `
-interface Event {
-  id: ID
-  createdAt: Date
-  description: String
-}
+  union Event = CreatedLead
 `
 
-export default Event
+export default [Event, CreatedLead]

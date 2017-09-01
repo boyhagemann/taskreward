@@ -14,4 +14,4 @@ type RootQuery {
 }
 `
 
-export default [RootQuery, ...User, ...Reward, ...Lead, Event]
+export default [RootQuery, ...User, ...Reward, ...Lead, ...Event]

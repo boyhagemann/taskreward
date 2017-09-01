@@ -30,7 +30,7 @@
 - Is valid contact
 - Comes over to the office
 - Requests brochure
-- Buys product
+- Buys product X
 
 2. Every
 - more than / every

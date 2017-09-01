@@ -64,6 +64,13 @@ export const findUserByEmail = email => session
   `, { email })
   .then(result => transformOne(result, session))
 
+  export const getUserByEvent = id => session
+    .run(`
+      MATCH (n1:User)-[{ id: $id }]->()
+      RETURN n1 LIMIT 1
+    `, { id })
+    .then(result => transformOne(result, session))
+
 export const isValidPassword = (password, salt, hash) => encrypt(password, salt) === hash
 
 export const getUserByToken = token => {
