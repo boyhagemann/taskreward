@@ -1,4 +1,19 @@
-{
+/*
+query Introspect {
+  __schema {
+    types {
+      kind
+      name
+      possibleTypes {
+        name
+      }
+    }
+  }
+}
+*/
+
+
+export default `{
   "data": {
     "__schema": {
       "types": [
@@ -183,3 +198,4 @@
     }
   }
 }
+`
