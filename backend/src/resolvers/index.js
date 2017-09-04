@@ -1,6 +1,7 @@
 import Email from './Email'
 import RootQuery from './RootQuery'
 import Reward from './Reward'
+import Milestone from './Milestone'
 import User from './User'
 import Profile from './Profile'
 import Lead from './Lead'
@@ -14,6 +15,7 @@ export default {
   User,
   Profile,
   Reward,
+  Milestone,
   Lead,
   Mutation,
   Event,

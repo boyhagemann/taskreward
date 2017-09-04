@@ -54,3 +54,39 @@ This can also be integrated on our own profile page.
 - Company sets status: Office visit                           ...
 - Company comments: "gread conversation, looking good"        ...
 - Company sets status: Sale product X                         ...
+
+
+
+
+rewards
+- validContact
+- officeAppointment
+- sale300
+- sale500
+
+user events (triggers system events)
+- viewedProfile
+- invitedPerson
+- updatedPerson
+- rewardedPerson(reward)
+
+system events (calculated)
+- gotRewarded(reward, level)
+- reachedMilestone(milestone, level)
+
+
+Milestones                                                              Condition data
+- when user created more than 50 leads then reward 5 euro               user+event+operator+count+value
+- when user is rewarded X more than 5 times then reward 10 euro         user+event+reward+operator+count+value
+- when user generated modulus 1000 views then reward 1 euro             user+event+operator+count+value
+- when user created more than 50 leads before some date reward 7 euro   
+
+
+
+Reward + Milestone =>>
+
+conditions
+- source (user|event|reward|profile|lead)
+- aggregate (count, min, max, avg, sum)
+- operator (equals, modulus)
+- value (string, int)

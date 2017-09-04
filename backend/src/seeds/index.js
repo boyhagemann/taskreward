@@ -2,10 +2,12 @@ import { session, id, handleError } from '../resolvers/helpers'
 import { createUser } from '../resolvers/User'
 import { createProfile } from '../resolvers/Profile'
 import { createReward } from '../resolvers/Reward'
+import { createMilestone } from '../resolvers/Milestone'
 import { createRootLead, createLead } from '../resolvers/Lead'
 import users from './users'
 import profiles from './profiles'
 import rewards from './rewards'
+import milestones from './milestones'
 import leads from './leads'
 
 console.log('Truncating first...')
@@ -31,6 +33,11 @@ profiles.forEach(profile => {
 rewards.forEach(reward => {
   console.log('Seeding reward', reward)
   createReward(null, { input: reward })
+})
+
+milestones.forEach(milestone => {
+  console.log('Seeding milestone', milestone)
+  createMilestone(null, { input: milestone })
 })
 
 leads.forEach(lead => {
