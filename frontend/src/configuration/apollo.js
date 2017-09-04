@@ -1,4 +1,11 @@
 import { ApolloClient, createNetworkInterface } from 'react-apollo'
+import { IntrospectionFragmentMatcher } from 'react-apollo';
+import introspection from '../data/introspection.json'
+
+
+// const fragmentMatcher = new IntrospectionFragmentMatcher({
+//   introspectionQueryResultData: JSON.parse(introspection)
+// })
 
 const networkInterface = createNetworkInterface({
   uri: 'http://localhost:3003/graphql',
@@ -23,6 +30,9 @@ networkInterface.use([{
   }
 }]);
 
-const client = new ApolloClient({ networkInterface })
+const client = new ApolloClient({
+  networkInterface,
+  // fragmentMatcher,
+ })
 
 export default client

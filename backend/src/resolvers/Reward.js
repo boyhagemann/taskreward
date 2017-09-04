@@ -45,6 +45,13 @@ export const getReward = id => session
   .then(result => transformOne(result, session))
   .catch(handleError)
 
+export const getRewardByEvent = id => session
+  .run(`
+    MATCH (a:Reward)--(:Event { id: $id })
+    RETURN a LIMIT 1
+  `, { id })
+  .then(result => transformOne(result, session))
+
 export const getRewardByMilestone = id => session
   .run(`
     MATCH (a:Reward)<-[:HAS_REWARD]->(:Milestone { id: $id })

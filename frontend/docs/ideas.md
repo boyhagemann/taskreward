@@ -90,3 +90,16 @@ conditions
 - aggregate (count, min, max, avg, sum)
 - operator (equals, modulus)
 - value (string, int)
+
+
+
+
+event
+- createdAt
+- type
+- value
+* CREATED_BY user
+* HAS_REWARD reward
+* HAS_LEAD lead
+
+user assigned reward to lead

@@ -1,7 +1,8 @@
 import CreatedLead from './CreatedLead'
+import AssignedReward from './AssignedReward'
 
 const Event = `
-  union Event = CreatedLead
+  union Event = CreatedLead | AssignedReward
 `
 
-export default [Event, CreatedLead]
+export default [Event, CreatedLead, AssignedReward]

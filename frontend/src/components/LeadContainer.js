@@ -10,6 +10,10 @@ query LeadContainer($id: ID!) {
     profile {
       id
       name
+      rewards {
+        id
+        name
+      }
       lead(id: $id) {
         id
         user {
@@ -22,6 +26,26 @@ query LeadContainer($id: ID!) {
             id
             createdAt
             user {
+              id
+              name
+            }
+          }
+          ... on AssignedReward {
+            id
+            createdAt
+            value
+            user {
+              id
+              name
+            }
+            lead {
+              id
+              user {
+                id
+                name
+              }
+            }
+            reward {
               id
               name
             }

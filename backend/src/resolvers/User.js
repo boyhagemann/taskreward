@@ -66,8 +66,8 @@ export const findUserByEmail = email => session
 
   export const getUserByEvent = id => session
     .run(`
-      MATCH (n1:User)-[{ id: $id }]->()
-      RETURN n1 LIMIT 1
+      MATCH (a:User)--(:Event { id: $id })
+      RETURN a LIMIT 1
     `, { id })
     .then(result => transformOne(result, session))
 

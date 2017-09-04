@@ -8,6 +8,7 @@ import Lead from './Lead'
 import Mutation from './Mutation'
 import Event from './Event'
 import CreatedLead from './CreatedLead'
+import AssignedReward from './AssignedReward'
 
 export default {
   Email,
@@ -20,4 +21,5 @@ export default {
   Mutation,
   Event,
   CreatedLead,
+  AssignedReward,
 }

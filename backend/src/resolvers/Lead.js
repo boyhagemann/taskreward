@@ -13,7 +13,9 @@ export const createLead = (_, { input }) => {
     MATCH (c:User { id: $user })
     CREATE (a:Lead $lead)
     CREATE (b)-[:HAS_LEAD]->(a)
-    CREATE (c)-[:CREATED_LEAD $createdLead ]->(a)
+    CREATE (d:Event $createdLead)
+    CREATE (a)-[:HAS_EVENT]->(d)
+    CREATE (c)-[:HAS_EVENT]->(d)
     RETURN a
   `,
     {
@@ -22,11 +24,12 @@ export const createLead = (_, { input }) => {
       lead: {
         ...input,
         createdAt: moment().format(),
-        id: id(),
+        id: input.id || id(),
         hash: input.ownHash || unique(id()),
       },
       createdLead: {
         id: id(),
+        type: 'CREATED_LEAD',
         createdAt: moment().format(),
       }
     }
@@ -67,6 +70,13 @@ export const getLeadByHash = hash => session
   `, { hash })
   .then(result => transformOne(result, session))
   .catch(handleError)
+
+export const getLeadByEvent = id => session
+  .run(`
+    MATCH (a:Lead)--(:Event { id: $id })
+    RETURN a LIMIT 1
+  `, { id })
+  .then(result => transformOne(result, session))
 
 export const getParent = id => session
   .run(`

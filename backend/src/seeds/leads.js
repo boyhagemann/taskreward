@@ -1,6 +1,6 @@
 export default [
   {
-    id: 'lead.3',
+    id: 'lead.1',
     user: 'user.3',
     hash: 'profile.1.hash',
     ownHash: 'lead.3.hash',
@@ -9,7 +9,7 @@ export default [
     status: 'some-status'
   },
   {
-    id: 'lead.4',
+    id: 'lead.2',
     user: 'user.4',
     hash: 'lead.3.hash',
     ownHash: 'lead.4.hash',
