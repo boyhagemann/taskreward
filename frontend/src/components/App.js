@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ProfileContainer from './ProfileContainer'
-import PreviewContainer from './PageContainer'
+import PreviewContainer from './PreviewContainer'
 import PageContainer from './PageContainer'
 import LeadContainer from './LeadContainer'
 import LeadsContainer from './LeadsContainer'

@@ -27,9 +27,9 @@ query Lead($hash: String!) {
 `
 
 const WithQuery = graphql(profileQuery, {
-  options: props => ({
+  options: ({ properties = {} }) => ({
     variables: {
-      hash: props.properties.hash,
+      hash: properties.hash,
     }
   }),
   props: ({ data: { loading, lead } }) => ({

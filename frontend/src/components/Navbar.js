@@ -32,7 +32,7 @@ const renderTab = ({ to, label, badge }) => <Tab key={to} exact to={to} color={`
 const tabs = [
   { to: '/dashboard', label: 'Dashboard' },
   { to: '/profile', label: 'Profile' },
-  { to: '/page', label: 'My page' },
+  { to: '/preview', label: 'My page' },
   { to: '/leads', label: 'Leads', badge: { background: 'grass', count: 12 } },
   { to: '/claims', label: 'Claims', badge: { background: 'heart', count: 4 } },
 ]

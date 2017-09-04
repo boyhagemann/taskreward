@@ -22,11 +22,9 @@ const WithGraphQl = graphql(gql`
     }
   }
 `, {
-  props: ({ data: { loading, viewer = {} }, ownProps }) => ({
+  props: ({ data: { loading, viewer = {} } }) => ({
     loading,
     profile: viewer.profile,
-    initialValues: viewer.profile,
-    action: ownProps.match.params.action,
   })
 })(Page)
 
