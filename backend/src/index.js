@@ -12,13 +12,21 @@ import { SECRET, PORT } from './constants'
 import { id } from './resolvers/helpers'
 
 
+import { execute, subscribe } from 'graphql'
+import { createServer } from 'http'
+import { SubscriptionServer } from 'subscriptions-transport-ws'
+
+
 
 
 const schema = makeExecutableSchema({ typeDefs, resolvers })
 
 const app = express();
 
+
+
 app.use(bodyParser.json())
+// app.use('*', cors({ origin: `http://localhost:${PORT}` }));
 app.use(cors({
   origin: 'http://localhost:3002',
   credentials: true
@@ -67,6 +75,24 @@ app.post('/graphql',
 // Add the Graphil UI
 app.use('/graphiql', graphiqlExpress({
   endpointURL: '/graphql',
+  subscriptionsEndpoint: `ws://localhost:3003/subscriptions`
 }));
 
-app.listen(PORT);
+// app.listen(PORT);
+
+// Wrap the Express server
+const ws = createServer(app)
+ws.listen(PORT, () => {
+  console.log(`Apollo Server is now running on http://localhost:3003`)
+
+  // Set up the WebSocket for handling GraphQL subscriptions
+  new SubscriptionServer({
+    schema,
+    execute,
+    subscribe,
+  }, {
+    server: ws,
+    path: '/subscriptions',
+  })
+
+})

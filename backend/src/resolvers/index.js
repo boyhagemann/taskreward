@@ -6,6 +6,7 @@ import User from './User'
 import Profile from './Profile'
 import Lead from './Lead'
 import Mutation from './Mutation'
+import Subscription from './Subscription'
 import Event from './Event'
 import CreatedLead from './CreatedLead'
 import AssignedReward from './AssignedReward'
@@ -19,6 +20,7 @@ export default {
   Milestone,
   Lead,
   Mutation,
+  Subscription,
   Event,
   CreatedLead,
   AssignedReward,

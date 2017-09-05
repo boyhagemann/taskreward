@@ -1,7 +1,10 @@
 import { session, transformOne, transformMany, id, handleError } from './helpers'
 import moment from 'moment'
+import pubsub from '../configuration/pubsub'
 
-export const assignReward = (_, { input }, { user }) => session
+export const assignReward = (_, { input }, { user }) => {
+
+  session
   .run(`
     MATCH (a:User { id: $user })
     MATCH (b:Lead { id: $lead })
@@ -19,12 +22,19 @@ export const assignReward = (_, { input }, { user }) => session
       props: {
         id: id(),
         createdAt: moment().format(),
+        type: 'ASSIGNED_REWARD',
         ...input,
       }
     }
   )
   .then(result => transformOne(result, session))
+  .then(result => {
+    console.log('Sending result to WebSocket', result)
+    pubsub.publish('event', { event: result }) // must be same name 'event' !!!
+    return result
+  })
   .catch(handleError)
+}
 
 export const createEvent = (_, { input }, context) => {
 
@@ -43,6 +53,7 @@ export const getEventsForLead = id => session
   .run(`
     MATCH (e:Event)<-[:HAS_EVENT]-(:Lead { id: $id })
     RETURN e
+    ORDER BY e.createdAt
   `, { id })
   .then(result => transformMany(result, session))
   .catch(handleError)

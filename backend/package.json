@@ -19,6 +19,7 @@
     "crypto": "^0.0.3",
     "express": "^4.15.3",
     "graphql": "^0.10.5",
+    "graphql-subscriptions": "^0.4.4",
     "graphql-tools": "^1.1.0",
     "graphql-type-factory": "^0.1.0",
     "jsonwebtoken": "^7.4.2",
@@ -26,6 +27,7 @@
     "neo4j-driver": "^1.4.0",
     "node-gyp": "^3.6.2",
     "shorthash": "^0.0.2",
+    "subscriptions-transport-ws": "^0.8.2",
     "uuid": "^3.1.0"
   }
 }

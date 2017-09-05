@@ -1,69 +1,76 @@
-import { gql, graphql } from 'react-apollo'
+import { graphql, gql } from 'react-apollo'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 import Lead from './Lead'
+import AssignReward from '../mutations/AssignReward'
+import profileQuery from '../queries/Lead'
 
-const profileQuery = gql`
-query LeadContainer($id: ID!) {
-  viewer {
-    id
-    profile {
-      id
-      name
-      rewards {
+const EventSubscription = gql`
+  subscription Events {
+    event {
+      __typename
+      ... on CreatedLead {
         id
-        name
-      }
-      lead(id: $id) {
-        id
+        createdAt
         user {
           id
           name
         }
-        events {
-          __typename
-          ... on CreatedLead {
+      }
+      ... on AssignedReward {
+        id
+        createdAt
+        value
+        user {
+          id
+          name
+        }
+        lead {
+          id
+          user {
             id
-            createdAt
-            user {
-              id
-              name
-            }
+            name
           }
-          ... on AssignedReward {
-            id
-            createdAt
-            value
-            user {
-              id
-              name
-            }
-            lead {
-              id
-              user {
-                id
-                name
-              }
-            }
-            reward {
-              id
-              name
-            }
-          }
+        }
+        reward {
+          id
+          name
         }
       }
     }
   }
-}
 `
 
 const WithQuery = graphql(profileQuery, {
-  props: ({ data: { loading, viewer =  {} } }) => ({
+  props: ({ data: { loading, viewer = {}, subscribeToMore }}) => ({
     loading,
     profile: viewer.profile,
+    subscribeToEvents: () => {
+        return subscribeToMore({
+            document: EventSubscription,
+            updateQuery: (prev, {subscriptionData}) => {
+
+                if (!subscriptionData.data) {
+                    return prev;
+                }
+
+                const newEvent = subscriptionData.data.event
+
+                // Use ImmutableJs for this
+                return { ...prev, viewer:
+                  { ...prev.viewer, profile:
+                    { ...prev.viewer.profile, lead:
+                      { ...prev.viewer.profile.lead, events:
+                        [ ...prev.viewer.profile.lead.events, newEvent]
+                      }
+                    }
+                  }
+                }
+            }
+        });
+    }
   })
 })
-
 
 const mapStateToProps = (state, props) => ({
   id: props.match.params.id,
@@ -78,4 +85,5 @@ const WithRedux = connect(mapStateToProps, mapDispatchToProps)
 export default compose(
   WithRedux,
   WithQuery,
+  AssignReward,
 )(Lead)

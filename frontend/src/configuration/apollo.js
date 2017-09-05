@@ -1,11 +1,17 @@
-import { ApolloClient, createNetworkInterface } from 'react-apollo'
-import { IntrospectionFragmentMatcher } from 'react-apollo';
+import { ApolloClient, createNetworkInterface, IntrospectionFragmentMatcher } from 'react-apollo'
+import { SubscriptionClient, addGraphQLSubscriptions } from 'subscriptions-transport-ws'
 import introspection from '../data/introspection'
+
+const wsClient = new SubscriptionClient(`ws://localhost:3003/subscriptions`, {
+  reconnect: true
+});
+
 
 const fragmentMatcher = new IntrospectionFragmentMatcher({
   introspectionQueryResultData: JSON.parse(introspection).data
 })
 
+// Create a normal network interface
 const networkInterface = createNetworkInterface({
   uri: 'http://localhost:3003/graphql',
   opts: {
@@ -29,9 +35,16 @@ networkInterface.use([{
   }
 }]);
 
-const client = new ApolloClient({
+// Extend the network interface with the WebSocket
+const networkInterfaceWithSubscriptions = addGraphQLSubscriptions(
   networkInterface,
-  fragmentMatcher,
+  wsClient
+);
+
+// Finally, create your ApolloClient instance with the modified network interface
+const client = new ApolloClient({
+  networkInterface: networkInterfaceWithSubscriptions,
+  // fragmentMatcher,
  })
 
 export default client
