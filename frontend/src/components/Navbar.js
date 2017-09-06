@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
 import Tab from './UI/Tab'
 import MaxBox from './UI/MaxBox'
+import Link from './UI/Link'
 import Box from './UI/Box'
 import Badge from './UI/Badge'
 import Button from './UI/Button'
@@ -51,9 +51,9 @@ export default ({ loading, viewer = {} }) => loading ? null : (
           ? (
             <div>
               <div>Logged in as <Name>{viewer.name}</Name></div>
-              <Link to={`/account`}>My account</Link>
-              <Link to={`/preferences`}>Preferences</Link>
-              <Link to={`/invoices`}>Invoices</Link>
+              <Link mr={1} to={`/account`}>My account</Link>
+              <Link mr={1} to={`/preferences`}>Preferences</Link>
+              <Link mr={1} to={`/invoices`}>Invoices</Link>
               <Link to={`/logout`}>Logout</Link>
             </div>
           )

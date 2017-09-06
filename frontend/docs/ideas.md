@@ -22,6 +22,14 @@ This helps the conversation ratio.
 ## Enquiries / Tests
 Have some enquiries or default questions for the possible client...
 
+## Script verifing contact data
+Once a lead is created or the user is updated, we can run a script
+that can verify the contact fields. This will update the lead score.
+
+## Lead scoring can improve thru machine learning
+When a user provides feedback on the score, we can adjust the
+scoring script for this user.
+
 ## Use a script for existing pages
 Larger companies have their own landing pages.
 Have a script on there, just like a chat box at the bottom.
@@ -75,7 +83,7 @@ system events (calculated)
 - reachedMilestone(milestone, level)
 
 
-Milestones                                                              Condition data
+Milestones
 - when user created more than 50 leads then reward 5 euro               user+event+operator+count+value
 - when user is rewarded X more than 5 times then reward 10 euro         user+event+reward+operator+count+value
 - when user generated modulus 1000 views then reward 1 euro             user+event+operator+count+value
@@ -83,23 +91,13 @@ Milestones                                                              Conditio
 
 
 
-Reward + Milestone =>>
 
-conditions
-- source (user|event|reward|profile|lead)
-- aggregate (count, min, max, avg, sum)
-- operator (equals, modulus)
-- value (string, int)
-
-
-
-
-event
-- createdAt
-- type
-- value
-* CREATED_BY user
-* HAS_REWARD reward
-* HAS_LEAD lead
-
-user assigned reward to lead
+### Lead scoring data
+- name (valid)
+- email (valid, domain, username)
+- telephone (valid)
+- motivation (count words, sentiment)
+- user (history, success rate, lead count, activity)
+- is interested himself
+- claims (count, success rate)
+- source (invitation, url referer)

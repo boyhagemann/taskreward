@@ -1,43 +1,40 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Box from '../UI/Box'
 import Button from '../UI/Button'
 import Heading from '../UI/Heading'
 import TextArea from '../UI/TextArea'
+import Tab from '../UI/Tab'
+import Message from './Message'
+import Comment from './Comment'
+import { Route } from 'react-router-dom'
 
-const Actions = Box.extend`
-  text-align: right;
-`
+const Tabs = props => <Box mt={1} { ...props } />
 
-export default props => (
+const StyledTab = props => (
+  <Tab
+    p={1}
+    bg={`canvas-`}
+    color={`pencil`}
+    activeBg={`canvas--`}
+    activeColor={`night`}
+    { ...props }
+  />
+)
+
+export default ({ profile }) => (
   <Box width={1}>
-    <Heading>Send a message</Heading>
-    <Box width={1}>
-      <TextArea></TextArea>
+
+    <Box width={1} bg={`bleech`} p={2} mb={3}>
+      Some conversation here..
     </Box>
-    <Box width={[1, 4/5]}>
-      <Box>
-        <input type="radio" name="medium" value="email" />
-        <label htmlFor="email">Email</label>
-      </Box>
-      <Box>
-        <input type="radio" name="medium[sms]" />
-        <label htmlFor="sms">SMS</label>
-      </Box>
-      <Box>
-        <input type="radio" name="medium[facebook]" />
-        <label htmlFor="facebook">Facebook</label>
-      </Box>
-      <Box>
-        <input type="radio" name="medium[whatsapp]" />
-        <label htmlFor="whatsapp">Whatsapp</label>
-      </Box>
-      <Box>
-        <input type="radio" name="medium[chat]" />
-        <label htmlFor="chat">Chat</label>
-      </Box>
-    </Box>
-    <Actions width={[1, 1/5]}>
-      <Button primary type="button">Send</Button>
-    </Actions>
+
+    <Tabs>
+      <StyledTab exact to={`/leads/${profile.lead.id}/conversation`}>Send a message</StyledTab>
+      <StyledTab to={`/leads/${profile.lead.id}/conversation/comment`}>Make notes</StyledTab>
+    </Tabs>
+
+    <Route exact path={`/leads/${profile.lead.id}/conversation`} render={ () => <Message profile={profile} /> } />
+    <Route path={`/leads/${profile.lead.id}/conversation/comment`} render={ () => <Comment profile={profile} /> } />
+
   </Box>
 )

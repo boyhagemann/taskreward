@@ -1,11 +1,16 @@
 import React from 'react'
 import styled from 'styled-components'
-import { space, width, fontSize, color } from 'styled-system'
+import { space, width, fontSize, color, removeProps } from 'styled-system'
 import { NavLink } from 'react-router-dom'
 
 const colorActive = props => color({ ...props, color: props.activeColor, bg: props.activeBg })
 
-export default styled( ({ component: Component = NavLink, ...navProps }) => <Component { ...navProps } />)`
+const Tab = ({ component: Component = NavLink, activeColor, activeBg, ...props }) => {
+
+  return <Component { ...removeProps(props) } />
+}
+
+export default styled(Tab)`
   display: inline-block;
   margin-right: 3px;
   padding: 10px;
@@ -15,9 +20,6 @@ export default styled( ({ component: Component = NavLink, ...navProps }) => <Com
   ${fontSize}
   ${color}
 
-  ${ props => {
-    console.log('Color', colorActive(props))
-  }}
   &.active {
     ${colorActive}
   }

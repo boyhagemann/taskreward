@@ -5,6 +5,7 @@ import { Field } from 'redux-form'
 import Button from '../UI/Button'
 import FieldWrapper from '../UI/FieldWrapper'
 import TextInput from '../UI/TextInput'
+import TextArea from '../UI/TextArea'
 import Box from '../UI/Box'
 
 const isRequired = value => value ? undefined : 'This field is required'
@@ -88,6 +89,15 @@ export default ({ handleSubmit, close, lead }) => (
                   type="text"
                   name={`telephone`}
                   placeholder="Telephone..." />
+              </Box>
+              <Box width={1} px={2}>
+                <Field
+                  component={FieldWrapper}
+                  label={`Motivation`}
+                  field={TextArea}
+                  type="text"
+                  name={`motivation`}
+                  placeholder="Tell us more why this person might be interested..." />
               </Box>
             </Box>
           <Box width={1} px={2}>

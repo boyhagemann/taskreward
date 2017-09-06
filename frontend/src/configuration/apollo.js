@@ -1,15 +1,19 @@
-import { ApolloClient, createNetworkInterface, IntrospectionFragmentMatcher } from 'react-apollo'
+import {
+  ApolloClient,
+  createNetworkInterface,
+  // IntrospectionFragmentMatcher,
+} from 'react-apollo'
 import { SubscriptionClient, addGraphQLSubscriptions } from 'subscriptions-transport-ws'
-import introspection from '../data/introspection'
+// import introspection from '../data/introspection'
 
 const wsClient = new SubscriptionClient(`ws://localhost:3003/subscriptions`, {
   reconnect: true
 });
 
 
-const fragmentMatcher = new IntrospectionFragmentMatcher({
-  introspectionQueryResultData: JSON.parse(introspection).data
-})
+// const fragmentMatcher = new IntrospectionFragmentMatcher({
+//   introspectionQueryResultData: JSON.parse(introspection).data
+// })
 
 // Create a normal network interface
 const networkInterface = createNetworkInterface({

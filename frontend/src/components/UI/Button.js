@@ -7,49 +7,47 @@ const Component = ({ component: Component = 'button', primary, positive, negativ
   return <Component {...cleanProps} />
 }
 
+const getColor = props => {
+  switch(true) {
+
+    case (props.primary):
+    case (props.positive):
+    case (props.negative):
+      return 'bleech'
+
+    default:
+      return 'pencil'
+    }
+}
+
+const getBackground = props => {
+  switch(true) {
+
+    case (props.primary):
+      return 'ocean'
+
+    case (props.positive):
+      return 'grass'
+
+    case (props.negative):
+      return 'heart'
+
+    default:
+      return 'canvas-'
+    }
+}
+
+const buttonColors = props => color({ ...props, color: getColor(props), bg: getBackground(props) })
+
 export default styled(Component)`
   ${space}
   ${width}
   ${fontSize}
-  ${color}
+  ${buttonColors}
   border: none;
   display: inline-box;
   box-sizing: border-box;
   cursor: pointer;
-  background: ${ props => {
-    switch(true) {
-
-      case (props.primary):
-        return props.theme.colors.ocean || '#000'
-
-      case (props.positive):
-        return 'green'
-
-      case (props.negative):
-        return 'red'
-
-      default:
-        return '#ddd'
-
-      }
-  } };
-  color: ${ props => {
-    switch(true) {
-
-      case (props.primary):
-        return '#fff'
-
-      case (props.positive):
-        return '#fff'
-
-      case (props.negative):
-        return '#fff'
-
-      default:
-        return '#666'
-
-      }
-  } };
   padding: ${ props => props.huge ? '20px' : '10px' };
   opacity: ${ props => props.disabled ? 0.5 : 1 };
   font-size: ${ props => props.huge ? '1.5em' : '1em' };

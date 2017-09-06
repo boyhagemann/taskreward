@@ -17,6 +17,8 @@ const renderHeading = props => {
       return `${user.name} rewarded ${lead.user.name} with ${value} for accomplishing reward ${reward.name}.`
     }
 
+    default:
+      throw new Error(`Event ${props.__typename} is not implemented yet`)
   }
 }
 

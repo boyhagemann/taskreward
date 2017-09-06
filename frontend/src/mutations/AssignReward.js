@@ -1,5 +1,4 @@
 import { gql, graphql } from 'react-apollo'
-import profileQuery from '../queries/Lead'
 
 const assignRewardMutation = gql(`
   mutation AssignReward($input: AssignRewardInput) {

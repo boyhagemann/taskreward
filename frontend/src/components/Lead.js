@@ -1,25 +1,26 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import { Link, Route } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import Activity from './Lead/Activity'
 import Conversation from './Lead/Conversation'
 import History from './Lead/History'
 import Rewards from './Lead/Rewards'
 import Box from './UI/Box'
 import Button from './UI/Button'
-import Heading from './UI/Heading'
 import MaxBox from './UI/MaxBox'
-import TextArea from './UI/TextArea'
 import Tab from './UI/Tab'
+import Link from './UI/Link'
 
-const Breadcrumb = props => <Box width={1} my={2} { ...props } />
+const Breadcrumb = props => <Box width={1} mt={3} mb={3} { ...props } />
 
 const Name = props => <Box width={1} fontSize={5} { ...props } />
 const Email = props => <Box width={1} fontSize={1} color={`pencil+++`} { ...props } />
 
 
-const Tabs = props => <Box my={2} { ...props } />
-const StyledTab = props => <Tab bg={`canvas-`} p={2} color={`pencil`} activeColor={`bleech`} activeBg={`ocean`} { ...props } />
+const Tabs = props => <Box width={1} my={2} { ...props } />
+const Profile = props => <Box width={1} my={2} { ...props } />
+const Actions = props => <Box width={1} my={2} { ...props } />
+const StyledTab = props => <Tab p={2} color={`pencil+++`} activeColor={`night`} { ...props } />
 
 
 export default class extends Component {
@@ -29,32 +30,41 @@ export default class extends Component {
   }
 
   render() {
-    const { data, loading, profile, assignReward } = this.props
+    const { loading, profile, openRewardModal } = this.props
 
     return loading ? null : (
-      <MaxBox>
-        <Box p={1}>
-          <Breadcrumb>
-            <Link to={`/leads`}>Leads</Link>
-          </Breadcrumb>
+        <MaxBox>
+          <Box width={[1, 1/4]} p={1}>
 
-          <Name>{ profile.lead.user.name }</Name>
-          <Email>{ profile.lead.user.email }</Email>
+            <Breadcrumb>
+              <Link to={`/leads`}>Back to leads</Link>
+            </Breadcrumb>
 
-          <Tabs>
-            <StyledTab exact to={`/leads/${profile.lead.id}`}>Activity</StyledTab>
-            <StyledTab to={`/leads/${profile.lead.id}/history`}>History</StyledTab>
-            <StyledTab to={`/leads/${profile.lead.id}/conversation`}>Conversation</StyledTab>
-            <StyledTab to={`/leads/${profile.lead.id}/rewards`}>Rewards</StyledTab>
-          </Tabs>
+            <Profile>
+              <Name>{ profile.lead.user.name }</Name>
+              <Email>{ profile.lead.user.email }</Email>
+            </Profile>
 
-          <Route exact path={`/leads/${profile.lead.id}`} render={ () => <Activity {...this.props} /> } />
-          <Route path={`/leads/${profile.lead.id}/history`} component={History} {...this.props} />
-          <Route path={`/leads/${profile.lead.id}/conversation`} component={Conversation} {...this.props} />
-          <Route path={`/leads/${profile.lead.id}/rewards`} render={ () => <Rewards {...this.props} /> } />
+            <Actions>
+              <Button positive mr={[0, 1]} onClick={openRewardModal}>Change status</Button>
+              <Button negative>Reject</Button>
+            </Actions>
 
-        </Box>
-      </MaxBox>
+          </Box>
+          <Box width={[1, 3/4]} p={1}>
+
+            <Tabs>
+              <StyledTab to={`/leads/${profile.lead.id}/conversation`}>Conversation</StyledTab>
+              <StyledTab to={`/leads/${profile.lead.id}/activity`}>Activity</StyledTab>
+              <StyledTab to={`/leads/${profile.lead.id}/history`}>History</StyledTab>
+            </Tabs>
+
+            <Route path={`/leads/${profile.lead.id}/conversation`} render={ () => <Conversation {...this.props } /> } />
+            <Route path={`/leads/${profile.lead.id}/activity`} render={ () => <Activity {...this.props} /> } />
+            <Route path={`/leads/${profile.lead.id}/history`} component={History} {...this.props} />
+
+          </Box>
+        </MaxBox>
     )
   }
 }

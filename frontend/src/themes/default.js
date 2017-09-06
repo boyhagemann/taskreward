@@ -5,6 +5,7 @@ const colors = {
   canvas: '#f3f1eb',
   pencil: '#606e7a',
   ocean: '#39f',
+  calm: '#0c5eb1',
   heart: '#d85b5b',
   love: '#d36eb6',
   bleech: '#fff',

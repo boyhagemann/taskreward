@@ -1,8 +1,8 @@
 import { graphql, gql } from 'react-apollo'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
+import { open } from '../redux/modal'
 import Lead from './Lead'
-import AssignReward from '../mutations/AssignReward'
 import profileQuery from '../queries/Lead'
 
 const EventSubscription = gql`
@@ -77,6 +77,10 @@ const mapStateToProps = (state, props) => ({
 })
 
 const mapDispatchToProps = (dispatch, props) => ({
+  openRewardModal: () => {
+    const id = props.match.params.id
+    dispatch(open('reward', { id }))
+  }
 })
 
 const WithRedux = connect(mapStateToProps, mapDispatchToProps)
@@ -85,5 +89,4 @@ const WithRedux = connect(mapStateToProps, mapDispatchToProps)
 export default compose(
   WithRedux,
   WithQuery,
-  AssignReward,
 )(Lead)
