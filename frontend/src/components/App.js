@@ -53,7 +53,7 @@ class App extends Component {
                   <Route path={'/dashboard'} component={AdminCanView(DashboardContainer)} />
                   <Route path={'/profile'} component={AdminCanView(ProfileContainer)} />
                   <Route exact path={'/leads'} component={AdminCanView(LeadsContainer)} />
-                  <Route path={'/leads/:id'} component={AdminCanView(LeadContainer)} />
+                  <Route path={'/leads/:id/:tab?'} component={AdminCanView(LeadContainer)} />
                   <Route path={'/preview'} component={AdminCanView(PreviewContainer)} />
                   <Route path={'/claims'} component={AdminCanView(() => (<div>Claims</div>))} />
                   <Route path={'/login'} component={LoginContainer} />

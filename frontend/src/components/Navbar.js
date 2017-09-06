@@ -25,7 +25,7 @@ const Name = styled.span`
   font-weight: bold;
 `
 
-const renderTab = ({ to, label, badge }) => <Tab key={to} exact to={to} color={`pencil++++`} activeColor={`night`}>
+const renderTab = ({ to, label, badge }) => <Tab key={to} to={to} color={`pencil++++`} activeColor={`night`}>
   {label} { badge && <Badge bg={badge.background}>{badge.count}</Badge>}
 </Tab>
 

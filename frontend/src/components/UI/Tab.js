@@ -3,9 +3,9 @@ import styled from 'styled-components'
 import { space, width, fontSize, color } from 'styled-system'
 import { NavLink } from 'react-router-dom'
 
-const activeColor = props => color({ ...props, color: props.activeColor })
+const colorActive = props => color({ ...props, color: props.activeColor, bg: props.activeBg })
 
-export default styled( ({ activeColor, ...navProps }) => <NavLink { ...navProps } />)`
+export default styled( ({ component: Component = NavLink, ...navProps }) => <Component { ...navProps } />)`
   display: inline-block;
   margin-right: 3px;
   padding: 10px;
@@ -15,7 +15,10 @@ export default styled( ({ activeColor, ...navProps }) => <NavLink { ...navProps 
   ${fontSize}
   ${color}
 
+  ${ props => {
+    console.log('Color', colorActive(props))
+  }}
   &.active {
-    ${activeColor}
+    ${colorActive}
   }
 `

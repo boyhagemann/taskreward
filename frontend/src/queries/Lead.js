@@ -16,6 +16,7 @@ query LeadContainer($id: ID!) {
         user {
           id
           name
+          email
         }
         events {
           __typename

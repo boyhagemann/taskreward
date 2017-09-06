@@ -12,10 +12,8 @@ const SearchBox = styled.div`
   margin: 10px 0 20px;
 `
 
-const Email = styled.span`
-  color: #bbb;
-  margin-left: 5px;
-`
+const Name = props => <Box width={1} fontSize={3} { ...props } />
+const Email = props => <Box width={1} fontSize={1} color={`pencil+++`} { ...props } />
 
 const Actions = Box.extend`
   text-align: right;
@@ -27,7 +25,7 @@ const Actions = Box.extend`
 
 const Row = props => <Box width={1} bg={`bleech`} p={1} mb={1} { ...props } />
 
-const Name = styled.div`
+const Linkable = styled.div`
   cursor: pointer;
 `
 
@@ -41,10 +39,10 @@ export default ({ view, loading, leads = [] }) => loading ? null : (
 
       <Row key={lead.hash}>
         <Box width={2/8} pt={1}>
-          <Name onClick={ () => view(lead.id) }>
-            {lead.user.name}
-            <Email>({lead.user.email})</Email>
-          </Name>
+          <Linkable onClick={ () => view(lead.id) }>
+            <Name>{lead.user.name}</Name>
+            <Email>{lead.user.email}</Email>
+          </Linkable>
         </Box>
         <Box width={2/8} pt={1}>{lead.status}</Box>
         <Box width={2/8} pt={1}>{lead.depth}</Box>
