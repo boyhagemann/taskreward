@@ -37,6 +37,28 @@ const EventSubscription = gql`
           name
         }
       }
+      ... on ReceivedReward {
+        id
+        createdAt
+        depth
+        cut
+        value
+        user {
+          id
+          name
+        }
+        lead {
+          id
+          user {
+            id
+            name
+          }
+        }
+        reward {
+          id
+          name
+        }
+      }
     }
   }
 `

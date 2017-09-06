@@ -13,6 +13,15 @@ const WithQuery = graphql(gql`
         leads {
           id
           hash
+          motivation
+          score
+          parent {
+            id
+            user {
+              id
+              name
+            }
+          }
           user {
             id
             name

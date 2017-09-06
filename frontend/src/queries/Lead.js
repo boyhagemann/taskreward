@@ -18,8 +18,16 @@ query LeadContainer($id: ID!) {
           name
           email
         }
+        parent {
+          id
+          user {
+            id
+            name
+          }
+        }
         events {
           __typename
+
           ... on CreatedLead {
             id
             createdAt
@@ -28,6 +36,7 @@ query LeadContainer($id: ID!) {
               name
             }
           }
+
           ... on AssignedReward {
             id
             createdAt
@@ -48,6 +57,30 @@ query LeadContainer($id: ID!) {
               name
             }
           }
+          
+          ... on ReceivedReward {
+            id
+            createdAt
+            depth
+            cut
+            value
+            user {
+              id
+              name
+            }
+            lead {
+              id
+              user {
+                id
+                name
+              }
+            }
+            reward {
+              id
+              name
+            }
+          }
+
         }
       }
     }

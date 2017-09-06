@@ -13,6 +13,7 @@ export const createLead = (_, { input }) => {
     MATCH (c:User { id: $user })
     CREATE (a:Lead $lead)
     CREATE (b)-[:HAS_LEAD]->(a)
+    CREATE (c)-[:HAS_LEAD]->(a)
     CREATE (d:Event $createdLead)
     CREATE (a)-[:HAS_EVENT]->(d)
     CREATE (c)-[:HAS_EVENT]->(d)
@@ -26,6 +27,7 @@ export const createLead = (_, { input }) => {
         createdAt: moment().format(),
         id: input.id || id(),
         hash: input.ownHash || unique(id()),
+        source: input.source || 'unknown'
       },
       createdLead: {
         id: id(),
@@ -49,6 +51,15 @@ export const getLeads = () => session
 export const findLeadsForProfile = id => session
   .run(`
     MATCH (a:Lead)<-[r:HAS_LEAD*]-(:Profile { id: $id })
+    WITH a, max(size(r)) AS depth
+    RETURN a, depth
+  `, { id })
+  .then(result => transformMany(result, session))
+  .catch(handleError)
+
+export const findParents = id => session
+  .run(`
+    MATCH (:Lead { id: $id })<-[r:HAS_LEAD*]-(a:Lead)
     WITH a, max(size(r)) AS depth
     RETURN a, depth
   `, { id })
@@ -81,8 +92,7 @@ export const getLeadByEvent = id => session
 export const getParent = id => session
   .run(`
     MATCH (:Lead { id: $id })<-[:HAS_LEAD]-(a:Lead)
-    MATCH (a)<-[HAS_LEAD*]-(b:Reward)
-    RETURN a, b.id AS reward
+    RETURN a
   `, { id })
   .then(result => transformOne(result, session))
   .catch(handleError)

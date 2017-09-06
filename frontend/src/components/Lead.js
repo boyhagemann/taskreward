@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import moment from 'moment'
 import { Route } from 'react-router-dom'
 import Activity from './Lead/Activity'
 import Conversation from './Lead/Conversation'
@@ -18,8 +19,8 @@ const Email = props => <Box width={1} fontSize={1} color={`pencil+++`} { ...prop
 
 
 const Tabs = props => <Box width={1} my={2} { ...props } />
-const Profile = props => <Box width={1} my={2} { ...props } />
-const Actions = props => <Box width={1} my={2} { ...props } />
+const Profile = props => <Box width={1} bg={`canvas-`} p={1} mb={1} { ...props } />
+const Actions = props => <Box width={1} mb={1} { ...props } />
 const StyledTab = props => <Tab p={2} color={`pencil+++`} activeColor={`night`} { ...props } />
 
 
@@ -44,6 +45,12 @@ export default class extends Component {
               <Name>{ profile.lead.user.name }</Name>
               <Email>{ profile.lead.user.email }</Email>
             </Profile>
+
+            { profile.lead.parent && (
+            <Box width={1} bg={`bleech`} p={1} mb={1}>
+              Was invited by <Link to={`/leads/${profile.lead.parent.id}`}>{ profile.lead.parent.user.name }</Link> on { moment(profile.lead.parent.createdAt).format('llll') }.
+            </Box>
+            ) }
 
             <Actions>
               <Button positive mr={[0, 1]} onClick={openRewardModal}>Change status</Button>

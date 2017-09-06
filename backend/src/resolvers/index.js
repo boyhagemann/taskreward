@@ -10,6 +10,7 @@ import Subscription from './Subscription'
 import Event from './Event'
 import CreatedLead from './CreatedLead'
 import AssignedReward from './AssignedReward'
+import ReceivedReward from './ReceivedReward'
 
 export default {
   Email,
@@ -24,4 +25,5 @@ export default {
   Event,
   CreatedLead,
   AssignedReward,
+  ReceivedReward,
 }

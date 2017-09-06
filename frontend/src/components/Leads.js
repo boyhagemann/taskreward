@@ -6,6 +6,8 @@ import MaxBox from './UI/MaxBox'
 import Button from './UI/Button'
 import Heading from './UI/Heading'
 import TextInput from './UI/TextInput'
+import Quote from './UI/Quote'
+import Score from './UI/Score'
 
 const SearchBox = styled.div`
   background: #ddd;
@@ -25,7 +27,7 @@ const Actions = Box.extend`
 
 const Row = props => <Box width={1} bg={`bleech`} p={1} mb={1} { ...props } />
 
-const Linkable = styled.div`
+const ClickableBox = styled(Box)`
   cursor: pointer;
 `
 
@@ -38,17 +40,17 @@ export default ({ view, loading, leads = [] }) => loading ? null : (
     { leads.map(lead => (
 
       <Row key={lead.hash}>
-        <Box width={2/8} pt={1}>
-          <Linkable onClick={ () => view(lead.id) }>
-            <Name>{lead.user.name}</Name>
-            <Email>{lead.user.email}</Email>
-          </Linkable>
+        <ClickableBox width={2/8} pt={1} onClick={ () => view(lead.id) }>
+          <Name>{lead.user.name}</Name>
+          <Email>{lead.user.email}</Email>
+        </ClickableBox>
+        <ClickableBox width={3/8} pt={1} fontSize={0} color={`pencil+++`} onClick={ () => view(lead.id) }>
+          { lead.parent && <Quote from={lead.parent.user.name} text={lead.motivation} /> }
+        </ClickableBox>
+        <Box width={1/8} pt={1}>
+          { lead.score && <Score value={lead.score} /> }
         </Box>
-        <Box width={2/8} pt={1}>{lead.status}</Box>
-        <Box width={2/8} pt={1}>{lead.depth}</Box>
         <Actions width={2/8}>
-          <Button primary component={Link} to={`/leads/${lead.id}`}>View</Button>
-          <Button component={Link} to={`/page/${lead.hash}`}>View page</Button>
         </Actions>
       </Row>
     )) }

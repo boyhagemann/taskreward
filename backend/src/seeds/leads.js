@@ -5,8 +5,9 @@ export default [
     hash: 'profile.1.hash',
     ownHash: 'lead.3.hash',
     source: 'invitation',
-    description: "Check this out level 2",
-    status: 'some-status'
+    motivation: "This guy can really use your product.",
+    status: 'some-status',
+    score: 0.87,
   },
   {
     id: 'lead.2',
@@ -14,7 +15,8 @@ export default [
     hash: 'lead.3.hash',
     ownHash: 'lead.4.hash',
     source: 'invitation',
-    description: "Check this out level 3",
-    status: 'some-status'
+    motivation: "I think he has something to do with your industry.",
+    status: 'some-status',
+    score: 0.94,
   },
 ]

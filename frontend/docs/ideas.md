@@ -14,6 +14,10 @@ These updates can trigger payments.
 ## Integrate conversations thru mail,sms,chat
 Maybe integrate with Smooch?
 
+## Users can tag Leads
+This will make it easier to find one or more leads from the list.
+It can also help identify the buyers journey.
+
 ## Referrers can send messages to their own friends...
 So they can do some pre work...
 They can collect useful information and pass it thru to the Profile user.
