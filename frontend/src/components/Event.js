@@ -17,12 +17,12 @@ const renderHeading = (event, viewer) => {
 
     case 'AssignedReward': {
       const { user, lead, reward, value } = event
-      return <span>{name(user, viewer)} assigned <Link to={lead.id}>{name(lead.user, viewer)}</Link> the status {reward.name}</span>
+      return <span>{name(user, viewer)} assigned <Link to={lead.id}>{name(lead.user, viewer)}</Link> the status <bold>{reward.action}</bold></span>
     }
 
     case 'ReceivedReward': {
       const { user, lead, reward, depth, cut, value } = event
-      return <span>{name(user, viewer)} got a {cut} cut of the original {value} reward because...</span>
+      return <span>{name(user, viewer)} got a {cut} cut of the original {value} reward because someone {reward.action}.</span>
     }
 
     default:

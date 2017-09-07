@@ -6,12 +6,12 @@
 [x] Users can see already invited users
 [x] System calculates rewards recursivly
 [ ] Users cannot be invited by the same user for the same profile more than once
-[ ] Users can motivate why they recommend a friend
+[x] Users can motivate why they recommend a friend
 [ ] System sends an email on lead creation
 [ ] Users can sign up from a lead page
-[ ] Users can approve leads
+[x] Users can approve leads
 [ ] System can calculate a lead rating
-[ ] System determines payout on approval
+[x] System determines payout on approval
 [ ] Users can claim their reward
 [ ] Users can switch between profile and referer
 [ ] System updates store after mutation

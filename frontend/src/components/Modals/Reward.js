@@ -5,7 +5,7 @@ import Box from '../UI/Box'
 import Heading from '../UI/Heading'
 
 
-export default ({ profile, assignReward, close }) => (
+export default ({ loading, profile, assignReward, close }) => loading ? null : (
   <Box width={1}>
     <Heading>Reward</Heading>
     { profile.rewards.map( reward => (
@@ -15,7 +15,7 @@ export default ({ profile, assignReward, close }) => (
           assignReward(profile.lead.id, reward.id)
           close()
         } }
-      >Assign { reward.name }</Button>
+      >{ profile.lead.user.name || 'This person' } { reward.action }</Button>
     ))}
   </Box>
 )

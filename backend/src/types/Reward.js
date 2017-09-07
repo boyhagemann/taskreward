@@ -7,6 +7,7 @@ type Reward {
   profile: Profile
   name: String
   description: String
+  action: String
   link: String
   value: Int
 }

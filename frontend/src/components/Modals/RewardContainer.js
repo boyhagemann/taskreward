@@ -19,7 +19,7 @@ query RewardContainer($id: ID!) {
       }
       rewards {
         id
-        name
+        action
       }
     }
   }
@@ -30,9 +30,9 @@ const WithQuery = graphql(rewardQuery, {
   options: ({ properties: { id } = {} }) => ({
     variables: { id }
   }),
-  props: ({ data: { loading, viewer: { profile } } }) => ({
+  props: ({ data: { loading, viewer = {} } }) => ({
     loading,
-    profile
+    profile: viewer.profile
   })
 })
 

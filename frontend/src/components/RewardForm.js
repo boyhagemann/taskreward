@@ -45,6 +45,16 @@ export default ({ handleSubmit, remove, name, ...props }) => {
         `}
         />
 
+        <Field
+          name={`action`}
+          label="This reward is fullfilled when a user..."
+          component={FieldWrapper}
+          field={TextInput}
+          description={`
+            This text will show up in the assign reward section.
+          `}
+          />
+
       <Button primary type="submit">Save</Button>
       <Button negative onClick={() => remove() }>Remove</Button>
 

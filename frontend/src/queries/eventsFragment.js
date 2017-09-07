@@ -26,6 +26,7 @@ export default `
     reward {
       id
       name
+      action
     }
   }
   ... on ReceivedReward {
@@ -48,6 +49,7 @@ export default `
     reward {
       id
       name
+      action
     }
   }
   `
