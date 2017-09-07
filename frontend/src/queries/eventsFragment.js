@@ -1,7 +1,4 @@
-import { gql } from 'react-apollo'
-
-export default gql`
-  events {
+export default `
   __typename
   ... on CreatedLead {
     id
@@ -31,4 +28,26 @@ export default gql`
       name
     }
   }
-}`
+  ... on ReceivedReward {
+    id
+    createdAt
+    depth
+    cut
+    value
+    user {
+      id
+      name
+    }
+    lead {
+      id
+      user {
+        id
+        name
+      }
+    }
+    reward {
+      id
+      name
+    }
+  }
+  `

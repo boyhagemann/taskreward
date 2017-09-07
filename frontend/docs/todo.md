@@ -4,6 +4,7 @@
 [x] Users can add a contact
 [ ] Users can add extra lead information, like hobbies or job function
 [x] Users can see already invited users
+[x] System calculates rewards recursivly
 [ ] Users cannot be invited by the same user for the same profile more than once
 [ ] Users can motivate why they recommend a friend
 [ ] System sends an email on lead creation

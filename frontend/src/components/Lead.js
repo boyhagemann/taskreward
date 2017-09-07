@@ -31,7 +31,8 @@ export default class extends Component {
   }
 
   render() {
-    const { loading, profile, openRewardModal } = this.props
+
+    const { loading, viewer: { profile }, openRewardModal } = this.props
 
     return loading ? null : (
         <MaxBox>

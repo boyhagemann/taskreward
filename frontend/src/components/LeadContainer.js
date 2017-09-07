@@ -4,61 +4,12 @@ import { connect } from 'react-redux'
 import { open } from '../redux/modal'
 import Lead from './Lead'
 import profileQuery from '../queries/Lead'
+import eventsFragment from '../queries/eventsFragment'
 
 const EventSubscription = gql`
   subscription Events {
     event {
-      __typename
-      ... on CreatedLead {
-        id
-        createdAt
-        user {
-          id
-          name
-        }
-      }
-      ... on AssignedReward {
-        id
-        createdAt
-        value
-        user {
-          id
-          name
-        }
-        lead {
-          id
-          user {
-            id
-            name
-          }
-        }
-        reward {
-          id
-          name
-        }
-      }
-      ... on ReceivedReward {
-        id
-        createdAt
-        depth
-        cut
-        value
-        user {
-          id
-          name
-        }
-        lead {
-          id
-          user {
-            id
-            name
-          }
-        }
-        reward {
-          id
-          name
-        }
-      }
+      ${eventsFragment}
     }
   }
 `
@@ -66,6 +17,7 @@ const EventSubscription = gql`
 const WithQuery = graphql(profileQuery, {
   props: ({ data: { loading, viewer = {}, subscribeToMore }}) => ({
     loading,
+    viewer,
     profile: viewer.profile,
     subscribeToEvents: () => {
         return subscribeToMore({
