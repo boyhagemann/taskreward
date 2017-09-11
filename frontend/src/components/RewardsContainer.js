@@ -2,29 +2,31 @@ import { gql, graphql } from 'react-apollo'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
-import Leads from './Leads'
+import Rewards from './Rewards'
 
 const WithQuery = graphql(gql`
   query Leads {
     viewer {
       id
-      leads {
+      rewards {
         id
-        hash
-        profile {
+        createdAt
+        value
+        cut
+        reward {
           id
           name
-          description
+          action
         }
       }
     }
   }
 `, {
   props: ({ data: { loading, viewer = {} } }) => ({
-    loading, leads: viewer.leads
+    loading, rewards: viewer.rewards
   })
 })
 
 export default compose(
   WithQuery
-)(Leads)
+)(Rewards)

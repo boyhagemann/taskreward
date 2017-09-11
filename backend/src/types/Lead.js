@@ -16,7 +16,9 @@ type Lead {
   depth: Int
   score: Float
   invited: [Lead]
-  events: [Event]
+  events(
+    ofType: String
+  ): [Event]
 }
 `
 

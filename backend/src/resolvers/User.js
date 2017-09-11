@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken'
 import { session, transformOne, transformMany, id, handleError, encrypt } from './helpers'
-import { findRewardsByUser } from './Reward'
+import { findEventsForUserOfType } from './Event'
+import { findLeadsForUser } from './Lead'
 import { getProfileByUser } from './Profile'
 import { SECRET } from '../constants'
 
@@ -80,6 +81,7 @@ export const getUserByToken = token => {
 
 export default {
   name: ({ firstName, middleName, lastName }) => [firstName, middleName, lastName].filter(value => value).join(' '),
-  profile: (user) => getProfileByUser(user.id)
-  // rewards: (user) => findRewardsByUser(user.id)
+  profile: (user) => getProfileByUser(user.id),
+  leads: (user) => findLeadsForUser(user.id),
+  rewards: (user) => findEventsForUserOfType(user.id, 'RECEIVED_REWARD')
 }

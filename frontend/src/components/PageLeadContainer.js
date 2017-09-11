@@ -2,7 +2,7 @@ import { graphql, gql } from 'react-apollo'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { open } from '../redux/modal'
-import Lead from './Lead'
+import PageLead from './PageLead'
 import profileQuery from '../queries/Lead'
 import eventsFragment from '../queries/eventsFragment'
 
@@ -63,4 +63,4 @@ const WithRedux = connect(mapStateToProps, mapDispatchToProps)
 export default compose(
   WithRedux,
   WithQuery,
-)(Lead)
+)(PageLead)

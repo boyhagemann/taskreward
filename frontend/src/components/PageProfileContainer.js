@@ -1,5 +1,5 @@
 import { gql, graphql } from 'react-apollo'
-import Profile from './Profile'
+import PageProfile from './PageProfile'
 
 export default graphql(gql`
   query ProfileContainer {
@@ -23,4 +23,4 @@ export default graphql(gql`
     loading,
     profile: viewer.profile
   })
-})(Profile)
+})(PageProfile)

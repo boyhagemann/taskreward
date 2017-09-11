@@ -109,6 +109,24 @@ export const getEventsForLead = id => session
   .then(result => transformMany(result, session))
   .catch(handleError)
 
+export const getEventsForLeadAndType = (id, ofType) => session
+  .run(`
+    MATCH (e:Event { type: $ofType })<-[:HAS_EVENT ]-(:Lead { id: $id })
+    RETURN DISTINCT e
+    ORDER BY e.createdAt
+  `, { id, ofType })
+  .then(result => transformMany(result, session))
+  .catch(handleError)
+
+export const findEventsForUserOfType = (id, ofType) => session
+  .run(`
+    MATCH (e:Event { type: $ofType })<-[:HAS_EVENT ]-(:User { id: $id })
+    RETURN DISTINCT e
+    ORDER BY e.createdAt
+  `, { id, ofType })
+  .then(result => transformMany(result, session))
+  .catch(handleError)
+
 export default {
 
   // Resolve the Union type here...

@@ -2,7 +2,7 @@ import { session, transformOne, transformMany, id, handleError, cookieExists, ge
 import { getUser, createUserFromSession } from './User'
 import { getReward } from './Reward'
 import { getProfileByLead } from './Profile'
-import { getEventsForLead } from './Event'
+import { getEventsForLead, getEventsForLeadAndType } from './Event'
 import { unique } from 'shorthash'
 import moment from 'moment'
 
@@ -53,6 +53,14 @@ export const findLeadsForProfile = id => session
     MATCH (a:Lead)<-[r:HAS_LEAD*]-(:Profile { id: $id })
     WITH a, max(size(r)) AS depth
     RETURN a, depth
+  `, { id })
+  .then(result => transformMany(result, session))
+  .catch(handleError)
+
+export const findLeadsForUser = id => session
+  .run(`
+    MATCH (a:Lead)<-[r:HAS_LEAD]-(:User { id: $id })
+    RETURN a
   `, { id })
   .then(result => transformMany(result, session))
   .catch(handleError)
@@ -141,5 +149,5 @@ export default {
   user: (lead) => getUser(lead.user),
   parent: (lead) => getParent(lead.id),
   invited: (lead) => getChildrenBySource(lead.id, 'invitation'),
-  events: lead => getEventsForLead(lead.id),
+  events: (lead, { ofType }) => ofType ? getEventsForLeadAndType(lead.id, ofType) : getEventsForLead(lead.id),
 }

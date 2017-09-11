@@ -8,8 +8,8 @@
 [x] User can see a list of leads
 [x] User can see a list of lead activity
 [x] User can approve leads
+[x] User can switch between profile and referer
 [ ] User can change his password
-[ ] User can switch between profile and referer
 [ ] User can decline/archive a lead
 [ ] User can see a list of invoices
 [ ] User can view or download an invoice
@@ -36,11 +36,11 @@
 [ ] Referer can add extra lead information, like hobbies or job function
 
 ## Referer Interface
-[ ] Referer can see a list of participated leads
-[ ] Referer can see the status of one lead
-[ ] Referer can see all activity for one lead
+[x] Referer can see a list of participated leads
 [ ] Referer can see the reward value that can be payed out
 [ ] Referer can request a payment
+[ ] Referer can see the status of one lead
+[ ] Referer can see all activity for one lead
 [ ] Referer can see a list of previous payments
 [ ] Referer can update their account information
 [ ] Referer can claim his reward

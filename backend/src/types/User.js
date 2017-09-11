@@ -12,9 +12,8 @@ type User {
   email: String
   telephone: String
   role: String
-  rewards: [Reward]
-  sentLeads: [Lead]
-  receivedLeads: [Lead]
+  rewards: [ReceivedReward]
+  leads: [Lead]
   profile: Profile
 }
 `
