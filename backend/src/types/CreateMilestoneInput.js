@@ -7,7 +7,7 @@ input CreateMilestoneInput {
   link: String
   value: Int!
   event: String!
-  reward: String
+  incentive: String
   operator: String
   count: Int
 }

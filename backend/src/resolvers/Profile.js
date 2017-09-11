@@ -1,6 +1,6 @@
 import { session, transformOne, transformMany, id, handleError } from './helpers'
 import { getUser } from './User'
-import { findRewardsByProfile } from './Reward'
+import { findIncentivesByProfile } from './Incentive'
 import { findMilestonesByProfile } from './Milestone'
 import { findLeadsForProfile, getLead } from './Lead'
 import { unique } from 'shorthash'
@@ -40,14 +40,6 @@ export const updateProfile = (_, { input }) => session
   .then(result => transformOne(result, session))
   .catch(handleError)
 
-export const getRewards = () => session
-  .run(`
-    MATCH (a:Profile)
-    RETURN a
-  `)
-  .then(result => transformMany(result, session))
-  .catch(handleError)
-
 export const getProfile = id => session
   .run(`
     MATCH (a:Profile { id: $id })
@@ -74,7 +66,7 @@ export const getProfileByLead = lead => session
 
 export default {
   user: (profile) => getUser(profile.user),
-  rewards: (profile) => findRewardsByProfile(profile.id),
+  incentives: (profile) => findIncentivesByProfile(profile.id),
   milestones: (profile) => findMilestonesByProfile(profile.id),
   leads: (profile) => findLeadsForProfile(profile.id),
   lead: (_, { id }) => getLead(id),

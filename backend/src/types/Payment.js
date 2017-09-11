@@ -1,13 +1,14 @@
 // import User from './User' // Don't need to call this, because of recursive dependency
 // import Profile from './Profile'
 
-const Reward = `
-type Reward {
+const Payment = `
+type Payment {
   id: ID
-  incentive: Incentive
+  createdAt: String
+  rewards: [Reward]
   user: User
-  value: Int
+  value: Float
 }
 `
 
-export default [Reward]
+export default [Payment]

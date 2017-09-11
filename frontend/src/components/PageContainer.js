@@ -16,7 +16,7 @@ query Profile($hash: String!) {
     profile {
       name
       description
-      rewards {
+      incentives {
         id
         name
         description

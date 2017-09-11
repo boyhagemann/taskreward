@@ -1,15 +1,15 @@
-import Reward from './Reward'
+import Incentive from './Incentive'
 import Milestone from './Milestone'
 import User from './User'
 import Lead from './Lead'
 import CreateLeadInput from './CreateLeadInput'
 import CreateUserInput from './CreateUserInput'
-import RewardInput from './RewardInput'
+import CreateIncentiveInput from './CreateIncentiveInput'
 import CreateMilestoneInput from './CreateMilestoneInput'
 import UpdateProfileInput from './UpdateProfileInput'
-import UpdateRewardInput from './UpdateRewardInput'
+import UpdateIncentiveInput from './UpdateIncentiveInput'
 import UpdateMilestoneInput from './UpdateMilestoneInput'
-import AssignRewardInput from './AssignRewardInput'
+import AssignIncentiveInput from './AssignIncentiveInput'
 import Token from './Token'
 
 const Mutation = `
@@ -29,9 +29,9 @@ type Mutation {
     input: CreateUserInput
   ): User
 
-  createReward(
-    input: RewardInput
-  ): Reward
+  createIncentive(
+    input: CreateIncentiveInput
+  ): Incentive
 
   createMilestone(
     input: CreateMilestoneInput
@@ -45,27 +45,27 @@ type Mutation {
     input: UpdateProfileInput
   ): Profile
 
-  updateReward(
-    input: UpdateRewardInput
-  ): Reward
+  updateIncentive(
+    input: UpdateIncentiveInput
+  ): Incentive
 
   updateMilestone(
     input: UpdateMilestoneInput
   ): Milestone
 
-  assignReward(
-    input: AssignRewardInput
-  ): Reward
+  assignIncentive(
+    input: AssignIncentiveInput
+  ): Incentive
 }
 `
 
 export default [
   Mutation,
   ...User, CreateUserInput,
-  ...Reward, RewardInput, UpdateRewardInput,
+  ...Incentive, CreateIncentiveInput, UpdateIncentiveInput,
   ...Milestone, CreateMilestoneInput, UpdateMilestoneInput,
   ...Lead, CreateLeadInput,
   UpdateProfileInput,
-  AssignRewardInput,
+  AssignIncentiveInput,
   Token,
 ]

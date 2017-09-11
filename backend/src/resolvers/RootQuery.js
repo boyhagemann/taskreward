@@ -1,13 +1,6 @@
-import { getRewards, getReward } from './Reward'
-import { getUsers, getUserByToken } from './User'
-import { getLeads, getLeadByHash } from './Lead'
-import { getProfileByUser } from './Profile'
+import {  getLeadByHash } from './Lead'
 
 export default {
   viewer: (_, {}, { user }) => ({ ...user }),
-  // rewards: () => getRewards(),
-  // reward: (_, { id }) => getReward(id),
-  // users: () => getUsers(),
-  // leads: () => getLeads(),
   lead: (_, { hash }) => getLeadByHash(hash),
 }

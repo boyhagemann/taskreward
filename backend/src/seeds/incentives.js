@@ -1,18 +1,18 @@
 
 export default [
   {
-    id: 'reward.1',
+    id: 'incentive.1',
     profile: 'profile.1',
-    name: 'First reward',
+    name: 'First incentive',
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque rhoncus pulvinar eros, eget rhoncus orci consequat ut. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi a urna eu leo placerat finibus id ut metus. Fusce accumsan leo at dignissim molestie. ",
     action: "bought product X",
     link: 'somelink',
     value: 300,
   },
   {
-    id: 'reward.2',
+    id: 'incentive.2',
     profile: 'profile.1',
-    name: 'Second reward',
+    name: 'Second incentive',
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque rhoncus pulvinar eros, eget rhoncus orci consequat ut. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi a urna eu leo placerat finibus id ut metus. Fusce accumsan leo at dignissim molestie. ",
     action: "made an office appointment",
     link: 'someotherlink',

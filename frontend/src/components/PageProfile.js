@@ -3,13 +3,13 @@ import Heading from './UI/Heading'
 import Box from './UI/Box'
 import MaxBox from './UI/MaxBox'
 import ProfileFormContainer from './ProfileFormContainer'
-import RewardFormContainer from './RewardFormContainer'
+import IncentiveFormContainer from './IncentiveFormContainer'
 
-const Reward = props => <Box { ...props } bg={`canvas-`} p={2} mb={2} />
+const Incentive = props => <Box { ...props } bg={`canvas-`} p={2} mb={2} />
 
 export default ({ handleSubmit, loading, profile = {} }) => {
 
-    const { id, name, description, rewards } = profile
+    const { id, name, description, incentives } = profile
 
     return loading ? null :
     <div>
@@ -25,16 +25,15 @@ export default ({ handleSubmit, loading, profile = {} }) => {
       <MaxBox p={1}>
         <Box width={[1, 2/3]}>
           <Heading>Rewards</Heading>
-          { rewards.map( reward => (
-            <Reward key={reward.id}>
-              <RewardFormContainer
-                form={`reward-${reward.id}`}
-                name={reward}
-                initialValues={reward}
+          { incentives.map( incentive => (
+            <Incentive key={incentive.id}>
+              <IncentiveFormContainer
+                form={`incentive-${incentive.id}`}
+                initialValues={incentive}
                 remove={ () => {
                   console.log('remove...')
                 } } />
-            </Reward>
+            </Incentive>
           )) }
         </Box>
 

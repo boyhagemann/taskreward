@@ -8,7 +8,7 @@ export default `
       name
     }
   }
-  ... on AssignedReward {
+  ... on AssignedIncentive {
     id
     createdAt
     value
@@ -23,7 +23,7 @@ export default `
         name
       }
     }
-    reward {
+    incentive {
       id
       name
       action
@@ -46,7 +46,7 @@ export default `
         name
       }
     }
-    reward {
+    incentive {
       id
       name
       action

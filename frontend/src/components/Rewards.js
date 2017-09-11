@@ -9,7 +9,7 @@ import Button from './UI/Button'
 import Moment from 'react-moment'
 
 
-const Item = props => <Box width={1} bg={`bleech`} mb={2} { ...props } />
+const Item = props => <Box width={1} bg={`bleech`} mb={2} p={1} { ...props } />
 const Content = props => <Box width={[1,5/6]} p={2} { ...props } />
 const Actions = props => <Box width={1} { ...props } />
 

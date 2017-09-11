@@ -8,6 +8,6 @@ export default `
     cut: Float!
     user: User
     lead: Lead
-    reward: Reward
+    incentive: Incentive
   }
 `

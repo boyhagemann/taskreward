@@ -1,5 +1,6 @@
-// import Reward from './Reward'
 // import Lead from './Lead'
+import Reward from './Reward'
+import Payment from './Payment'
 import Profile from './Profile'
 
 const User = `
@@ -12,10 +13,11 @@ type User {
   email: String
   telephone: String
   role: String
-  rewards: [ReceivedReward]
+  rewards: [Reward]
+  payments: [Payment]
   leads: [Lead]
   profile: Profile
 }
 `
 
-export default [User, ...Profile]
+export default [User, ...Profile, ...Reward, ...Payment]

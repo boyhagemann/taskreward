@@ -1,6 +1,5 @@
 import { session, transformOne, transformMany, id, handleError, cookieExists, getUserFromCookie, } from './helpers'
 import { getUser, createUserFromSession } from './User'
-import { getReward } from './Reward'
 import { getProfileByLead } from './Profile'
 import { getEventsForLead, getEventsForLeadAndType } from './Event'
 import { unique } from 'shorthash'

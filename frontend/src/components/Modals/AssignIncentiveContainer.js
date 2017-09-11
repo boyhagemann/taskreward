@@ -1,11 +1,11 @@
 import { compose } from 'redux'
 import { gql, graphql } from 'react-apollo'
 import { connect } from 'react-redux'
-import Reward from './Reward'
-import AssignReward from '../../mutations/AssignReward'
+import AssignIncentive from './AssignIncentive'
+import AssignIncentiveMutation from '../../mutations/AssignIncentive'
 
-const rewardQuery = gql`
-query RewardContainer($id: ID!) {
+const incentiveQuery = gql`
+query AssignIncentiveMutation($id: ID!) {
   viewer {
     id
     profile {
@@ -17,7 +17,7 @@ query RewardContainer($id: ID!) {
           name
         }
       }
-      rewards {
+      incentives {
         id
         action
       }
@@ -26,7 +26,7 @@ query RewardContainer($id: ID!) {
 }
 `
 
-const WithQuery = graphql(rewardQuery, {
+const WithQuery = graphql(incentiveQuery, {
   options: ({ properties: { id } = {} }) => ({
     variables: { id }
   }),
@@ -37,6 +37,6 @@ const WithQuery = graphql(rewardQuery, {
 })
 
 export default compose(
-  AssignReward,
+  AssignIncentiveMutation,
   WithQuery,
-)(Reward)
+)(AssignIncentive)

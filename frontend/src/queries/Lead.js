@@ -8,7 +8,7 @@ query LeadContainer($id: ID!) {
     profile {
       id
       name
-      rewards {
+      incentives {
         id
         name
       }

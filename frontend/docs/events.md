@@ -10,3 +10,12 @@ ReceivedReward                       User y received a reward                   
 
 Owner Lead page ( lead )
 User Stream ( user leads and its children )
+
+
+
+
+User     CREATED_LEAD          Lead
+User     CREATED_INVITATION    Lead
+User     ASSIGNED_REWARD       Reward
+User     RECEIVED_REWARD       Reward
+User     REQUESTS_PAYMENT      Payment

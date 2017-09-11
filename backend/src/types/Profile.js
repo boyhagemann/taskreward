@@ -1,4 +1,4 @@
-import Reward from './Reward'
+import Incentive from './Incentive'
 import Milestone from './Milestone'
 import Lead from './Lead'
 
@@ -7,7 +7,7 @@ type Profile {
   id: ID!
   name: String
   description: String
-  rewards: [Reward]
+  incentives: [Incentive]
   milestones: [Milestone]
   leads: [Lead]
   lead(id: ID!): Lead
@@ -15,4 +15,4 @@ type Profile {
 }
 `
 
-export default [Profile, ...Reward, ...Milestone, ...Lead]
+export default [Profile, ...Incentive, ...Milestone, ...Lead]

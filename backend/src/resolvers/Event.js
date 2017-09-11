@@ -4,13 +4,13 @@ import { REWARD_CUT } from '../constants'
 import moment from 'moment'
 import pubsub from '../configuration/pubsub'
 
-export const assignReward = (_, { input }, { user }) => {
+export const assignIncentive = (_, { input }, { user }) => {
 
   session
   .run(`
     MATCH (a:User { id: $user })
     MATCH (b:Lead { id: $lead })
-    MATCH (c:Reward { id: $reward })
+    MATCH (c:Incentive { id: $incentive })
     CREATE (d:Event { id: $props.id, createdAt: $props.createdAt, type: $props.type, value: c.value })
     CREATE (a)-[:HAS_EVENT]->(d)
     CREATE (b)-[:HAS_EVENT]->(d)
@@ -19,12 +19,12 @@ export const assignReward = (_, { input }, { user }) => {
   `,
     {
       lead: input.lead,
-      reward: input.reward,
+      incentive: input.incentive,
       user: user.id,
       props: {
         id: id(),
         createdAt: moment().format(),
-        type: 'ASSIGNED_REWARD',
+        type: 'ASSIGNED_INCENTIVE',
         ...input,
       }
     }
@@ -44,20 +44,20 @@ export const assignReward = (_, { input }, { user }) => {
 
     parents.forEach( lead => {
       console.log('parent!!!', lead.id)
-      receiveReward(input.lead, lead.id, input.reward, event.value, lead.depth)
+      receiveReward(input.lead, lead.id, input.incentive, event.value, lead.depth)
     })
 
   })
   .catch(handleError)
 }
 
-const receiveReward = (root, lead, reward, value, depth) => {
+const receiveReward = (root, lead, incentive, value, depth) => {
 
   session
   .run(`
     MATCH (r:Lead { id: $root })
     MATCH (a:Lead { id: $lead })<-[:HAS_LEAD]-(u)
-    MATCH (b:Reward { id: $reward })
+    MATCH (b:Incentive { id: $incentive })
     MERGE (d:Event { id: $id })
     ON CREATE SET d.id = $id, d.createdAt = $createdAt, d.type = $type, d.depth = $depth, d.value = $value, d.cut = $cut
     CREATE (r)-[:HAS_EVENT]->(d)
@@ -69,7 +69,7 @@ const receiveReward = (root, lead, reward, value, depth) => {
     {
       root,
       lead,
-      reward,
+      incentive,
       id: id(),
       createdAt: moment().format(),
       type: 'RECEIVED_REWARD',
@@ -91,8 +91,8 @@ export const createEvent = (_, { input }, context) => {
 
   switch(input.type) {
 
-    case 'ASSIGNED_REWARD':
-      return assignReward(null, { input }, context)
+    case 'ASSIGNED_INCENTIVE':
+      return assignIncentive(null, { input }, context)
 
     default:
       throw new Error(`Event ${input.type} is not implemented yet.`)
@@ -118,12 +118,14 @@ export const getEventsForLeadAndType = (id, ofType) => session
   .then(result => transformMany(result, session))
   .catch(handleError)
 
-export const findEventsForUserOfType = (id, ofType) => session
+export const findReceivedRewardsForUserNotYetPaidOut = id => session
   .run(`
-    MATCH (e:Event { type: $ofType })<-[:HAS_EVENT ]-(:User { id: $id })
+    MATCH (r:Reward)-[:HAS_EVENT]->(e:Event { type: $ofType })<-[:HAS_EVENT]-(u:User { id: $id })
+    OPTIONAL MATCH (r)-[:HAS_PAYMENT]->(p:Payment)<-[:HAS_PAYMENT]-(u)
+    WHERE r IS NULL
     RETURN DISTINCT e
     ORDER BY e.createdAt
-  `, { id, ofType })
+  `, { id, ofType: 'RECEIVED_REWARD' })
   .then(result => transformMany(result, session))
   .catch(handleError)
 
@@ -137,8 +139,8 @@ export default {
       case 'CREATED_LEAD':
         return 'CreatedLead'
 
-      case 'ASSIGNED_REWARD':
-        return 'AssignedReward'
+      case 'ASSIGNED_INCENTIVE':
+        return 'AssignedIncentive'
 
       case 'RECEIVED_REWARD':
         return 'ReceivedReward'

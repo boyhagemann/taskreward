@@ -70,12 +70,12 @@ export default ({ handleSubmit, loading, profile, action, windowSize, openReferM
     </MaxBox>
 
     <MaxBox>
-      { profile.rewards.map( reward => (
-        <Box key={reward.id} mt={2} pr={3} pb={4} width={[1, 1/2, 1/3]}>
-          <Card key={reward.name} bg={`bleech`} width={1}>
-            <SubHeading m={0} p={2} fontSize={5}>{ reward.name }</SubHeading>
-            <Text px={2}>{ reward.description }</Text>
-            <Box p={2} bg={`love`} color={`bleech`} width={1} fontSize={3}>Reward: { reward.value } Euro</Box>
+      { profile.incentives.map( incentive => (
+        <Box key={incentive.id} mt={2} pr={3} pb={4} width={[1, 1/2, 1/3]}>
+          <Card key={incentive.name} bg={`bleech`} width={1}>
+            <SubHeading m={0} p={2} fontSize={5}>{ incentive.name }</SubHeading>
+            <Text px={2}>{ incentive.description }</Text>
+            <Box p={2} bg={`love`} color={`bleech`} width={1} fontSize={3}>Reward: { incentive.value } Euro</Box>
           </Card>
         </Box>
       )) }

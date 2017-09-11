@@ -9,7 +9,7 @@ export default graphql(gql`
         id
         name
         description
-        rewards {
+        incentives {
           id
           name
           description

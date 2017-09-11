@@ -51,9 +51,9 @@ const mapStateToProps = (state, props) => ({
 })
 
 const mapDispatchToProps = (dispatch, props) => ({
-  openRewardModal: () => {
+  openAssignIncentiveModal: () => {
     const id = props.match.params.id
-    dispatch(open('reward', { id }))
+    dispatch(open('assignIncentive', { id }))
   }
 })
 

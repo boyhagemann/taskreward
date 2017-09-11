@@ -10,7 +10,7 @@ import Button from './UI/Button'
 import PageImage from '../assets/images/bg.jpg'
 
 
-const Item = props => <Box width={1} bg={`bleech`} mb={2} { ...props } />
+const Item = props => <Box width={1} bg={`bleech`} mb={2}  { ...props } />
 
 const Image = styled(props => <Box width={[1,1/6]} { ...props } />)`
   background: url(${PageImage});

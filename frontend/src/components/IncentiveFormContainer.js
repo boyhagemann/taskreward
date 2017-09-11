@@ -1,6 +1,7 @@
+import { compose } from 'redux'
 import { gql, graphql, withApollo } from 'react-apollo'
 import { reduxForm } from 'redux-form'
-import RewardForm from './RewardForm'
+import IncentiveForm from './IncentiveForm'
 
 
 const updateReward = gql(`
@@ -16,10 +17,9 @@ const updateReward = gql(`
 
 const WithReduxForm = reduxForm({
   onSubmit: (values, _, { request }) => request(values)
-})(RewardForm)
+})
 
-
-export default withApollo(graphql(updateReward, {
+const WithQuery = graphql(updateReward, {
   props: ({ mutate, ownProps }) => ({
     request: (values) => {
 
@@ -29,4 +29,10 @@ export default withApollo(graphql(updateReward, {
         .catch(error => console.error('Got error', error))
     }
   })
-})(WithReduxForm))
+})
+
+export default compose(
+  WithReduxForm,
+  WithQuery,
+  withApollo
+)(IncentiveForm)

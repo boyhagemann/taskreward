@@ -5,7 +5,6 @@ import { Route } from 'react-router-dom'
 import Activity from './Lead/Activity'
 import Conversation from './Lead/Conversation'
 import History from './Lead/History'
-import Rewards from './Lead/Rewards'
 import Box from './UI/Box'
 import Button from './UI/Button'
 import MaxBox from './UI/MaxBox'
@@ -32,7 +31,7 @@ export default class extends Component {
 
   render() {
 
-    const { loading, viewer: { profile }, openRewardModal } = this.props
+    const { loading, viewer: { profile }, openAssignIncentiveModal } = this.props
 
     return loading ? null : (
         <MaxBox>
@@ -54,7 +53,7 @@ export default class extends Component {
             ) }
 
             <Actions>
-              <Button positive mr={[0, 1]} onClick={openRewardModal}>Change status</Button>
+              <Button positive mr={[0, 1]} onClick={openAssignIncentiveModal}>Change status</Button>
               <Button negative>Reject</Button>
             </Actions>
 

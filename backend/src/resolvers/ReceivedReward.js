@@ -1,9 +1,9 @@
 import { getUserByEvent } from './User'
 import { getLeadByEvent } from './Lead'
-import { getRewardByEvent } from './Reward'
+import { getIncentiveByEvent } from './Incentive'
 
 export default ({
-  reward: (event) => getRewardByEvent(event.id),
+  incentive: (event) => getIncentiveByEvent(event.id),
   lead: (event) => getLeadByEvent(event.id),
   user: (event) => getUserByEvent(event.id),
 })

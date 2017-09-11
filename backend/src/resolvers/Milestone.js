@@ -1,7 +1,7 @@
 import { session, transformOne, transformMany, id, handleError } from './helpers'
 import { getUser } from './User'
-import { findLeadByReward, findLeadsForReward } from './Lead'
-import { getRewardByMilestone } from './Reward'
+import { findLeadByIncentive, findLeadsForIncentive } from './Lead'
+import { getIncentiveByMilestone } from './Incentive'
 import { unique } from 'shorthash'
 
 export const createMilestone = (_, { input }) => session
@@ -17,16 +17,16 @@ export const createMilestone = (_, { input }) => session
     }
   )
   .then(result => transformOne(result, session))
-  .then(milestone => input.reward && linkMilestoneToReward(milestone.id, input.reward))
+  .then(milestone => input.incentive && linkMilestoneToIncentive(milestone.id, input.incentive))
   .catch(handleError)
 
-export const linkMilestoneToReward = (milestone, reward) => session
+export const linkMilestoneToIncentive = (milestone, incentive) => session
   .run(`
     MATCH (a:Milestone { id: $milestone })
-    MATCH (b:Reward { id: $reward })
-    CREATE (a)-[r:HAS_REWARD { id: $id}]->(b)
+    MATCH (b:Incentive { id: $incentive })
+    CREATE (a)-[r:HAS_INCENTIVE { id: $id}]->(b)
     RETURN r
-  `, { milestone, reward, id: id() }
+  `, { milestone, incentive, id: id() }
   )
   .then(result => transformOne(result, session))
   .catch(handleError)
@@ -42,22 +42,6 @@ export const updateMilestone = (_, { input }) => session
   .then(result => transformOne(result, session))
   .catch(handleError)
 
-export const getMilestones = () => session
-  .run(`
-    MATCH (a:Milestone)
-    RETURN a
-  `)
-  .then(result => transformMany(result, session))
-  .catch(handleError)
-
-export const getMilestone = id => session
-  .run(`
-    MATCH (a:Milestone { id: $id })
-    RETURN a LIMIT 1
-  `, { id })
-  .then(result => transformOne(result, session))
-  .catch(handleError)
-
 export const findMilestonesByProfile = id => session
   .run(`
     MATCH (a:Milestone)<-[r:HAS_MILESTONE]-(b:Profile { id: $id })
@@ -67,5 +51,5 @@ export const findMilestonesByProfile = id => session
   .catch(handleError)
 
 export default {
-  reward: (milestone) => getRewardByMilestone(milestone.id),
+  incentive: (milestone) => getIncentiveByMilestone(milestone.id),
 }

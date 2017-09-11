@@ -8,7 +8,7 @@ type Milestone {
   description: String
   value: Int
   event: String
-  reward: Reward
+  incentive: Incentive
   operator: String
   count: Int
 }

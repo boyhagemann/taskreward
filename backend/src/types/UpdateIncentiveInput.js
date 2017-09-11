@@ -1,6 +1,6 @@
 
 export default `
-input UpdateRewardInput {
+input UpdateIncentiveInput {
   id: ID!
   name: String
   description: String
