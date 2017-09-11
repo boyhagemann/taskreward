@@ -11,12 +11,14 @@ import Logout from './Logout'
 import DashboardContainer from './DashboardContainer'
 import { ApolloProvider } from 'react-apollo'
 import client from '../configuration/apollo'
-import { Route } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import { ConnectedRouter as Router } from 'react-router-redux'
 import { Provider } from 'react-redux'
 import { store, history } from '../configuration/redux'
 import styled, { injectGlobal } from 'styled-components'
 import NavbarContainer from './NavbarContainer'
+import ProfileNavbar from './ProfileNavbar'
+import RefererNavbar from './RefererNavbar'
 import { ThemeProvider } from 'styled-components'
 import defaultTheme from '../themes/default'
 import Allowed from './Allowed'
@@ -47,19 +49,24 @@ class App extends Component {
           <Router history={history}>
             <ThemeProvider theme={defaultTheme}>
               <div>
-                <NavbarContainer />
+
+                <Switch>
+                  <Route path={`/page/`} component={NavbarContainer(ProfileNavbar)} />
+                  <Route path={`/`} component={NavbarContainer(RefererNavbar)} />
+                </Switch>
+
                 <Content>
                   <Route exact path={`/`} component={HomeContainer}/>
-                  <Route path={'/dashboard'} component={AdminCanView(DashboardContainer)} />
-                  <Route path={'/profile'} component={AdminCanView(ProfileContainer)} />
-                  <Route exact path={'/leads'} component={AdminCanView(LeadsContainer)} />
-                  <Route path={'/leads/:id'} component={AdminCanView(LeadContainer)} />
-                  <Route path={'/preview'} component={AdminCanView(PreviewContainer)} />
-                  <Route path={'/claims'} component={AdminCanView(() => (<div>Claims</div>))} />
+                  <Route path={'/page/dashboard'} component={AdminCanView(DashboardContainer)} />
+                  <Route path={'/page/profile'} component={AdminCanView(ProfileContainer)} />
+                  <Route exact path={'/page/leads'} component={AdminCanView(LeadsContainer)} />
+                  <Route path={'/page/leads/:id'} component={AdminCanView(LeadContainer)} />
+                  <Route path={'/page/preview'} component={AdminCanView(PreviewContainer)} />
+                  <Route path={'/page/claims'} component={AdminCanView(() => (<div>Claims</div>))} />
                   <Route path={'/login'} component={LoginContainer} />
                   <Route path={'/logout'} component={Logout} />
 
-                  <Route path={`/page/:hash`} component={PageContainer}/>
+                  <Route path={`/p/:hash`} component={PageContainer}/>
                   <Route path={`/r/:hash`} render={ ({ match }) => <RedirectContainer hash={match.params.hash} /> } />
                 </Content>
                 <ModalContainer />

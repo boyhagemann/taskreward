@@ -39,7 +39,7 @@ const WithQuery = graphql(gql`
 })
 
 const mapDispatchToProps = dispatch => ({
-  view: id => dispatch(push(`/leads/${id}`))
+  view: id => dispatch(push(`/page/leads/${id}`))
 })
 
 const WithRedux = connect(null, mapDispatchToProps)

@@ -1,5 +1,5 @@
 import React from 'react'
-import moment from 'moment'
+import Moment from 'react-moment'
 import Box from './UI/Box'
 import Heading from './UI/Heading'
 import Link from './UI/Link'
@@ -33,6 +33,8 @@ const renderHeading = (event, viewer) => {
 export default ({ viewer, event }) => (
   <Box width={1} bg={`bleech`} p={1} mb={1}>
     <Heading fontSize={2} m={0}>{renderHeading(event, viewer)}</Heading>
-    <Box mt={1} fontSize={0} color={'pencil+++'}>{ moment(event.createdAt).fromNow() }</Box>
+    <Box mt={1} fontSize={0} color={'pencil+++'}>
+      <Moment fromNow interval={1000}>{event.createdAt}</Moment>
+    </Box>
   </Box>
 )

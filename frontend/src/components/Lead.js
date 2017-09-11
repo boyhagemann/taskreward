@@ -39,7 +39,7 @@ export default class extends Component {
           <Box width={[1, 1/4]} p={1}>
 
             <Breadcrumb>
-              <Link to={`/leads`}>Back to leads</Link>
+              <Link to={`/page/leads`}>Back to leads</Link>
             </Breadcrumb>
 
             <Profile>
@@ -49,7 +49,7 @@ export default class extends Component {
 
             { profile.lead.parent && (
             <Box width={1} bg={`bleech`} p={1} mb={1}>
-              Was invited by <Link to={`/leads/${profile.lead.parent.id}`}>{ profile.lead.parent.user.name }</Link> on { moment(profile.lead.parent.createdAt).format('llll') }.
+              Was invited by <Link to={`/page/leads/${profile.lead.parent.id}`}>{ profile.lead.parent.user.name }</Link> on { moment(profile.lead.parent.createdAt).format('llll') }.
             </Box>
             ) }
 
@@ -62,14 +62,14 @@ export default class extends Component {
           <Box width={[1, 3/4]} p={1}>
 
             <Tabs>
-              <StyledTab to={`/leads/${profile.lead.id}/conversation`}>Conversation</StyledTab>
-              <StyledTab to={`/leads/${profile.lead.id}/activity`}>Activity</StyledTab>
-              <StyledTab to={`/leads/${profile.lead.id}/history`}>History</StyledTab>
+              <StyledTab to={`/page/leads/${profile.lead.id}/conversation`}>Conversation</StyledTab>
+              <StyledTab to={`/page/leads/${profile.lead.id}/activity`}>Activity</StyledTab>
+              <StyledTab to={`/page/leads/${profile.lead.id}/history`}>History</StyledTab>
             </Tabs>
 
-            <Route path={`/leads/${profile.lead.id}/conversation`} render={ () => <Conversation {...this.props } /> } />
-            <Route path={`/leads/${profile.lead.id}/activity`} render={ () => <Activity {...this.props} /> } />
-            <Route path={`/leads/${profile.lead.id}/history`} component={History} {...this.props} />
+            <Route path={`/page/leads/${profile.lead.id}/conversation`} render={ () => <Conversation {...this.props } /> } />
+            <Route path={`/page/leads/${profile.lead.id}/activity`} render={ () => <Activity {...this.props} /> } />
+            <Route path={`/page/leads/${profile.lead.id}/history`} component={History} {...this.props} />
 
           </Box>
         </MaxBox>

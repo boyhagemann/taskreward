@@ -1,5 +1,4 @@
 import { gql, graphql } from 'react-apollo'
-import Navbar from './Navbar'
 
 export default graphql(gql`
   query NavbarContainer {
@@ -8,4 +7,4 @@ export default graphql(gql`
       name
     }
   }
-`)( ({ data }) => Navbar(data))
+`)

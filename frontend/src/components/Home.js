@@ -1,28 +1,22 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import { Grid as Box } from 'grid-styled'
 import MaxBox from './UI/MaxBox'
+import Box from './UI/Box'
 import Heading from './UI/Heading'
 import SubHeading from './UI/SubHeading'
 import Button from './UI/Button'
 
-const PayoffContainer = styled.div`
-  background: red;
-`
+const PayoffContainer = props => <Box width={1} bg={`ocean`} color={`bleech`} { ...props} />
 
-const Payoff = Box.extend`
-  padding: 10px;
-`
+const Payoff = props => <Box width={1} p={1} { ...props } />
 
 const Actions = Box.extend`
   margin-top: 60px;
   text-align: center;
 `
 
-const Info = Box.extend`
-  padding: 10px;
-`
+const Info = props => <Box p={1} { ...props } />
 
 const Text = styled.p``
 
