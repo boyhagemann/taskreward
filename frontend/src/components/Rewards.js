@@ -16,12 +16,12 @@ const Actions = props => <Box width={1} { ...props } />
 export default ({ loading, rewards = [] }) => loading ? null : (
   <MaxBox>
     <Heading>Rewards</Heading>
-    { rewards.map(event => (
-      <Item key={event.id}>
-        <SubHeading>{ event.reward.name }</SubHeading>
-        <p>You got a <strong>{event.cut}</strong> euro reward for completing <strong>{event.reward.name}</strong> because you {event.reward.action}.</p>
+    { rewards.map(reward => (
+      <Item key={reward.id}>
+        <SubHeading>{ reward.incentive.name }</SubHeading>
+        <p>You got a <strong>{reward.value}</strong> euro reward for completing <strong>{reward.incentive.name}</strong> because you {reward.incentive.action}.</p>
         <div>
-          <Moment fromNow interval={1000}>{event.createdAt}</Moment>
+          <Moment fromNow interval={1000}>{reward.createdAt}</Moment>
         </div>
         <Actions>
         </Actions>

@@ -21,8 +21,8 @@ const renderHeading = (event, viewer) => {
     }
 
     case 'ReceivedReward': {
-      const { user, lead, incentive, depth, cut, value } = event
-      return <span>{name(user, viewer)} got a {cut} cut of the original {value} reward because someone {incentive.action}.</span>
+      const { user, lead, incentive, value, depth } = event
+      return <span>{name(user, viewer)} got a {value} cut of the original {incentive.value} reward because someone {incentive.action}.</span>
     }
 
     default:

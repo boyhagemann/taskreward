@@ -12,8 +12,7 @@ const WithQuery = graphql(gql`
         id
         createdAt
         value
-        cut
-        reward {
+        incentive {
           id
           name
           action

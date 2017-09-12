@@ -1,6 +1,7 @@
 import Email from './Email'
 import RootQuery from './RootQuery'
 import Incentive from './Incentive'
+import Reward from './Reward'
 import Payment from './Payment'
 import Milestone from './Milestone'
 import User from './User'
@@ -19,6 +20,7 @@ export default {
   User,
   Profile,
   Incentive,
+  Reward,
   Payment,
   Milestone,
   Lead,

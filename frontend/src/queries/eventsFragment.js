@@ -33,7 +33,6 @@ export default `
     id
     createdAt
     depth
-    cut
     value
     user {
       id
@@ -50,6 +49,7 @@ export default `
       id
       name
       action
+      value
     }
   }
   `

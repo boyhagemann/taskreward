@@ -4,9 +4,11 @@
 const Reward = `
 type Reward {
   id: ID
+  createdAt: String
   incentive: Incentive
   user: User
-  value: Int
+  value: Float
+  depth: Int
 }
 `
 

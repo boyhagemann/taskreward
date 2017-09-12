@@ -34,6 +34,13 @@ export const getIncentiveByEvent = id => session
   `, { id })
   .then(result => transformOne(result, session))
 
+export const getIncentiveByReward = id => session
+  .run(`
+    MATCH (a:Incentive)-[:HAS_REWARD]->(:Reward { id: $id })
+    RETURN a LIMIT 1
+  `, { id })
+  .then(result => transformOne(result, session))
+
 // export const getIncentiveByMilestone = id => session
 //   .run(`
 //     MATCH (a:Incentive)<-[:HAS_INCENTIVE]->(:Milestone { id: $id })

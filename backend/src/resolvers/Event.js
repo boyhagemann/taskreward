@@ -118,16 +118,6 @@ export const getEventsForLeadAndType = (id, ofType) => session
   .then(result => transformMany(result, session))
   .catch(handleError)
 
-export const findReceivedRewardsForUserNotYetPaidOut = id => session
-  .run(`
-    MATCH (r:Reward)-[:HAS_EVENT]->(e:Event { type: $ofType })<-[:HAS_EVENT]-(u:User { id: $id })
-    OPTIONAL MATCH (r)-[:HAS_PAYMENT]->(p:Payment)<-[:HAS_PAYMENT]-(u)
-    WHERE r IS NULL
-    RETURN DISTINCT e
-    ORDER BY e.createdAt
-  `, { id, ofType: 'RECEIVED_REWARD' })
-  .then(result => transformMany(result, session))
-  .catch(handleError)
 
 export default {
 

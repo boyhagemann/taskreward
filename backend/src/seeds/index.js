@@ -2,6 +2,7 @@ import { session, id, handleError } from '../resolvers/helpers'
 import { createUser } from '../resolvers/User'
 import { createProfile } from '../resolvers/Profile'
 import { createIncentive } from '../resolvers/Incentive'
+import { createReward } from '../resolvers/Reward'
 import { createMilestone } from '../resolvers/Milestone'
 import { createRootLead, createLead } from '../resolvers/Lead'
 import { createEvent } from '../resolvers/Event'
@@ -10,6 +11,7 @@ import profiles from './profiles'
 import incentives from './incentives'
 import milestones from './milestones'
 import leads from './leads'
+import rewards from './rewards'
 import events from './events'
 
 console.log('Truncating first...')
@@ -45,6 +47,11 @@ milestones.forEach(milestone => {
 leads.forEach(lead => {
   console.log('Seeding lead', lead)
   createLead(null, { input: lead })
+})
+
+rewards.forEach(reward => {
+  console.log('Seeding reward', reward)
+  createReward(null, { input: reward })
 })
 
 events.forEach(event => {

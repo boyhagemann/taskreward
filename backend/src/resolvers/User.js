@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken'
 import { session, transformOne, transformMany, id, handleError, encrypt } from './helpers'
-import { findRewardsForUserNotYetPaidOut } from './Event'
+import { findRewardsForUserNotYetPaidOut } from './Reward'
 import { findLeadsForUser } from './Lead'
 import { findPaymentsForUser } from './Payment'
 import { getProfileByUser } from './Profile'
