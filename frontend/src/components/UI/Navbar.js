@@ -45,7 +45,11 @@ export default ({ items = [], accountItems = [], name  }) => (
         { name
           ? (
             <div>
-              <div>Logged in as <Name>{name}</Name></div>
+              <div>
+                Logged in as <Button>
+                  <Name>{name}</Name>
+                </Button>
+            </div>
               { accountItems.map(renderAccountItem)}
             </div>
           )

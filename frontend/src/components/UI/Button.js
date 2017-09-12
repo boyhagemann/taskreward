@@ -33,7 +33,21 @@ const getBackground = props => {
       return 'heart'
 
     default:
-      return 'canvas-'
+      return 'bleech'
+    }
+}
+
+const getBorder = props => {
+  switch(true) {
+
+    case (props.primary):
+    case (props.positive):
+    case (props.negative):
+      return 'none'
+
+    default:
+      return `1px solid ${props.theme.colors[`pencil++++`]}`
+
     }
 }
 
@@ -44,7 +58,7 @@ export default styled(Component)`
   ${width}
   ${fontSize}
   ${buttonColors}
-  border: none;
+  border: ${getBorder};
   display: inline-box;
   box-sizing: border-box;
   cursor: pointer;
@@ -52,4 +66,5 @@ export default styled(Component)`
   opacity: ${ props => props.disabled ? 0.5 : 1 };
   font-size: ${ props => props.huge ? '1.5em' : '1em' };
   text-decoration: none;
+  border-radius: 5px;
 `
