@@ -15,4 +15,12 @@ export default [
     profile: 'profile.1',
     name: 'did some thing without a reward',
   },
+  {
+    id: 'action.viewed-profile',
+    name: 'viewed the profile page',
+  },
+  {
+    id: 'action.invited-friend',
+    name: 'invited a friend',
+  },
 ]

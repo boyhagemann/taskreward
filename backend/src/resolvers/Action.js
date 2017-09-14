@@ -16,6 +16,18 @@ export const createAction = (_, { input }) => session
   .then(result => transformOne(result, session))
   .catch(handleError)
 
+  export const createActionWithoutProfile = (_, { input }) => session
+    .run(`
+      CREATE (a:Action $props)
+      RETURN a
+    `,
+      {
+        props: { id: id(), ...input }
+      }
+    )
+    .then(result => transformOne(result, session))
+    .catch(handleError)
+
 export const updateAction = (_, { input }) => session
   .run(`
     MATCH (a:Action { id: $id })
@@ -29,7 +41,11 @@ export const updateAction = (_, { input }) => session
 
 export const findActionsByProfile = id => session
   .run(`
-    MATCH (a:Action)<-[r:HAS_ACTION]-(b:Profile { id: $id })
+    MATCH (a:Action)<-[:HAS_ACTION]-(:Profile { id: $id })
+    RETURN a
+    UNION
+    MATCH (a:Action)
+    WHERE NOT (a)<-[:HAS_ACTION]-(:Profile)
     RETURN a
   `, { id })
   .then(result => transformMany(result, session))

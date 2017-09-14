@@ -68,6 +68,33 @@ This can also be integrated on our own profile page.
 - Company sets status: Sale product X                         ...
 
 
+## Global Actions
+There should be 2 global Actions: INVITED_FRIEND and VIEWED_PROFILE.
+This way there is a normalized list of actions that can be rewarded.
+So a Profile has Actions + global Actions in one dropdown list.
+
+- (:User)-[:PERFORMED_ACTION]->(:Action)
+- (:User)-[:HAS_EVENT]->(:Event { type: PERFORMED_ACTION })
+- (:Action)-[:HAS_EVENT]->(:Event { type: PERFORMED_ACTION })
+
+- (:User)-[:PERFORMED_ACTION]->(:Action { id: VIEWED_PROFILE })                 // For calculating reward and unique relations
+- (:User)-[:HAS_EVENT]->(:Event { type: VIEWED_PROFILE })                       // For displaying stream
+- (:Lead)-[:HAS_EVENT]->(:Event { type: VIEWED_PROFILE })                       // For displaying stream
+
+- (:User)-[:PERFORMED_ACTION]->(:Action { id: INVITED_FRIEND })
+- (:User)-[:HAS_EVENT]->(:Event { type: INVITED_FRIEND })
+- (:Lead)-[:HAS_EVENT]->(:Event { type: INVITED_FRIEND })
+
+- (:User)-[:PERFORMED_ACTION]->(:Action { id: SHARED_PROFILE })
+- (:User)-[:HAS_EVENT]->(:Event { type: SHARED_PROFILE })
+- (:Lead)-[:HAS_EVENT]->(:Event { type: SHARED_PROFILE })
+
+
+action - incentive
+- person viewed-page / invited-friend / performed-action({action})
+- everytime {count:1} / every {count} times / the first {count} times
+- value
+- start/end date
 
 
 rewards
@@ -86,20 +113,24 @@ system events (calculated)
 - gotRewarded(reward, level)
 - reachedMilestone(milestone, level)
 
+## Sentences
+- If a friend {action} more than {count} times, then you will receive {value}
+- Everytime a friend {action}, then you will receive {value}
+- Every {count} times a friend {action}, then you will receive {value}
 
-Milestones
+## Milestones
 - when user created more than 50 leads then reward 5 euro               user+event+operator+count+value
 - when user is rewarded X more than 5 times then reward 10 euro         user+event+reward+operator+count+value
 - when user generated modulus 1000 views then reward 1 euro             user+event+operator+count+value
 - when user created more than 50 leads before some date reward 7 euro   
 
-
-
-## Moments (Events) past tense
+## Actions (past tense)
 - person comes to office
 - person enters email address
 - person adds telephone number
 - person bought product X
+
+
 
 
 

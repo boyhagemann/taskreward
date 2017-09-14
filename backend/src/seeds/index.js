@@ -1,7 +1,7 @@
 import { session, id, handleError } from '../resolvers/helpers'
 import { createUser } from '../resolvers/User'
 import { createProfile } from '../resolvers/Profile'
-import { createAction } from '../resolvers/Action'
+import { createAction, createActionWithoutProfile } from '../resolvers/Action'
 import { createIncentive } from '../resolvers/Incentive'
 import { createReward } from '../resolvers/Reward'
 import { createMilestone } from '../resolvers/Milestone'
@@ -38,7 +38,9 @@ profiles.forEach(profile => {
 
 actions.forEach(action => {
   console.log('Seeding action', action)
-  createAction(null, { input: action })
+  action.profile
+    ? createAction(null, { input: action })
+    : createActionWithoutProfile(null, { input: action })
 })
 
 incentives.forEach(incentive => {
