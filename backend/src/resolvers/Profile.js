@@ -48,19 +48,27 @@ export const getProfile = id => session
   .then(result => transformOne(result, session))
   .catch(handleError)
 
-export const getProfileByUser = user => session
+export const getProfileByUser = id => session
   .run(`
-    MATCH (a:Profile)<-[:HAS_PROFILE]-(b:User { id: $user })
+    MATCH (a:Profile)<-[:HAS_PROFILE]-(b:User { id: $id })
     RETURN a LIMIT 1
-  `, { user })
+  `, { id })
   .then(result => transformOne(result, session))
   .catch(handleError)
 
-export const getProfileByLead = lead => session
+export const getProfileByLead = id => session
   .run(`
-    MATCH (a:Profile)-[:HAS_LEAD*]->(b:Lead { id: $lead })
+    MATCH (a:Profile)-[:HAS_LEAD*]->(:Lead { id: $id })
     RETURN a LIMIT 1
-  `, { lead })
+  `, { id })
+  .then(result => transformOne(result, session))
+  .catch(handleError)
+
+export const getProfileByIncentive = id => session
+  .run(`
+    MATCH (a:Profile)-[:HAS_INCENTIVE]->(:Incentive { id: $id })
+    RETURN a LIMIT 1
+  `, { id })
   .then(result => transformOne(result, session))
   .catch(handleError)
 

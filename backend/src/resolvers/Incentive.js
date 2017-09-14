@@ -1,5 +1,7 @@
 import { session, transformOne, transformMany, id, handleError } from './helpers'
 import { unique } from 'shorthash'
+import { getActionByIncentive } from './Action'
+import { getProfileByIncentive } from './Profile'
 
 export const createIncentive = (_, { input }) => session
   .run(`
@@ -61,4 +63,6 @@ export const findIncentivesByProfile = id => session
   .catch(handleError)
 
 export default {
+  action: incentive => getActionByIncentive(incentive.id),
+  profile: incentive => getProfileByIncentive(incentive.id),
 }

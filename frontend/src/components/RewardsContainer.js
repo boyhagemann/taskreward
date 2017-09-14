@@ -15,7 +15,9 @@ const WithQuery = graphql(gql`
         incentive {
           id
           name
-          action
+          action {
+            name
+          }
         }
       }
     }

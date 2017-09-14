@@ -19,7 +19,7 @@ export default ({ loading, rewards = [] }) => loading ? null : (
     { rewards.map(reward => (
       <Item key={reward.id}>
         <SubHeading>{ reward.incentive.name }</SubHeading>
-        <p>You got a <strong>{reward.value}</strong> euro reward for completing <strong>{reward.incentive.name}</strong> because you {reward.incentive.action}.</p>
+        <p>You got a <strong>{reward.value}</strong> euro reward for completing <strong>{reward.incentive.name}</strong> because you {reward.incentive.action.name}.</p>
         <div>
           <Moment fromNow interval={1000}>{reward.createdAt}</Moment>
         </div>

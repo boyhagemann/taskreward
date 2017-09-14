@@ -52,6 +52,14 @@ export const findActionsByProfile = id => session
   .then(result => transformMany(result, session))
   .catch(handleError)
 
+export const getActionByIncentive = id => session
+  .run(`
+    MATCH (a:Action)-[:HAS_INCENTIVE]->(:Incentive { id: $id })
+    RETURN a
+  `, { id })
+  .then(result => transformOne(result, session))
+  .catch(handleError)
+
 export default {
   incentives: action => findIncentivesByAction(action.id),
 }
