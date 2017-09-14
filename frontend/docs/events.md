@@ -14,8 +14,8 @@ User Stream ( user leads and its children )
 
 
 
-User     CREATED_LEAD          Lead
-User     CREATED_INVITATION    Lead
-User     ASSIGNED_REWARD       Reward
-User     RECEIVED_REWARD       Reward
-User     REQUESTS_PAYMENT      Payment
+User     CREATED_LEAD          Lead( User, Profile )
+User     CREATED_INVITATION    Lead( User, Profile )
+User     ASSIGNED_INCENTIVE    Incentive (Profile)
+User     RECEIVED_REWARD       Reward (Incentive, Lead)
+User     REQUESTED_PAYMENT     Payment ( User, [Reward])

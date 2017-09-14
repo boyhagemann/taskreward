@@ -1,3 +1,4 @@
+import Action from './Action'
 import Incentive from './Incentive'
 import Milestone from './Milestone'
 import Lead from './Lead'
@@ -7,6 +8,7 @@ type Profile {
   id: ID!
   name: String
   description: String
+  actions: [Action]
   incentives: [Incentive]
   milestones: [Milestone]
   leads: [Lead]

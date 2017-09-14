@@ -47,6 +47,11 @@
 [ ] Referer can claim his reward
 
 
+## Epics
+Reward
+Events
+Dashboard
+
 
 ## Referer menu
 - Profiles

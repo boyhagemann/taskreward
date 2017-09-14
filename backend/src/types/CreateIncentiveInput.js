@@ -1,7 +1,7 @@
 
 const CreateIncentiveInput = `
 input CreateIncentiveInput {
-  profile: ID!
+  action: ID!
   name: String!
   description: String
   link: String

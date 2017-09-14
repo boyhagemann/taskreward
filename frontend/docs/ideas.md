@@ -95,6 +95,13 @@ Milestones
 
 
 
+## Moments (Events) past tense
+- person comes to office
+- person enters email address
+- person adds telephone number
+- person bought product X
+
+
 
 ### Lead scoring data
 - name (valid)
