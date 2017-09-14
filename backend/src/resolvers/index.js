@@ -4,7 +4,6 @@ import Action from './Action'
 import Incentive from './Incentive'
 import Reward from './Reward'
 import Payment from './Payment'
-import Milestone from './Milestone'
 import User from './User'
 import Profile from './Profile'
 import Lead from './Lead'
@@ -24,7 +23,6 @@ export default {
   Incentive,
   Reward,
   Payment,
-  Milestone,
   Lead,
   Mutation,
   Subscription,

@@ -44,14 +44,6 @@ export const getIncentiveByReward = id => session
   `, { id })
   .then(result => transformOne(result, session))
 
-// export const getIncentiveByMilestone = id => session
-//   .run(`
-//     MATCH (a:Incentive)<-[:HAS_INCENTIVE]->(:Milestone { id: $id })
-//     RETURN a LIMIT 1
-//   `, { id })
-//   .then(result => transformOne(result, session))
-//   .catch(handleError)
-
 export const findIncentivesByAction = id => session
   .run(`
     MATCH (a:Incentive)<-[r:HAS_INCENTIVE]-(:Action { id: $id })

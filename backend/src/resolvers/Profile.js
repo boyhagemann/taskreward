@@ -2,7 +2,6 @@ import { session, transformOne, transformMany, id, handleError } from './helpers
 import { getUser } from './User'
 import { findActionsByProfile } from './Action'
 import { findIncentivesByProfile } from './Incentive'
-import { findMilestonesByProfile } from './Milestone'
 import { findLeadsForProfile, getLead } from './Lead'
 import { unique } from 'shorthash'
 
@@ -69,7 +68,6 @@ export default {
   user: (profile) => getUser(profile.user),
   actions: (profile) => findActionsByProfile(profile.id),
   incentives: (profile) => findIncentivesByProfile(profile.id),
-  milestones: (profile) => findMilestonesByProfile(profile.id),
   leads: (profile) => findLeadsForProfile(profile.id),
   lead: (_, { id }) => getLead(id),
 }

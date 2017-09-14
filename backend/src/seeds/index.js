@@ -4,14 +4,12 @@ import { createProfile } from '../resolvers/Profile'
 import { createAction, createActionWithoutProfile } from '../resolvers/Action'
 import { createIncentive } from '../resolvers/Incentive'
 import { createReward } from '../resolvers/Reward'
-import { createMilestone } from '../resolvers/Milestone'
 import { createRootLead, createLead } from '../resolvers/Lead'
 import { createEvent } from '../resolvers/Event'
 import users from './users'
 import profiles from './profiles'
 import actions from './actions'
 import incentives from './incentives'
-import milestones from './milestones'
 import leads from './leads'
 import rewards from './rewards'
 import events from './events'
@@ -46,11 +44,6 @@ actions.forEach(action => {
 incentives.forEach(incentive => {
   console.log('Seeding incentive', incentive)
   createIncentive(null, { input: incentive })
-})
-
-milestones.forEach(milestone => {
-  console.log('Seeding milestone', milestone)
-  createMilestone(null, { input: milestone })
 })
 
 leads.forEach(lead => {

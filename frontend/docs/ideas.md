@@ -111,7 +111,6 @@ user events (triggers system events)
 
 system events (calculated)
 - gotRewarded(reward, level)
-- reachedMilestone(milestone, level)
 
 ## Sentences
 - If a friend {action} more than {count} times, then you will receive {value}
