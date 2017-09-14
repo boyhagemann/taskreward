@@ -5,7 +5,7 @@ const Action = `
 type Action {
   id: ID
   profile: Profile
-  incentive: Incentive
+  incentives: [Incentive]
   name: String
 }
 `

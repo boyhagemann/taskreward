@@ -5,11 +5,14 @@ const Incentive = `
 type Incentive {
   id: ID
   profile: Profile
+  action: Action
   name: String
   description: String
-  action: String
-  link: String
   value: Int
+  operator: String
+  count: Int
+  startsAt: String
+  endsAt: String
 }
 `
 
