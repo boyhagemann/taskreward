@@ -1,6 +1,8 @@
+import { compose } from 'redux'
+import WithClickOutside from './WithClickOutside'
 import { gql, graphql } from 'react-apollo'
 
-export default graphql(gql`
+const WithQuery = graphql(gql`
   query NavbarContainer {
     viewer {
       id
@@ -8,3 +10,7 @@ export default graphql(gql`
     }
   }
 `)
+
+export default compose(
+  WithQuery
+)

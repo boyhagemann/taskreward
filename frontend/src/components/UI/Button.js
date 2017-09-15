@@ -67,4 +67,8 @@ export default styled(Component)`
   font-size: ${ props => props.huge ? '1.5em' : '1em' };
   text-decoration: none;
   border-radius: 5px;
+
+  &:focus {
+    outline:0;
+  }
 `
