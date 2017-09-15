@@ -21,6 +21,7 @@ export const createReward = ({ id, root, lead, incentive, value, depth }) => {
       createdAt: moment().format(),
       props: {
         id: id || uuid(),
+        createdAt: moment().format(),
         depth,
         value: value * Math.pow(REWARD_CUT, depth) / REWARD_CUT,
       }

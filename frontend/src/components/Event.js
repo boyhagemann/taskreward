@@ -3,8 +3,10 @@ import Moment from 'react-moment'
 import Box from './UI/Box'
 import Heading from './UI/Heading'
 import Link from './UI/Link'
+import { round } from '../utils/numbers'
 
 const name = (user, viewer) => viewer && viewer.id === user.id ? 'You' : user.name
+
 
 const renderHeading = (event, viewer) => {
 
@@ -22,7 +24,9 @@ const renderHeading = (event, viewer) => {
 
     case 'ReceivedReward': {
       const { root, lead, incentive, reward } = event
-      return <span>{name(lead.user, viewer)} got a {reward.value} cut of the original {incentive.value} reward because someone {incentive.action.name}.</span>
+      return reward.value === incentive.value
+        ? <span><Link to={lead.id}>{name(lead.user, viewer)}</Link> got a full {round(reward.value, 2)} reward because someone {incentive.action.name}.</span>
+        : <span><Link to={lead.id}>{name(lead.user, viewer)}</Link> got a {round(reward.value, 2)} cut of the original {round(incentive.value, 2)} reward because someone {incentive.action.name}.</span>
     }
 
     default:
