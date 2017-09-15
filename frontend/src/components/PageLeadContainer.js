@@ -3,8 +3,41 @@ import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { open } from '../redux/modal'
 import PageLead from './PageLead'
-import profileQuery from '../queries/Lead'
-import eventsFragment from '../queries/eventsFragment'
+import eventsFragment from '../fragments/events'
+
+const PageLeadQuery = gql`
+query LeadContainer($id: ID!) {
+  viewer {
+    id
+    profile {
+      id
+      name
+      incentives {
+        id
+        name
+      }
+      lead(id: $id) {
+        id
+        user {
+          id
+          name
+          email
+        }
+        parent {
+          id
+          user {
+            id
+            name
+          }
+        }
+        events {
+          ${eventsFragment}
+        }
+      }
+    }
+  }
+}
+`
 
 const EventSubscription = gql`
   subscription Events {
@@ -14,35 +47,35 @@ const EventSubscription = gql`
   }
 `
 
-const WithQuery = graphql(profileQuery, {
+const subscribeToEvents = subscribeToMore => subscribeToMore({
+    document: EventSubscription,
+    updateQuery: (prev, {subscriptionData}) => {
+
+        if (!subscriptionData.data) {
+            return prev;
+        }
+
+        const newEvent = subscriptionData.data.event
+
+        // Use ImmutableJs for this
+        return { ...prev, viewer:
+          { ...prev.viewer, profile:
+            { ...prev.viewer.profile, lead:
+              { ...prev.viewer.profile.lead, events:
+                [ ...prev.viewer.profile.lead.events, newEvent]
+              }
+            }
+          }
+        }
+    }
+})
+
+const WithQuery = graphql(PageLeadQuery, {
   props: ({ data: { loading, viewer = {}, subscribeToMore }}) => ({
     loading,
     viewer,
     profile: viewer.profile,
-    subscribeToEvents: () => {
-        return subscribeToMore({
-            document: EventSubscription,
-            updateQuery: (prev, {subscriptionData}) => {
-
-                if (!subscriptionData.data) {
-                    return prev;
-                }
-
-                const newEvent = subscriptionData.data.event
-
-                // Use ImmutableJs for this
-                return { ...prev, viewer:
-                  { ...prev.viewer, profile:
-                    { ...prev.viewer.profile, lead:
-                      { ...prev.viewer.profile.lead, events:
-                        [ ...prev.viewer.profile.lead.events, newEvent]
-                      }
-                    }
-                  }
-                }
-            }
-        });
-    }
+    subscribeToEvents: subscribeToEvents(subscribeToMore),
   })
 })
 
@@ -51,9 +84,9 @@ const mapStateToProps = (state, props) => ({
 })
 
 const mapDispatchToProps = (dispatch, props) => ({
-  openAssignIncentiveModal: () => {
+  openAssignActionModal: () => {
     const id = props.match.params.id
-    dispatch(open('assignIncentive', { id }))
+    dispatch(open('assignAction', { id }))
   }
 })
 

@@ -1,103 +1,101 @@
-import { session, transformOne, transformMany, id, handleError } from './helpers'
+import { session, transformOne, transformMany, uuid, handleError } from './helpers'
 import { findParents } from './Lead'
-import { REWARD_CUT } from '../constants'
 import moment from 'moment'
 import pubsub from '../configuration/pubsub'
 
-export const assignIncentive = (_, { input }, { user }) => {
+
+export const createEvent = ({ id, type, user, root, lead, profile, action, incentive, reward }) => {
+
+  const query = [
+    `CREATE (event:Event $event)`,
+  ]
+
+  if(user) {
+    query.push(`
+      WITH event
+      MATCH (user:User { id: $user })
+      CREATE (user)-[:HAS_EVENT]->(event)
+    `)
+  }
+
+  // if(root) {
+  //   query.push(`
+  //     WITH event
+  //     MATCH (root:Lead { id: $root })
+  //     CREATE (root)-[:HAS_EVENT]->(event)
+  //   `)
+  // }
+
+  if(lead) {
+    query.push(`
+      WITH event
+      MATCH (lead:Lead { id: $lead })
+      CREATE (lead)-[:HAS_EVENT]->(event)
+    `)
+  }
+
+  if(profile) {
+    query.push(`
+      WITH event
+      MATCH (profile:Profile { id: $profile })
+      CREATE (profile)-[:HAS_EVENT]->(event)
+    `)
+  }
+
+  if(action) {
+    query.push(`
+      WITH event
+      MATCH (action:Action { id: $action })
+      CREATE (action)-[:HAS_EVENT]->(event)
+    `)
+  }
+
+  if(incentive) {
+    query.push(`
+      WITH event
+      MATCH (incentive:Incentive { id: $incentive })
+      CREATE (incentive)-[:HAS_EVENT]->(event)
+    `)
+  }
+
+  if(reward) {
+    query.push(`
+      WITH event
+      MATCH (reward:Reward { id: $reward })
+      CREATE (reward)-[:HAS_EVENT]->(event)
+    `)
+  }
+
+  query.push(`
+    RETURN event
+  `)
 
   session
-  .run(`
-    MATCH (a:User { id: $user })
-    MATCH (b:Lead { id: $lead })
-    MATCH (c:Incentive { id: $incentive })
-    CREATE (d:Event { id: $props.id, createdAt: $props.createdAt, type: $props.type, value: c.value })
-    CREATE (a)-[:HAS_EVENT]->(d)
-    CREATE (b)-[:HAS_EVENT]->(d)
-    CREATE (c)-[:HAS_EVENT]->(d)
-    RETURN d
-  `,
+  .run(query.join(''),
     {
-      lead: input.lead,
-      incentive: input.incentive,
-      user: user.id,
-      props: {
-        id: id(),
-        createdAt: moment().format(),
-        type: 'ASSIGNED_INCENTIVE',
-        ...input,
-      }
-    }
-  )
-  .then(result => transformOne(result, session))
-  .then(result => {
-
-    console.log('Sending result to WebSocket', result)
-    pubsub.publish('event', { event: result }) // must be same name 'event' !!!
-
-    return result
-  })
-  .then(async event => {
-
-    const parents = await findParents(input.lead)
-    console.log('parents', parents)
-
-    parents.forEach( lead => {
-      console.log('parent!!!', lead.id)
-      receiveReward(input.lead, lead.id, input.incentive, event.value, lead.depth)
-    })
-
-  })
-  .catch(handleError)
-}
-
-const receiveReward = (root, lead, incentive, value, depth) => {
-
-  session
-  .run(`
-    MATCH (r:Lead { id: $root })
-    MATCH (a:Lead { id: $lead })<-[:HAS_LEAD]-(u)
-    MATCH (b:Incentive { id: $incentive })
-    MERGE (d:Event { id: $id })
-    ON CREATE SET d.id = $id, d.createdAt = $createdAt, d.type = $type, d.depth = $depth, d.value = $value, d.cut = $cut
-    CREATE (r)-[:HAS_EVENT]->(d)
-    CREATE (a)-[:HAS_EVENT]->(d)
-    CREATE (b)-[:HAS_EVENT]->(d)
-    CREATE (u)-[:HAS_EVENT]->(d)
-    RETURN d
-  `,
-    {
+      user,
       root,
       lead,
+      profile,
+      action,
       incentive,
-      id: id(),
-      createdAt: moment().format(),
-      type: 'RECEIVED_REWARD',
-      depth,
-      value,
-      cut: value * Math.pow(REWARD_CUT, depth) / REWARD_CUT,
+      reward,
+      event: {
+        id: id || uuid(),
+        createdAt: moment().format(),
+        type,
+      },
     }
   )
   .then(result => transformOne(result, session))
-  .then(result => {
-    console.log('Sending result to WebSocket', result)
-    pubsub.publish('event', { event: result }) // must be same name 'event' !!!
-    return result
+  .then(event => {
+
+    console.log('Sending result to WebSocket', event)
+    pubsub.publish('event', { event }) // must be same name 'event' !!!
+
+    return event
   })
   .catch(handleError)
-}
-
-export const createEvent = (_, { input }, context) => {
-
-  switch(input.type) {
-
-    case 'ASSIGNED_INCENTIVE':
-      return assignIncentive(null, { input }, context)
-
-    default:
-      throw new Error(`Event ${input.type} is not implemented yet.`)
-
-  }
 }
 
 export const getEventsForLead = id => session
@@ -126,11 +124,11 @@ export default {
 
     switch(obj.type) {
 
-      case 'CREATED_LEAD':
-        return 'CreatedLead'
+      case 'VIEWED_PROFILE':
+        return 'ViewedProfile'
 
-      case 'ASSIGNED_INCENTIVE':
-        return 'AssignedIncentive'
+      case 'PERFORMED_ACTION':
+        return 'PerformedAction'
 
       case 'RECEIVED_REWARD':
         return 'ReceivedReward'

@@ -1,10 +1,9 @@
 
 export default `
-  type ReceivedReward {
+  type PerformedAction {
     id: ID!
     createdAt: String!
     lead: Lead!
-    incentive: Incentive!
-    reward: Reward!
+    action: Action!
   }
 `

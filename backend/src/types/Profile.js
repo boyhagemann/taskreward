@@ -7,7 +7,9 @@ type Profile {
   id: ID!
   name: String
   description: String
-  actions: [Action]
+  actions(
+    withGlobal: Boolean
+  ): [Action]
   incentives: [Incentive]
   leads: [Lead]
   lead(id: ID!): Lead

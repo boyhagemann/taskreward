@@ -31,7 +31,7 @@ export default class extends Component {
 
   render() {
 
-    const { loading, viewer: { profile }, openAssignIncentiveModal } = this.props
+    const { loading, profile, openAssignActionModal } = this.props
 
     return loading ? null : (
         <MaxBox>
@@ -53,7 +53,7 @@ export default class extends Component {
             ) }
 
             <Actions>
-              <Button positive mr={[0, 1]} onClick={openAssignIncentiveModal}>Change status</Button>
+              <Button positive mr={[0, 1]} onClick={openAssignActionModal}>Change status</Button>
               <Button negative>Reject</Button>
             </Actions>
 
@@ -61,13 +61,13 @@ export default class extends Component {
           <Box width={[1, 3/4]} p={1}>
 
             <Tabs>
+              <StyledTab exact to={`/page/leads/${profile.lead.id}`}>Activity</StyledTab>
               <StyledTab to={`/page/leads/${profile.lead.id}/conversation`}>Conversation</StyledTab>
-              <StyledTab to={`/page/leads/${profile.lead.id}/activity`}>Activity</StyledTab>
               <StyledTab to={`/page/leads/${profile.lead.id}/history`}>History</StyledTab>
             </Tabs>
 
+            <Route exact path={`/page/leads/${profile.lead.id}`} render={ () => <Activity {...this.props} /> } />
             <Route path={`/page/leads/${profile.lead.id}/conversation`} render={ () => <Conversation {...this.props } /> } />
-            <Route path={`/page/leads/${profile.lead.id}/activity`} render={ () => <Activity {...this.props} /> } />
             <Route path={`/page/leads/${profile.lead.id}/history`} component={History} {...this.props} />
 
           </Box>

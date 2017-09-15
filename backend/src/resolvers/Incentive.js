@@ -1,9 +1,9 @@
-import { session, transformOne, transformMany, id, handleError } from './helpers'
+import { session, transformOne, transformMany, uuid, handleError } from './helpers'
 import { unique } from 'shorthash'
 import { getActionByIncentive } from './Action'
 import { getProfileByIncentive } from './Profile'
 
-export const createIncentive = (_, { input }) => session
+export const createIncentive = ({ id, profile, action, name, description, value }) => session
   .run(`
     MATCH (b:Action { id: $action })
     MATCH (c:Profile { id: $profile })
@@ -13,21 +13,26 @@ export const createIncentive = (_, { input }) => session
     RETURN a
   `,
     {
-      action: input.action,
-      profile: input.profile,
-      props: { id: id(), ...input }
+      action,
+      profile,
+      props: {
+        id: id || uuid(),
+        name,
+        description,
+        value,
+      }
     }
   )
   .then(result => transformOne(result, session))
   .catch(handleError)
 
-export const updateIncentive = (_, { input }) => session
+export const updateIncentive = ({ id, name, description, value }) => session
   .run(`
     MATCH (a:Incentive { id: $id })
     SET a = $props
     RETURN a
   `,
-    { id: input.id, props: input }
+    { id, props: { name, description, value} }
   )
   .then(result => transformOne(result, session))
   .catch(handleError)
@@ -41,7 +46,7 @@ export const getIncentiveByEvent = id => session
 
 export const getIncentiveByReward = id => session
   .run(`
-    MATCH (a:Incentive)-[:HAS_REWARD]->(:Reward { id: $id })
+    MATCH (a:Incentive)-[:RECEIVED_REWARD]->(:Reward { id: $id })
     RETURN a LIMIT 1
   `, { id })
   .then(result => transformOne(result, session))

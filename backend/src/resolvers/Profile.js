@@ -1,41 +1,43 @@
-import { session, transformOne, transformMany, id, handleError } from './helpers'
+import { session, transformOne, transformMany, uuid, handleError } from './helpers'
 import { getUser } from './User'
 import { findActionsByProfile } from './Action'
 import { findIncentivesByProfile } from './Incentive'
-import { findLeadsForProfile, getLead } from './Lead'
+import { findLeadsForProfile, getLead, createLeadForProfile } from './Lead'
 import { unique } from 'shorthash'
 
-export const createProfile = (_, { input }) => session
+export const createProfile = ({ id, name, description, user, lead }) => session
   .run(`
-    MATCH (b:User { id: $user })
-    CREATE (a:Profile $props)
-    CREATE (b)-[r:HAS_PROFILE]->(a)
+    MATCH (a:User { id: $user })
+    CREATE (b:Profile $props)
+    CREATE (a)-[r:HAS_PROFILE]->(b)
     CREATE (c:Lead $lead)
     CREATE (a)-[:HAS_LEAD]->(c)
     CREATE (b)-[:HAS_LEAD]->(c)
-    RETURN a
+    RETURN b
   `,
     {
-      user: input.user,
-      props: { id: id(), ...input },
+      user,
+      props: {
+        id: id || uuid(),
+        name,
+        description,
+      },
       lead: {
-        id: input.id || id(),
-        hash: input.hash || unique(id()),
-        user: input.user,
-        status: 'some-status'
+        id: lead || uuid(),
+        hash: uuid(),
       }
     }
   )
   .then(result => transformOne(result, session))
   .catch(handleError)
 
-export const updateProfile = (_, { input }) => session
+export const updateProfile = ({ id, name, description }) => session
   .run(`
     MATCH (a:Profile { id: $id })
     SET a = $props
     RETURN a
   `,
-    { id: input.id, props: input }
+    { id, props: { name, description } }
   )
   .then(result => transformOne(result, session))
   .catch(handleError)
@@ -74,7 +76,7 @@ export const getProfileByIncentive = id => session
 
 export default {
   user: (profile) => getUser(profile.user),
-  actions: (profile) => findActionsByProfile(profile.id),
+  actions: (profile, { withGlobal }) => findActionsByProfile(profile.id, withGlobal),
   incentives: (profile) => findIncentivesByProfile(profile.id),
   leads: (profile) => findLeadsForProfile(profile.id),
   lead: (_, { id }) => getLead(id),

@@ -1,9 +1,9 @@
-import CreatedLead from './CreatedLead'
-import AssignedIncentive from './AssignedIncentive'
+import ViewedProfile from './ViewedProfile'
+import PerformedAction from './PerformedAction'
 import ReceivedReward from './ReceivedReward'
 
 const Event = `
-  union Event = CreatedLead | AssignedIncentive | ReceivedReward
+  union Event = ViewedProfile | PerformedAction | ReceivedReward
 `
 
-export default [Event, CreatedLead, AssignedIncentive, ReceivedReward]
+export default [Event, ViewedProfile, PerformedAction, ReceivedReward]

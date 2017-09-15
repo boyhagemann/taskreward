@@ -1,15 +1,17 @@
 import Incentive from './Incentive'
 import Action from './Action'
 import User from './User'
+import Profile from './Profile'
 import Lead from './Lead'
 import CreateLeadInput from './CreateLeadInput'
 import CreateUserInput from './CreateUserInput'
 import CreateActionInput from './CreateActionInput'
 import CreateIncentiveInput from './CreateIncentiveInput'
+import CreateProfileInput from './CreateProfileInput'
 import UpdateProfileInput from './UpdateProfileInput'
 import UpdateActionInput from './UpdateActionInput'
 import UpdateIncentiveInput from './UpdateIncentiveInput'
-import AssignIncentiveInput from './AssignIncentiveInput'
+import AssignActionInput from './AssignActionInput'
 import Token from './Token'
 
 const Mutation = `
@@ -41,6 +43,10 @@ type Mutation {
     input: CreateLeadInput
   ): Lead
 
+  createProfile(
+    input: CreateProfileInput
+  ): Profile
+
   updateProfile(
     input: UpdateProfileInput
   ): Profile
@@ -49,9 +55,9 @@ type Mutation {
     input: UpdateIncentiveInput
   ): Incentive
 
-  assignIncentive(
-    input: AssignIncentiveInput
-  ): Incentive
+  assignAction(
+    input: AssignActionInput
+  ): Action
 }
 `
 
@@ -61,7 +67,7 @@ export default [
   ...Action, CreateActionInput, UpdateActionInput,
   ...Incentive, CreateIncentiveInput, UpdateIncentiveInput,
   ...Lead, CreateLeadInput,
-  UpdateProfileInput,
-  AssignIncentiveInput,
+  ...Profile, CreateProfileInput, UpdateProfileInput,
+  AssignActionInput,
   Token,
 ]

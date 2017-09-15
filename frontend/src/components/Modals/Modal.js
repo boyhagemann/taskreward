@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import Box from '../UI/Box'
 
 import ReferContainer from './ReferContainer'
-import AssignIncentiveContainer from './AssignIncentiveContainer'
+import AssignActionContainer from './AssignActionContainer'
 
 const Background = styled.div`
   position: fixed;
@@ -44,7 +44,7 @@ const Inner = styled.div`
 
 const modals = {
   'refer': ReferContainer,
-  'assignIncentive': AssignIncentiveContainer,
+  'assignAction': AssignActionContainer,
 }
 
 export default props => {

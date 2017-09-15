@@ -1,18 +1,16 @@
 import { session, id, handleError } from '../resolvers/helpers'
 import { createUser } from '../resolvers/User'
 import { createProfile } from '../resolvers/Profile'
-import { createAction, createActionWithoutProfile } from '../resolvers/Action'
+import { createAction } from '../resolvers/Action'
 import { createIncentive } from '../resolvers/Incentive'
 import { createReward } from '../resolvers/Reward'
 import { createRootLead, createLead } from '../resolvers/Lead'
-import { createEvent } from '../resolvers/Event'
 import users from './users'
 import profiles from './profiles'
 import actions from './actions'
 import incentives from './incentives'
 import leads from './leads'
 import rewards from './rewards'
-import events from './events'
 
 console.log('Truncating first...')
 session
@@ -21,44 +19,37 @@ session
   DETACH DELETE n
   `)
   .then(result => console.log('Data truncated!'))
-  .then()
   .catch(handleError)
 
-users.forEach(user => {
+users.forEach(async user => {
   console.log('Seeding user', user)
-  createUser(null, { input: user })
+  console.log('Created user', await createUser(user))
 })
 
-profiles.forEach(profile => {
+profiles.forEach(async profile => {
   console.log('Seeding profile', profile)
-  createProfile(null, { input: profile })
+  console.log('Created profile', await createProfile(profile))
 })
 
-actions.forEach(action => {
+actions.forEach(async action => {
   console.log('Seeding action', action)
-  action.profile
-    ? createAction(null, { input: action })
-    : createActionWithoutProfile(null, { input: action })
+  console.log('Created action', await createAction(action))
 })
 
-incentives.forEach(incentive => {
+incentives.forEach(async incentive => {
   console.log('Seeding incentive', incentive)
-  createIncentive(null, { input: incentive })
+  console.log('Created incentive', await createIncentive(incentive))
+
 })
 
-leads.forEach(lead => {
+leads.forEach(async lead => {
   console.log('Seeding lead', lead)
-  createLead(null, { input: lead })
+  console.log('Created lead', await createLead(lead))
 })
 
-rewards.forEach(reward => {
+rewards.forEach(async reward => {
   console.log('Seeding reward', reward)
-  createReward(null, { input: reward })
-})
-
-events.forEach(event => {
-  console.log('Seeding event', event)
-  createEvent(null, { input: event }, { user: users.find( user => user.id === event.createdBy )})
+  console.log('Created reward', await createReward(reward))
 })
 
 console.log('Done!')

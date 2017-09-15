@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken'
-import { session, transformOne, transformMany, id, handleError, encrypt } from './helpers'
+import { session, transformOne, transformMany, uuid, handleError, encrypt } from './helpers'
 import { findRewardsForUserNotYetPaidOut } from './Reward'
 import { findLeadsForUser } from './Lead'
 import { findPaymentsForUser } from './Payment'
@@ -7,16 +7,21 @@ import { getProfileByUser } from './Profile'
 import { SECRET } from '../constants'
 
 const withPassword = (data, password) => {
-  const salt = id()
+  const salt = uuid()
   return { ...data, password: encrypt(password, salt) , salt }
 }
 
-export const createUser = (_, { input }) => {
+export const createUser = ({ id, email, firstName, lastName, password, role }) => {
 
-  console.log('Creating User', input)
+  const data = {
+    id: id || uuid(),
+    email,
+    firstName,
+    lastName,
+    role
+  }
 
-  const data = { id: id(), ...input }
-  const props = input.password ? withPassword(data, input.password) : data
+  const props = password ? withPassword(data, password) : data
 
   return session
   .run(`
@@ -31,7 +36,7 @@ export const createUser = (_, { input }) => {
 
 export const createUserFromSession = key => {
 
-  const props = { id: id(), session: key }
+  const props = { id: uuid(), session: key }
 
   return session
   .run(`
@@ -56,6 +61,13 @@ export const getUser = id => session
   .run(`
     MATCH (n1:User { id: $id })
     RETURN n1 LIMIT 1
+  `, { id })
+  .then(result => transformOne(result, session))
+
+export const getUserByLead = id => session
+  .run(`
+    MATCH (a:User)-[:HAS_LEAD]->(:Lead { id: $id })
+    RETURN a LIMIT 1
   `, { id })
   .then(result => transformOne(result, session))
 

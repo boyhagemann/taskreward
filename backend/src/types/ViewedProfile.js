@@ -1,8 +1,9 @@
 
 export default `
-  type CreatedLead {
+  type ViewedProfile {
     id: ID!
     createdAt: String!
-    user: User
+    lead: Lead!
+    action: Action!
   }
 `

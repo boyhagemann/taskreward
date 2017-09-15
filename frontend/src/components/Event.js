@@ -10,19 +10,19 @@ const renderHeading = (event, viewer) => {
 
   switch(event.__typename) {
 
-    case 'CreatedLead': {
-      const { user } = event
-      return `${name(user, viewer)} created lead.`
+    case 'ViewedProfile': {
+      const { lead } = event
+      return `${name(lead.user, viewer)} viewed page ${lead.profile.name}.`
     }
 
-    case 'AssignedIncentive': {
-      const { user, lead, incentive, value } = event
-      return <span>{name(user, viewer)} assigned <Link to={lead.id}>{name(lead.user, viewer)}</Link> the status <bold>{incentive.action}</bold></span>
+    case 'PerformedAction': {
+      const { lead, action } = event
+      return <span><Link to={lead.id}>{name(lead.user, viewer)}</Link> <bold>{action.name}</bold></span>
     }
 
     case 'ReceivedReward': {
-      const { user, lead, incentive, value, depth } = event
-      return <span>{name(user, viewer)} got a {value} cut of the original {incentive.value} reward because someone {incentive.action}.</span>
+      const { root, lead, incentive, reward } = event
+      return <span>{name(lead.user, viewer)} got a {reward.value} cut of the original {incentive.value} reward because someone {incentive.action.name}.</span>
     }
 
     default:

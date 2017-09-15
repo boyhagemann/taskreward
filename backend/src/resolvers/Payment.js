@@ -1,4 +1,4 @@
-import { session, transformOne, transformMany, id, handleError } from './helpers'
+import { session, transformOne, transformMany, uuid, handleError } from './helpers'
 import { unique } from 'shorthash'
 
 export const createPayment = (_, { input }) => session
@@ -10,7 +10,7 @@ export const createPayment = (_, { input }) => session
   `,
     {
       user: input.user,
-      props: { id: id(), ...input }
+      props: { id: uuid(), ...input }
     }
   )
   .then(result => transformOne(result, session))

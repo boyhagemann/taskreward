@@ -10,8 +10,8 @@ import Lead from './Lead'
 import Mutation from './Mutation'
 import Subscription from './Subscription'
 import Event from './Event'
-import CreatedLead from './CreatedLead'
-import AssignedIncentive from './AssignedIncentive'
+import ViewedProfile from './ViewedProfile'
+import PerformedAction from './PerformedAction'
 import ReceivedReward from './ReceivedReward'
 
 export default {
@@ -27,7 +27,7 @@ export default {
   Mutation,
   Subscription,
   Event,
-  CreatedLead,
-  AssignedIncentive,
+  ViewedProfile,
+  PerformedAction,
   ReceivedReward,
 }
