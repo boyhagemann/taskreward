@@ -8,6 +8,7 @@ type Payment {
   rewards: [Reward]
   user: User
   value: Float
+  currency: String
 }
 `
 

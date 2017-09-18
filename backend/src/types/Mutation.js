@@ -3,11 +3,13 @@ import Action from './Action'
 import User from './User'
 import Profile from './Profile'
 import Lead from './Lead'
+import Payment from './Payment'
 import CreateLeadInput from './CreateLeadInput'
 import CreateUserInput from './CreateUserInput'
 import CreateActionInput from './CreateActionInput'
 import CreateIncentiveInput from './CreateIncentiveInput'
 import CreateProfileInput from './CreateProfileInput'
+import CreatePaymentInput from './CreatePaymentInput'
 import UpdateProfileInput from './UpdateProfileInput'
 import UpdateActionInput from './UpdateActionInput'
 import UpdateIncentiveInput from './UpdateIncentiveInput'
@@ -47,6 +49,10 @@ type Mutation {
     input: CreateProfileInput
   ): Profile
 
+  createPayment(
+    input: CreatePaymentInput
+  ): Payment
+
   updateProfile(
     input: UpdateProfileInput
   ): Profile
@@ -67,6 +73,7 @@ export default [
   ...Action, CreateActionInput, UpdateActionInput,
   ...Incentive, CreateIncentiveInput, UpdateIncentiveInput,
   ...Lead, CreateLeadInput,
+  ...Payment, CreatePaymentInput,
   ...Profile, CreateProfileInput, UpdateProfileInput,
   AssignActionInput,
   Token,

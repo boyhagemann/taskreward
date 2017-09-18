@@ -14,12 +14,12 @@ import { round } from '../utils/numbers'
 const Item = props => <Box width={1} bg={`bleech`} mb={2} p={1} { ...props } />
 const Content = props => <Box width={[1,5/6]} p={2} { ...props } />
 
-export default ({ loading, rewards = [], total, canRequestPayment }) => loading ? null : (
+export default ({ loading, viewer, rewards = [], total, canRequestPayment, createPayment }) => loading ? null : (
   <MaxBox>
     <Header
       title={'Rewards'}
       actions={[
-        canRequestPayment && <Button component={Link} to={`/payments/request`} positive>Request payment for {round(total, 2)} euro</Button>
+        canRequestPayment && <Button onClick={ () => createPayment(viewer.id)} positive>Request payment for {round(total, 2)} euro</Button>
       ]}
     />
     { rewards.map(reward => (

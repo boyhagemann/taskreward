@@ -4,6 +4,7 @@ import { createIncentive, updateIncentive } from './Incentive'
 import { createAction, assignAction } from './Action'
 import { createLead, redirect } from './Lead'
 import { createProfile, updateProfile } from './Profile'
+import { createPayment } from './Payment'
 
 export default {
   requestToken,
@@ -15,5 +16,6 @@ export default {
   assignAction: (_, { input }) => assignAction(input),
   createLead: (_, { input }) => createLead(input),
   createProfile: (_, { input }) => createProfile(input),
+  createPayment: (_, { input }) => createPayment(input),
   updateProfile: (_, { input }) => updateProfile(input),
 }

@@ -3,6 +3,7 @@ import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
 import Rewards from './Rewards'
+import WithCreatePaymentMutation from '../mutations/CreatePayment'
 
 const PAYMENT_TRESHOLD = 5
 const getTotalRewardValue = rewards => rewards.reduce( (total, reward) => total + reward.value, 0)
@@ -28,12 +29,21 @@ const WithQuery = graphql(gql`
 `, {
   props: ({ data: { loading, viewer = {} } }) => ({
     loading,
+    viewer,
     rewards: viewer.rewards,
     total: viewer.rewards && getTotalRewardValue(viewer.rewards),
     canRequestPayment: viewer.rewards && getTotalRewardValue(viewer.rewards) >= PAYMENT_TRESHOLD
   })
 })
 
+const mapDispatchToProps = dispatch => ({
+  redirect: (id) => dispatch(push(`/payments/${id}`))
+})
+
+const WithRedux = connect(null, mapDispatchToProps)
+
 export default compose(
-  WithQuery
+  WithQuery,
+  WithRedux,
+  WithCreatePaymentMutation,
 )(Rewards)

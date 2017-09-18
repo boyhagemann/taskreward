@@ -48,8 +48,7 @@ export const getRewardByEvent = id => session
 export const findRewardsForUserNotYetPaidOut = id => session
   .run(`
     MATCH (r:Reward)<-[:RECEIVED_REWARD]-(:Lead)<-[:HAS_LEAD]-(u:User { id: $id })
-    OPTIONAL MATCH (r)-[:HAS_PAYMENT]->(p:Payment)<-[:HAS_PAYMENT]-(u)
-    WHERE r IS NULL
+    WHERE NOT ( (r)-[:HAS_PAYMENT]->(:Payment)<-[:HAS_PAYMENT]-(u) )
     RETURN DISTINCT r
     ORDER BY r.createdAt
   `, { id })
