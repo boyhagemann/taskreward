@@ -15,6 +15,9 @@ type User {
   role: String
   rewards: [Reward]
   payments: [Payment]
+  payment(
+    id: ID!
+  ): Payment
   leads: [Lead]
   profile: Profile
 }

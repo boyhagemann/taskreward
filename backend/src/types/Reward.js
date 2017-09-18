@@ -6,7 +6,7 @@ type Reward {
   id: ID
   createdAt: String
   incentive: Incentive
-  user: User
+  lead: Lead
   value: Float
   depth: Int
 }

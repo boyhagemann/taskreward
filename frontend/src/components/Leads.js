@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import Heading from './UI/Heading'
+import Header from './UI/Header'
 import SubHeading from './UI/SubHeading'
 import MaxBox from './UI/MaxBox'
 import Box from './UI/Box'
@@ -23,7 +23,9 @@ const Actions = props => <Box width={1} { ...props } />
 
 export default ({ loading, leads = [] }) => loading ? null : (
   <MaxBox>
-    <Heading>Leads</Heading>
+    <Header
+      title={`Leads`}
+    />
     { leads.map(lead => (
       <Item key={lead.id}>
         <Image />

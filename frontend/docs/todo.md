@@ -10,7 +10,9 @@
 [x] User can approve leads
 [x] User can switch between profile and referer
 [ ] User can change his password
-[ ] User can decline/archive a lead
+[ ] User can like/favorite/+1 a lead
+[ ] User can dislike/decline/-1 a lead
+[ ] User can archive a lead
 [ ] User can see a list of invoices
 [ ] User can view or download an invoice
 [ ] User can upload a page background image
@@ -39,10 +41,10 @@
 [x] Referer can see a list of participated leads
 [x] Referer can see a list of rewards
 [x] Referer can see the reward value that can be payed out
-[ ] Referer can request a payment
+[x] Referer can request a payment
 [ ] Referer can see the status of one lead
 [ ] Referer can see all activity for one lead
-[ ] Referer can see a list of previous payments
+[x] Referer can see a list of previous payments
 [ ] Referer can update their account information
 [ ] Referer can claim his reward
 

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import Box from './UI/Box'
 import MaxBox from './UI/MaxBox'
 import Button from './UI/Button'
-import Heading from './UI/Heading'
+import Header from './UI/Header'
 import TextInput from './UI/TextInput'
 import Quote from './UI/Quote'
 import Score from './UI/Score'
@@ -33,7 +33,9 @@ const ClickableBox = styled(Box)`
 
 export default ({ view, loading, leads = [] }) => loading ? null : (
   <MaxBox>
-    <Heading>Leads</Heading>
+    <Header
+      title={`Leads`}
+    />
     <SearchBox>
     <TextInput name="q" placeholder="Search for email or telephone..." />
     </SearchBox>

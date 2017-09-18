@@ -32,7 +32,8 @@ const WithQuery = graphql(gql`
     viewer,
     rewards: viewer.rewards,
     total: viewer.rewards && getTotalRewardValue(viewer.rewards),
-    canRequestPayment: viewer.rewards && getTotalRewardValue(viewer.rewards) >= PAYMENT_TRESHOLD
+    canRequestPayment: viewer.rewards && getTotalRewardValue(viewer.rewards) >= PAYMENT_TRESHOLD,
+    currency: 'EUR',
   })
 })
 

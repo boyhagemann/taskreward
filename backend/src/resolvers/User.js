@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken'
 import { session, transformOne, transformMany, uuid, handleError, encrypt } from './helpers'
 import { findRewardsForUserNotYetPaidOut } from './Reward'
 import { findLeadsForUser } from './Lead'
-import { findPaymentsForUser, canRequestPayment } from './Payment'
+import { findPaymentsForUser, canRequestPayment, getPaymentByUser } from './Payment'
 import { getProfileByUser } from './Profile'
 import { SECRET } from '../constants'
 
@@ -71,6 +71,13 @@ export const getUserByLead = id => session
   `, { id })
   .then(result => transformOne(result, session))
 
+export const getUserByPayment = id => session
+  .run(`
+    MATCH (a:User)-[:HAS_PAYMENT]->(:Payment { id: $id })
+    RETURN a LIMIT 1
+  `, { id })
+  .then(result => transformOne(result, session))
+
 export const findUserByEmail = email => session
   .run(`
     MATCH (n1:User { email: $email })
@@ -97,5 +104,6 @@ export default {
   profile: (user) => getProfileByUser(user.id),
   leads: (user) => findLeadsForUser(user.id),
   rewards: (user) => findRewardsForUserNotYetPaidOut(user.id),
-  payments: (user) => findPaymentsForUser(user.id)
+  payments: (user) => findPaymentsForUser(user.id),
+  payment: (user) => getPaymentByUser(user.id),
 }

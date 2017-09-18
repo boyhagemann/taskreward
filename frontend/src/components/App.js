@@ -24,6 +24,8 @@ import RedirectContainer from './RedirectContainer'
 
 import LeadsContainer from './LeadsContainer'
 import RewardsContainer from './RewardsContainer'
+import PaymentsContainer from './PaymentsContainer'
+import PaymentContainer from './PaymentContainer'
 
 import NavbarContainer from './NavbarContainer'
 import PageNavbar from './PageNavbar'
@@ -43,7 +45,7 @@ injectGlobal([`
 `])
 
 const Content = styled.div`
-  padding-top: 90px;
+  padding-top: 74px;
 `
 
 class App extends Component {
@@ -73,6 +75,8 @@ class App extends Component {
 
                   <Route path={'/leads'} component={LeadsContainer} />
                   <Route path={'/rewards'} component={RewardsContainer} />
+                  <Route exact path={'/payments'} component={PaymentsContainer} />
+                  <Route path={'/payments/:id'} component={PaymentContainer} />
 
                   <Route path={`/p/:hash`} component={PageContainer}/>
                   <Route path={`/r/:hash`} render={ ({ match }) => <RedirectContainer hash={match.params.hash} /> } />

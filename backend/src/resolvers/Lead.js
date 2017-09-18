@@ -96,6 +96,13 @@ export const getLeadByEvent = id => session
   `, { id })
   .then(result => transformOne(result, session))
 
+export const getLeadByReward = id => session
+  .run(`
+    MATCH (a:Lead)-[:RECEIVED_REWARD]->(:Reward { id: $id })
+    RETURN a LIMIT 1
+  `, { id })
+  .then(result => transformOne(result, session))
+
 export const getParent = id => session
   .run(`
     MATCH (:Lead { id: $id })<-[:HAS_LEAD]-(a:Lead)

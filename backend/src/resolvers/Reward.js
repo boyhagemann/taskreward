@@ -1,5 +1,6 @@
 import { session, transformOne, transformMany, uuid, handleError, encrypt } from './helpers'
 import { getIncentiveByReward } from './Incentive'
+import { getLeadByReward } from './Lead'
 import { createEvent } from './Event'
 import moment from 'moment'
 import { REWARD_CUT } from '../constants'
@@ -55,6 +56,16 @@ export const findRewardsForUserNotYetPaidOut = id => session
   .then(result => transformMany(result, session))
   .catch(handleError)
 
+export const findRewardsByPayment = id => session
+  .run(`
+    MATCH (r:Reward)-[:HAS_PAYMENT]->(:Payment { id: $id })
+    RETURN DISTINCT r
+    ORDER BY r.createdAt
+  `, { id })
+  .then(result => transformMany(result, session))
+  .catch(handleError)
+
 export default {
-  incentive: reward => getIncentiveByReward(reward.id)
+  incentive: reward => getIncentiveByReward(reward.id),
+  lead: reward => getLeadByReward(reward.id),
 }
