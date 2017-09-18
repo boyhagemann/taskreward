@@ -7,6 +7,7 @@ import Button from './UI/Button'
 import MaxBox from './UI/MaxBox'
 import Box from './UI/Box'
 import Card from './UI/Card'
+import { redirectUrl } from '../utils/routes'
 
 import background from '../assets/images/bg.jpg'
 
@@ -40,7 +41,7 @@ const Actions = styled(props => (
   text-align: center;
 `
 
-export default ({ handleSubmit, loading, profile, action, windowSize, openReferModal }) => loading ? null : (
+export default ({ handleSubmit, loading, hash, profile, action, windowSize, openReferModal }) => loading ? null : (
   <Box width={1}>
     <Visual height={windowSize.height}>
       <VisualText color={`bleech`}>
@@ -87,18 +88,19 @@ export default ({ handleSubmit, loading, profile, action, windowSize, openReferM
           <Box width={[1]} p={1}>
             <SubHeading fontSize={6} color={`bleech`}>Let us know who is interested...</SubHeading>
             <Description>Tell here about the reward...</Description>
+            <Button
+              type="button"
+              primary
+              onClick={openReferModal}
+              >Add a friend</Button>
           </Box>
 
           <Box width={[1]} p={1}>
             <SubHeading fontSize={5} color={`bleech`}>...or share this page</SubHeading>
             <Description>Tell here about the reward (10%) and show how you can share this page...</Description>
+            <Text>{redirectUrl(hash)}</Text>
           </Box>
 
-          <Button
-            type="button"
-            primary
-            onClick={openReferModal}
-          >Add a friend</Button>
 
       </MaxBox>
     </Actions>

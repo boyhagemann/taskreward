@@ -5,7 +5,7 @@ import Redirect from './Redirect'
 import RedirectMutation from '../mutations/Redirect'
 
 const mapDispatchToProps = dispatch => ({
-  redirect: hash => dispatch(replace(`/leads/${hash}`))
+  redirect: hash => dispatch(replace(`/p/${hash}`))
 })
 
 const WithRedux = connect(null, mapDispatchToProps)

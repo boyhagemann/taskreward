@@ -121,7 +121,7 @@ export const getChildrenBySource = (id, source) => session
 
 export const findLeadForUserAndHash = (userId, hash) => session
   .run(`
-    MATCH (:User { id: $userId })-[:CREATES]->(a:Lead)<-[r:HAS_LEAD*]-(:Lead { hash: $hash })
+    MATCH (:User { id: $userId })-[:HAS_LEAD]->(a:Lead)<-[r:HAS_LEAD*]-(:Lead { hash: $hash })
     RETURN a
   `, { userId, hash })
   .then(result => transformOne(result, session))
@@ -145,9 +145,15 @@ export const redirect = async (hash, session, user) => {
   const lead = await findLeadForUserAndHash(userId, hash)
 
   // Yes, just return it or create one for this user...
-  return lead || createLead(null, { input: {
-    user: userId, hash, status: 'some-status',
-  } })
+  // We have to find the lead by the hash first, and then
+  // we can create a new lead based on the parent id.
+  return lead || getLeadByHash(hash)
+    .then(lead => createLead({
+      parent: lead.id,
+      user: userId,
+      hash: lead.hash,
+      status: 'some-status',
+    }))
 }
 
 export default {
