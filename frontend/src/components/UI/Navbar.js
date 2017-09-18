@@ -88,7 +88,7 @@ export default class extends Component {
                 </div>
               )
               : (
-                <Button primary component={Link} to={`/login`}>Login</Button>
+                <Button component={Link} to={`/login`}>Login</Button>
               )
             }
           </Account>

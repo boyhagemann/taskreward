@@ -34,20 +34,20 @@ export const createUser = ({ id, email, firstName, lastName, password, role }) =
   .catch(handleError)
 }
 
-export const createUserFromSession = key => {
-
-  const props = { id: uuid(), session: key }
-
-  return session
+export const createUserFromSession = key => session
   .run(`
     CREATE (a:User $props)
     RETURN a
   `,
-    { props }
+    {
+      props: {
+        id: uuid(),
+        session: key,
+      }
+    }
   )
   .then(result => transformOne(result, session))
   .catch(handleError)
-}
 
 export const getUsers = () => session
   .run(`

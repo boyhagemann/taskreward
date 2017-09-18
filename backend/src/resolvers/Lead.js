@@ -141,10 +141,10 @@ export const redirect = async (hash, session, user) => {
 
   // If we don't have a user, we want to create a new user,
   // based on the current session ...
-  const userId = user ? user.id : createUserFromSession(session).id
+  const existingOrCreatedUser = user ? user : await createUserFromSession(session)
 
   // Do we have an existing lead?
-  const lead = await findLeadForUserAndHash(userId, hash)
+  const lead = await findLeadForUserAndHash(existingOrCreatedUser.id, hash)
 
   // Yes, just return it or create one for this user...
   // We have to find the lead by the hash first, and then
@@ -152,7 +152,7 @@ export const redirect = async (hash, session, user) => {
   return lead || getLeadByHash(hash)
     .then(lead => createLead({
       parent: lead.id,
-      user: userId,
+      user: existingOrCreatedUser.id,
       hash: lead.hash,
       status: 'some-status',
     }))
