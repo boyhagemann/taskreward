@@ -43,7 +43,7 @@ injectGlobal([`
 `])
 
 const Content = styled.div`
-  padding-top: 70px;
+  padding-top: 90px;
 `
 
 class App extends Component {

@@ -38,7 +38,7 @@
 ## Referer Interface
 [x] Referer can see a list of participated leads
 [x] Referer can see a list of rewards
-[ ] Referer can see the reward value that can be payed out
+[x] Referer can see the reward value that can be payed out
 [ ] Referer can request a payment
 [ ] Referer can see the status of one lead
 [ ] Referer can see all activity for one lead

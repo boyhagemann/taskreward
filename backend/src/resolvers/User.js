@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken'
 import { session, transformOne, transformMany, uuid, handleError, encrypt } from './helpers'
 import { findRewardsForUserNotYetPaidOut } from './Reward'
 import { findLeadsForUser } from './Lead'
-import { findPaymentsForUser } from './Payment'
+import { findPaymentsForUser, canRequestPayment } from './Payment'
 import { getProfileByUser } from './Profile'
 import { SECRET } from '../constants'
 
@@ -97,5 +97,5 @@ export default {
   profile: (user) => getProfileByUser(user.id),
   leads: (user) => findLeadsForUser(user.id),
   rewards: (user) => findRewardsForUserNotYetPaidOut(user.id),
-  payments: (user) => findPaymentsForUser(user.id),
+  payments: (user) => findPaymentsForUser(user.id)
 }

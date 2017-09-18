@@ -3,7 +3,7 @@ export default [
   {
     id: 'action.1',
     profile: 'profile.1',
-    name: 'came to office',
+    name: 'came to the office',
   },
   {
     id: 'action.2',

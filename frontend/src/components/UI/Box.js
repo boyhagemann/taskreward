@@ -1,6 +1,9 @@
 // import { Grid } from 'grid-styled'
 import styled from 'styled-components'
-import { space, width, fontSize, color } from 'styled-system'
+import { space, width, fontSize, color, responsiveStyle } from 'styled-system'
+
+const textAlign = responsiveStyle('text-align', 'textAlign')
+
 
 export default styled.div`
   display: inline-block;
@@ -10,4 +13,5 @@ export default styled.div`
   ${width}
   ${fontSize}
   ${color}
+  ${textAlign}
 `
