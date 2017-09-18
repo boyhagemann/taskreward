@@ -121,7 +121,9 @@ export const getChildrenBySource = (id, source) => session
 
 export const findLeadForUserAndHash = (userId, hash) => session
   .run(`
-    MATCH (:User { id: $userId })-[:HAS_LEAD]->(a:Lead)<-[r:HAS_LEAD*]-(:Lead { hash: $hash })
+    MATCH (u:User { id: $userId })-[:HAS_LEAD]->(a:Lead)
+    WHERE (a)<-[:HAS_LEAD*]-(:Lead { hash: $hash })
+    OR (a.hash = $hash )
     RETURN a
   `, { userId, hash })
   .then(result => transformOne(result, session))
