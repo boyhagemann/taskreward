@@ -47,12 +47,12 @@ export const findPaymentsForUser = id => session
   .then(result => transformMany(result, session))
   .catch(handleError)
 
-export const getPaymentByUser = id => session
+export const getPayment = id => session
   .run(`
-    MATCH (a:Payment)<-[r:HAS_PAYMENT]-(b:User { id: $id })
+    MATCH (a:Payment { id: $id })
     RETURN a
     LIMIT 1
-  `, { id })
+  `, { id, user })
   .then(result => transformOne(result, session))
   .catch(handleError)
 

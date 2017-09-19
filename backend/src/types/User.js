@@ -5,7 +5,7 @@ import Profile from './Profile'
 
 const User = `
 type User {
-  id: ID!
+  id: ID
   name: String
   firstName: String
   middleName: String

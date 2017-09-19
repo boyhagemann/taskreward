@@ -31,7 +31,8 @@ import NavbarContainer from './NavbarContainer'
 import PageNavbar from './PageNavbar'
 import RefererNavbar from './RefererNavbar'
 
-const AdminCanView = component => Allowed(['admin'])(component)
+const AdminCanView = component => Allowed(true, '/login', ['admin'])(component)
+const GuestCanView = component => Allowed(false, '/page/dashboard')(component)
 
 injectGlobal([`
   body {
@@ -63,7 +64,7 @@ class App extends Component {
 
                 <Content>
                   <Route exact path={`/`} component={HomeContainer}/>
-                  <Route path={'/login'} component={LoginContainer} />
+                  <Route path={'/login'} component={GuestCanView(LoginContainer)} />
                   <Route path={'/logout'} component={Logout} />
 
                   <Route path={'/page/dashboard'} component={AdminCanView(PageDashboardContainer)} />

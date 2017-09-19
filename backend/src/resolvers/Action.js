@@ -84,7 +84,7 @@ export const getActionByEvent = id => session
   .then(result => transformOne(result, session))
   .catch(handleError)
 
-const createRewardsForActionAndLead = ({action, lead}) => {
+const createRewardsForActionAndLead = async ({action, lead}) => {
 
   const incentives = await findIncentivesByAction(action) // @todo must have a value and must be within date range
   const parents = await findParents(lead)

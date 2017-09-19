@@ -11,13 +11,25 @@ const AllowedWithGraphql = graphql(gql`
   }
 `)
 
-export default roles => WrappedComponent => AllowedWithGraphql( ({ data: { loading, viewer }, ...props}) => {
+export default (mustBeAuthenticated = true, to = '/login', roles = []) => WrappedComponent => AllowedWithGraphql( ({ data: { loading, viewer }, ...props}) => {
 
   if(loading) return null
 
-  if(!viewer) return <Redirect to={`/login`} />
+  if(viewer.id) {
 
-  return roles.includes(viewer.role)
-    ? <WrappedComponent { ...props } />
-    : <div>Not Allowed</div>
+    if(roles && mustBeAuthenticated && !roles.includes(viewer.role)) {
+      return <div>Not Allowed</div>
+    }
+
+    return mustBeAuthenticated
+      ? <WrappedComponent { ...props } />
+      : <Redirect to={to} />
+  }
+  else {
+
+    return !mustBeAuthenticated
+      ? <WrappedComponent { ...props } />
+      : <Redirect to={to} />
+  }
+
 })
