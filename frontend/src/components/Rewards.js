@@ -20,8 +20,8 @@ export default ({ loading, viewer, rewards = [], total, currency, canRequestPaym
       title={'Rewards'}
       actions={[
         canRequestPayment
-          ? <Button onClick={ () => createPayment(viewer.id)} positive>Request payment for {round(total, 2)} euro</Button>
-          : <Text>{round(total, 2)} {currency} is not enough to request a payment.</Text>
+          ? <Button key="request-payment" onClick={ () => createPayment(viewer.id)} positive>Request payment for {round(total, 2)} euro</Button>
+          : <Text key="not-enough">{round(total, 2)} {currency} is not enough to request a payment.</Text>
       ]}
     />
     { rewards.length

@@ -4,6 +4,8 @@
 [x] User can login
 [x] User can logout
 [x] User can change his profile
+[ ] User can manage actions
+[ ] User can manage rewards
 [x] User can preview his profile page
 [x] User can see a list of leads
 [x] User can see a list of lead activity
