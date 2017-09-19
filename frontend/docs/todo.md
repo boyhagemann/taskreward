@@ -47,6 +47,7 @@
 [x] Referer can see a list of previous payments
 [ ] Referer can update their account information
 [ ] Referer can claim his reward
+[ ] When a user logs in, move the created lead and more to the existing account
 
 
 ## Epics

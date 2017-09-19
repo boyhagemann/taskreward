@@ -84,11 +84,25 @@ export const getActionByEvent = id => session
   .then(result => transformOne(result, session))
   .catch(handleError)
 
+const createRewardsForActionAndLead = ({action, lead}) => {
 
-export const assignAction = ({ lead, action }) => {
+  const incentives = await findIncentivesByAction(action) // @todo must have a value and must be within date range
+  const parents = await findParents(lead)
 
-  console.log('assignAction', lead, action)
-  return session
+  incentives.forEach( incentive => {
+    parents.forEach( parent => {
+      createReward({
+        root: lead,
+        lead: parent.id,
+        incentive: incentive.id,
+        value: incentive.value,
+        depth: parent.depth
+      })
+    })
+  })
+}
+
+export const assignAction = ({ lead, action }) => session
   .run(`
     MATCH (a:Lead { id: $lead })
     MATCH (b:Action { id: $action })
@@ -102,36 +116,10 @@ export const assignAction = ({ lead, action }) => {
     }
   )
   .then(result => transformOne(result, session))
-  .then( () => createEvent({
-    type: 'PERFORMED_ACTION',
-    lead,
-    action,
-  }))
-  .then(async event => {
-
-    const incentives = await findIncentivesByAction(action) // @todo must have a value and must be within date range
-    const parents = await findParents(lead)
-
-    console.log('lead', lead, action)
-    console.log('incentives', incentives)
-    console.log('parents', parents)
-
-    incentives.forEach( incentive => {
-      parents.forEach( parent => {
-        createReward({
-          root: lead,
-          lead: parent.id,
-          incentive: incentive.id,
-          value: incentive.value,
-          depth: parent.depth
-        })
-      })
-    })
-
-
-  })
+  .then( () => createEvent({ type: 'PERFORMED_ACTION', lead, action }))
+  .then( () => createRewardsForActionAndLead({ action, lead }))
   .catch(handleError)
-}
+
 
 export default {
   incentives: action => findIncentivesByAction(action.id),
