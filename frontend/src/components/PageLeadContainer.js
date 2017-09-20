@@ -18,6 +18,8 @@ query LeadContainer($id: ID!) {
       }
       lead(id: $id) {
         id
+        source
+        createdAt
         user {
           id
           name
@@ -28,6 +30,22 @@ query LeadContainer($id: ID!) {
           user {
             id
             name
+          }
+        }
+        parents {
+          id
+          source
+          createdAt
+          user {
+            id
+            name
+          }
+          parent {
+            id
+            user {
+              id
+              name
+            }
           }
         }
         events {

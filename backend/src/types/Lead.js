@@ -11,6 +11,7 @@ type Lead {
   user: User
   profile: Profile
   parent: Lead
+  parents: [Lead]
   status: String
   source: String
   depth: Int

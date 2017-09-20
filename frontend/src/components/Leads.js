@@ -34,7 +34,6 @@ export default ({ loading, leads = [] }) => loading ? null : (
           <p>{lead.profile.description}</p>
           <Actions>
             <Button component={Link} to={`/p/${lead.hash}`} mr={1}>View page</Button>
-            <Button primary component={Link} to={`/leads/${lead.id}`} mr={1}>Details</Button>
           </Actions>
         </Content>
       </Item>

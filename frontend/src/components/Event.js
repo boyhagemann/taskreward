@@ -4,11 +4,10 @@ import Box from './UI/Box'
 import Heading from './UI/Heading'
 import Link from './UI/Link'
 import { round } from '../utils/numbers'
+import { name } from '../utils/text'
+import Message from './UI/Message'
 
-const name = (user, viewer) => viewer && viewer.id === user.id ? 'You' : user.name
-
-
-const renderHeading = (event, viewer) => {
+const translateEvent = (event, viewer) => {
 
   switch(event.__typename) {
 
@@ -19,7 +18,7 @@ const renderHeading = (event, viewer) => {
 
     case 'PerformedAction': {
       const { lead, action } = event
-      return <span><Link to={lead.id}>{name(lead.user, viewer)}</Link> <bold>{action.name}</bold></span>
+      return <span>{name(lead.user, viewer)} <bold>{action.name}</bold></span>
     }
 
     case 'ReceivedReward': {
@@ -28,8 +27,8 @@ const renderHeading = (event, viewer) => {
       const { action } = incentive
 
       return reward.value === incentive.value
-        ? <span><Link to={lead.id}>{name(lead.user, viewer)}</Link> got a full {round(reward.value, 2)} reward because {name(actor.user)} {action.name}.</span>
-        : <span><Link to={lead.id}>{name(lead.user, viewer)}</Link> got a {round(reward.value, 2)} cut of the original {round(incentive.value, 2)} reward because {name(actor.user)} {action.name}.</span>
+        ? <span>{name(lead.user, viewer)} got a full {round(reward.value, 2)} reward because <Link to={actor.id}>{name(actor.user)}</Link> {action.name}.</span>
+        : <span>{name(lead.user, viewer)} got a {round(reward.value, 2)} cut of the original {round(incentive.value, 2)} reward because <Link to={actor.id}>{name(actor.user)}</Link> {action.name}.</span>
     }
 
     default:
@@ -37,11 +36,4 @@ const renderHeading = (event, viewer) => {
   }
 }
 
-export default ({ viewer, event }) => (
-  <Box width={1} bg={`bleech`} p={1} mb={1}>
-    <Heading fontSize={2} m={0}>{renderHeading(event, viewer)}</Heading>
-    <Box mt={1} fontSize={0} color={'pencil+++'}>
-      <Moment fromNow interval={1000}>{event.createdAt}</Moment>
-    </Box>
-  </Box>
-)
+export default ({ viewer, event }) => <Message key={event.id} text={translateEvent(event, viewer)} date={event.createdAt} />

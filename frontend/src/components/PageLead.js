@@ -31,7 +31,9 @@ export default class extends Component {
 
   render() {
 
-    const { loading, profile, openAssignActionModal } = this.props
+    const { loading, viewer, profile, openAssignActionModal } = this.props
+
+    console.log(this.props)
 
     return loading ? <Loading /> : (
         <MaxBox>
@@ -48,7 +50,7 @@ export default class extends Component {
 
             { profile.lead.parent && (
             <Box width={1} bg={`bleech`} p={1} mb={1}>
-              Was invited by <Link to={`/page/leads/${profile.lead.parent.id}`}>{ profile.lead.parent.user.name }</Link> on { moment(profile.lead.parent.createdAt).format('llll') }.
+              Current status: <strong>None</strong>
             </Box>
             ) }
 
@@ -68,7 +70,7 @@ export default class extends Component {
 
             <Route exact path={`/page/leads/${profile.lead.id}`} render={ () => <Activity {...this.props} /> } />
             <Route path={`/page/leads/${profile.lead.id}/conversation`} render={ () => <Conversation {...this.props } /> } />
-            <Route path={`/page/leads/${profile.lead.id}/history`} component={History} {...this.props} />
+            <Route path={`/page/leads/${profile.lead.id}/history`} render={ () => <History viewer={viewer} lead={profile.lead} /> } />
 
           </Box>
         </MaxBox>

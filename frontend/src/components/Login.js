@@ -2,7 +2,7 @@ import React from 'react'
 import { Field } from 'redux-form'
 import Button from './UI/Button'
 import MaxBox from './UI/MaxBox'
-import Card from './UI/Card'
+import Box from './UI/Box'
 import { isRequired, isEmail } from '../utils/validation'
 import Heading from './UI/Heading'
 import TextInput from './UI/TextInput'
@@ -17,9 +17,9 @@ export default ({ handleSubmit, errors, pristine, submitting }) => (
   <form
     onSubmit={handleSubmit}
   >
-      <MaxBox>
+      <MaxBox width={200}>
         <Heading>Login</Heading>
-        <Card>
+        <Box bg={`bleech`} p={2}>
           <div>
             { errors }
             <Field
@@ -46,7 +46,7 @@ export default ({ handleSubmit, errors, pristine, submitting }) => (
               disabled={pristine || submitting}
               >Login</Button>
           </div>
-        </Card>
+        </Box>
     </MaxBox>
   </form>
 )

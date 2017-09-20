@@ -14,6 +14,7 @@ export default [
     firstName: "User",
     middleName: "van",
     lastName: "Two",
+    password: "test",
     role: "viewer",
   },
   {

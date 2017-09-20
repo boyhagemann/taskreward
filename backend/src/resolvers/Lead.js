@@ -172,6 +172,7 @@ export default {
   profile: (lead) => getProfileByLead(lead.id),
   user: (lead) => getUserByLead(lead.id),
   parent: (lead) => getParent(lead.id),
+  parents: (lead, _, { user }) => findParents(lead.id, user.id),
   invited: (lead) => getChildrenBySource(lead.id, 'invitation'),
   events: (lead, { ofType }) => ofType ? getEventsForLeadAndType(lead.id, ofType) : getEventsForLead(lead.id),
 }
