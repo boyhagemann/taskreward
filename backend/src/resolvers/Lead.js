@@ -49,7 +49,9 @@ export const getLeads = () => session
 
 export const findLeadsForProfile = id => session
   .run(`
-    MATCH (a:Lead)<-[r:HAS_LEAD*]-(:Profile { id: $id })
+    MATCH (a:Lead)<-[r:HAS_LEAD*]-(:Profile { id: $id })<-[:HAS_PROFILE]-(owner:User)
+    MATCH (a)<-[:HAS_LEAD]-(user:User)
+    WHERE NOT user.id = owner.id
     WITH a, max(size(r)) AS depth
     RETURN a, depth
   `, { id })

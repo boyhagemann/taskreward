@@ -9,6 +9,7 @@ import Button from './UI/Button'
 import MaxBox from './UI/MaxBox'
 import Tab from './UI/Tab'
 import Link from './UI/Link'
+import Loading from './Loading'
 
 const Breadcrumb = props => <Box width={1} mt={3} mb={3} { ...props } />
 
@@ -32,7 +33,7 @@ export default class extends Component {
 
     const { loading, profile, openAssignActionModal } = this.props
 
-    return loading ? null : (
+    return loading ? <Loading /> : (
         <MaxBox>
           <Box width={[1, 1/4]} p={1}>
 
