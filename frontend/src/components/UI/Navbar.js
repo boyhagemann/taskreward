@@ -57,7 +57,7 @@ export default class extends Component {
 
   render() {
 
-    const { items = [], accountItems = [], name, onClickOutside } = this.props
+    const { items = [], accountItems = [], name } = this.props
 
     return (
       <Bar bg={`bleech`} py={2}>

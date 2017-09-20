@@ -64,12 +64,13 @@ export const findLeadsForUser = id => session
   .then(result => transformMany(result, session))
   .catch(handleError)
 
-export const findParents = id => session
+export const findParents = (id, user) => session
   .run(`
-    MATCH (:Lead { id: $id })<-[r:HAS_LEAD*]-(a:Lead)
+    MATCH (:Lead { id: $id })<-[r:HAS_LEAD*]-(a:Lead)<-[:HAS_LEAD]-(u:User)
+    WHERE NOT u.id = $user
     WITH a, max(size(r)) AS depth
     RETURN a, depth
-  `, { id })
+  `, { id, user })
   .then(result => transformMany(result, session))
   .catch(handleError)
 
@@ -99,6 +100,13 @@ export const getLeadByEvent = id => session
 export const getLeadByReward = id => session
   .run(`
     MATCH (a:Lead)-[:RECEIVED_REWARD]->(:Reward { id: $id })
+    RETURN a LIMIT 1
+  `, { id })
+  .then(result => transformOne(result, session))
+
+export const getLeadThatCausedReward = id => session
+  .run(`
+    MATCH (a:Lead)-[:CAUSED_REWARD]->(:Reward { id: $id })
     RETURN a LIMIT 1
   `, { id })
   .then(result => transformOne(result, session))

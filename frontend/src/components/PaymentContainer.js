@@ -1,7 +1,6 @@
 import { gql, graphql } from 'react-apollo'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
-import { push } from 'react-router-redux'
 import Payment from './Payment'
 
 const WithQuery = graphql(gql`

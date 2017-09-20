@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
 import Box from './UI/Box'
 import MaxBox from './UI/MaxBox'
 import Button from './UI/Button'

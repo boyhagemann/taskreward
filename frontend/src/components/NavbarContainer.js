@@ -1,5 +1,4 @@
 import { compose } from 'redux'
-import WithClickOutside from './WithClickOutside'
 import { gql, graphql } from 'react-apollo'
 
 const WithQuery = graphql(gql`

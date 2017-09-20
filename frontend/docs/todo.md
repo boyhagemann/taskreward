@@ -1,4 +1,7 @@
 
+## General
+[ ] Handle system errors gracefully and show friendly messages
+[ ] Handle validation errors gracefully
 
 ## User Interface
 [x] User can login
@@ -44,6 +47,7 @@
 [x] Referer can see a list of rewards
 [x] Referer can see the reward value that can be payed out
 [x] Referer can request a payment
+[ ] Referer can have its own avatar
 [ ] Referer can see the status of one lead
 [ ] Referer can see all activity for one lead
 [x] Referer can see a list of previous payments

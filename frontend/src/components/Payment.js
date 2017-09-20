@@ -1,8 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import Heading from './UI/Heading'
-import SubHeading from './UI/SubHeading'
 import MaxBox from './UI/MaxBox'
 import Box from './UI/Box'
 import Header from './UI/Header'
@@ -10,8 +7,6 @@ import Text from './UI/Text'
 import Button from './UI/Button'
 import Moment from 'react-moment'
 import { round } from '../utils/numbers'
-
-const Item = props => <Box width={1} bg={`bleech`} mb={2} p={1} { ...props } />
 
 export default ({ loading, payment }) => loading ? null : (
   <MaxBox>

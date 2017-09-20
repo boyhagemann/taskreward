@@ -57,6 +57,10 @@ const subscribeToEvents = subscribeToMore => subscribeToMore({
 
         const newEvent = subscriptionData.data.event
 
+        // Only show the events for the current lead
+        if(!newEvent.lead) return prev
+        if(prev.viewer.profile.lead.id !== newEvent.lead.id) return prev
+
         // Use ImmutableJs for this
         return { ...prev, viewer:
           { ...prev.viewer, profile:

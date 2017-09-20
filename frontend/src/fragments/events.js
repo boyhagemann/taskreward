@@ -41,10 +41,6 @@ export default `
   ... on ReceivedReward {
     id
     createdAt
-    reward {
-      id
-      value
-    }
     incentive {
       id
       value
@@ -62,6 +58,17 @@ export default `
       user {
         id
         name
+      }
+    }
+    reward {
+      id
+      value
+      actor {
+        id
+        user {
+          id
+          name
+        }
       }
     }
   }

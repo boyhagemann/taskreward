@@ -1,7 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import Heading from './UI/Heading'
 import SubHeading from './UI/SubHeading'
 import MaxBox from './UI/MaxBox'
 import Box from './UI/Box'

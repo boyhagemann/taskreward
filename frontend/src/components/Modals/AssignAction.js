@@ -1,5 +1,4 @@
 import React from 'react'
-import styled from 'styled-components'
 import Button from '../UI/Button'
 import Box from '../UI/Box'
 import Heading from '../UI/Heading'

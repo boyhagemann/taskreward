@@ -7,6 +7,7 @@ type Reward {
   createdAt: String
   incentive: Incentive
   lead: Lead
+  actor: Lead
   value: Float
   depth: Int
 }

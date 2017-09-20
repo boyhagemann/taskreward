@@ -46,7 +46,7 @@ export const getIncentiveByEvent = id => session
 
 export const getIncentiveByReward = id => session
   .run(`
-    MATCH (a:Incentive)-[:RECEIVED_REWARD]->(:Reward { id: $id })
+    MATCH (a:Incentive)-[:HAS_REWARD]->(:Reward { id: $id })
     RETURN a LIMIT 1
   `, { id })
   .then(result => transformOne(result, session))

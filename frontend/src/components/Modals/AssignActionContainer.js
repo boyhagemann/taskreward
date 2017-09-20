@@ -1,6 +1,5 @@
 import { compose } from 'redux'
 import { gql, graphql } from 'react-apollo'
-import { connect } from 'react-redux'
 import AssignAction from './AssignAction'
 import WithMutation from '../../mutations/AssignAction'
 

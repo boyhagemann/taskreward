@@ -23,10 +23,13 @@ const renderHeading = (event, viewer) => {
     }
 
     case 'ReceivedReward': {
-      const { root, lead, incentive, reward } = event
+      const { reward, incentive, lead } = event
+      const { actor } = reward
+      const { action } = incentive
+
       return reward.value === incentive.value
-        ? <span><Link to={lead.id}>{name(lead.user, viewer)}</Link> got a full {round(reward.value, 2)} reward because someone {incentive.action.name}.</span>
-        : <span><Link to={lead.id}>{name(lead.user, viewer)}</Link> got a {round(reward.value, 2)} cut of the original {round(incentive.value, 2)} reward because someone {incentive.action.name}.</span>
+        ? <span><Link to={lead.id}>{name(lead.user, viewer)}</Link> got a full {round(reward.value, 2)} reward because {name(actor.user)} {action.name}.</span>
+        : <span><Link to={lead.id}>{name(lead.user, viewer)}</Link> got a {round(reward.value, 2)} cut of the original {round(incentive.value, 2)} reward because {name(actor.user)} {action.name}.</span>
     }
 
     default:

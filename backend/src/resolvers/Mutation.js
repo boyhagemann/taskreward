@@ -13,7 +13,7 @@ export default {
   createIncentive: (_, { input }) => createIncentive(input),
   updateIncentive:  (_, { input }) => updateIncentive(input),
   createAction: (_, { input }) => createAction(input),
-  assignAction: (_, { input }) => assignAction(input),
+  assignAction: (_, { input }, { user }) => assignAction(input, { user }),
   createLead: (_, { input }) => createLead(input),
   createProfile: (_, { input }) => createProfile(input),
   createPayment: (_, { input }) => createPayment(input),
