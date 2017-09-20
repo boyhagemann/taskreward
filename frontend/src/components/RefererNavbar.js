@@ -10,9 +10,9 @@ const items = [
 
 const accountItems = [
   { to: '/page/dashboard', label: 'Switch to Page' },
-  { to: '/account', label: 'My account' },
-  { to: '/preferences', label: 'Preferences' },
-  { to: '/payments', label: 'Payments' },
+  { to: '/my/account', label: 'My account' },
+  { to: '/my/preferences', label: 'Preferences' },
+  { to: '/my/payments', label: 'Payments' },
   { to: '/logout', label: 'Logout' },
 ]
 

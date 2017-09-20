@@ -38,7 +38,7 @@ const WithQuery = graphql(gql`
 })
 
 const mapDispatchToProps = dispatch => ({
-  redirect: (id) => dispatch(push(`/payments/${id}`))
+  redirect: (id) => dispatch(push(`/my/payments/${id}`))
 })
 
 const WithRedux = connect(null, mapDispatchToProps)

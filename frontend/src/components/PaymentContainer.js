@@ -14,7 +14,14 @@ const WithQuery = graphql(gql`
         currency
         rewards {
           id
+          createdAt
           value
+          actor {
+            id
+            user {
+              name
+            }
+          }
           lead {
             id
             hash
@@ -34,6 +41,7 @@ const WithQuery = graphql(gql`
 `, {
   props: ({ data: { loading, viewer = {} } }) => ({
     loading,
+    viewer,
     payment: viewer.payment,
   })
 })

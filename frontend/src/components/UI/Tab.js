@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { space, width, fontSize, color, removeProps } from 'styled-system'
+import Link from './Link'
 import { NavLink } from 'react-router-dom'
 
 const colorActive = props => color({ ...props, color: props.activeColor, bg: props.activeBg })

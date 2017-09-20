@@ -52,7 +52,7 @@ export const getPayment = id => session
     MATCH (a:Payment { id: $id })
     RETURN a
     LIMIT 1
-  `, { id, user })
+  `, { id })
   .then(result => transformOne(result, session))
   .catch(handleError)
 
