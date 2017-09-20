@@ -5,7 +5,7 @@ import TextInput from './UI/TextInput'
 import TextArea from './UI/TextArea'
 import Button from './UI/Button'
 
-export default ({ handleSubmit, remove, name, ...props }) => {
+export default ({ handleSubmit, remove, name }) => {
 
   return (
   <form onSubmit={handleSubmit}>

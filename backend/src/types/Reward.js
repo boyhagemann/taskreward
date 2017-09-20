@@ -8,7 +8,7 @@ type Reward {
   incentive: Incentive
   lead: Lead
   actor: Lead
-  value: Float
+  value: Int
   depth: Int
 }
 `

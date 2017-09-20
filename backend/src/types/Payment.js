@@ -7,7 +7,7 @@ type Payment {
   createdAt: String
   rewards: [Reward]
   user: User
-  value: Float
+  value: Int
   currency: String
 }
 `

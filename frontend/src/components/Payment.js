@@ -7,11 +7,11 @@ import SubHeading from './UI/SubHeading'
 import Text from './UI/Text'
 import Button from './UI/Button'
 import Moment from 'react-moment'
-import { round } from '../utils/numbers'
+import { valuta } from '../utils/numbers'
 import { name } from '../utils/text'
 import Message from './UI/Message'
 
-const translateReward = (reward, viewer) => `You got a ${round(reward.value, 2)} ${reward.currency} cut because ${ name(reward.actor.user, viewer) } ${reward.incentive.action.name}`
+const translateReward = (reward, viewer) => `You got a ${valuta(reward.value)} ${reward.currency} cut because ${ name(reward.actor.user, viewer) } ${reward.incentive.action.name}`
 
 export default ({ loading, viewer, payment }) => loading ? null : (
   <MaxBox>
@@ -19,7 +19,7 @@ export default ({ loading, viewer, payment }) => loading ? null : (
       title={<Moment>{payment.createdAt}</Moment>}
     />
     <Box width={1}>
-      Value: {round(payment.value, 2)} {payment.currency}
+      Value: {valuta(payment.value)} {payment.currency}
     </Box>
     <Box width={1}>
       <SubHeading>Rewards</SubHeading>

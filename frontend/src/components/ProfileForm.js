@@ -6,9 +6,7 @@ import TextArea from './UI/TextArea'
 import Heading from './UI/Heading'
 import Button from './UI/Button'
 
-export default ({ handleSubmit, loading }) => {
-
-  return (
+export default ({ handleSubmit, loading }) => (
   <form onSubmit={handleSubmit}>
       <Heading fontSize={5}>Profile</Heading>
       <Field
@@ -38,4 +36,4 @@ export default ({ handleSubmit, loading }) => {
 
       <Button primary huge type="submit">Save</Button>
   </form>
-)}
+)

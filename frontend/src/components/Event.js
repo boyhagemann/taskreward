@@ -3,7 +3,7 @@ import Moment from 'react-moment'
 import Box from './UI/Box'
 import Heading from './UI/Heading'
 import Link from './UI/Link'
-import { round } from '../utils/numbers'
+import { valuta } from '../utils/numbers'
 import { name } from '../utils/text'
 import Message from './UI/Message'
 
@@ -27,8 +27,8 @@ const translateEvent = (event, viewer) => {
       const { action } = incentive
 
       return reward.value === incentive.value
-        ? <span>{name(lead.user, viewer)} got a full {round(reward.value, 2)} reward because <Link to={actor.id}>{name(actor.user)}</Link> {action.name}.</span>
-        : <span>{name(lead.user, viewer)} got a {round(reward.value, 2)} cut of the original {round(incentive.value, 2)} reward because <Link to={actor.id}>{name(actor.user)}</Link> {action.name}.</span>
+        ? <span>{name(lead.user, viewer)} got a full {valuta(reward.value)} reward because <Link to={actor.id}>{name(actor.user)}</Link> {action.name}.</span>
+        : <span>{name(lead.user, viewer)} got a {valuta(reward.value)} cut of the original {valuta(incentive.value)} reward because <Link to={actor.id}>{name(actor.user)}</Link> {action.name}.</span>
     }
 
     default:

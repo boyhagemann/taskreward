@@ -8,11 +8,11 @@ import Text from './UI/Text'
 import Button from './UI/Button'
 import Moment from 'react-moment'
 import Message from './UI/Message'
-import { round } from '../utils/numbers'
+import { valuta } from '../utils/numbers'
 
 const Item = props => <Box width={1} bg={`bleech`} mb={2} p={1} { ...props } />
 
-const translatePayment = payment => <Text m={0}>You requested a payment for the sum of <strong>{round(payment.value, 2)}</strong> {payment.currency}.</Text>
+const translatePayment = payment => <Text m={0}>You requested a payment for the sum of <strong>{valuta(payment.value)}</strong> {payment.currency}.</Text>
 
 export default ({ loading, payments = [] }) => loading ? null : (
   <MaxBox>

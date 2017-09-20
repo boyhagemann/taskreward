@@ -8,6 +8,7 @@ import MaxBox from './UI/MaxBox'
 import Box from './UI/Box'
 import Card from './UI/Card'
 import { redirectUrl } from '../utils/routes'
+import { valuta } from '../utils/numbers'
 
 import background from '../assets/images/bg.jpg'
 
@@ -76,7 +77,7 @@ export default ({ handleSubmit, loading, hash, profile, action, windowSize, open
           <Card key={incentive.name} bg={`bleech`} width={1}>
             <SubHeading m={0} p={2} fontSize={5}>{ incentive.name }</SubHeading>
             <Text px={2}>{ incentive.description }</Text>
-            <Box p={2} bg={`love`} color={`bleech`} width={1} fontSize={3}>Reward: { incentive.value } Euro</Box>
+            <Box p={2} bg={`love`} color={`bleech`} width={1} fontSize={3}>Reward: { valuta(incentive.value) } Euro</Box>
           </Card>
         </Box>
       )) }

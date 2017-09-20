@@ -5,7 +5,7 @@ export default [
     actor: 'lead.1',
     lead: 'lead.2',
     incentive: 'incentive.1',
-    value: 30,
+    value: 3000,
     depth: 2,
   },
 ]

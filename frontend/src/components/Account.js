@@ -1,20 +1,57 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import SubHeading from './UI/SubHeading'
+import { Field } from 'redux-form'
 import MaxBox from './UI/MaxBox'
 import Box from './UI/Box'
 import Header from './UI/Header'
-import Text from './UI/Text'
-import Button from './UI/Button'
-import Moment from 'react-moment'
-import { round } from '../utils/numbers'
+import FieldWrapper from './UI/FieldWrapper'
+import TextInput from './UI/TextInput'
+import Loading from './Loading'
 
-const Item = props => <Box width={1} bg={`bleech`} mb={2} p={1} { ...props } />
+export default ({ loading, handleSubmit }) => (
 
-export default ({ loading, viewer }) => loading ? null : (
-  <MaxBox>
-    <Header
-      title={'My account'}
-    />
-  </MaxBox>
+  <form onSubmit={handleSubmit}>
+    <MaxBox>
+      <Header
+        title={'My account'}
+      />
+      <Field
+        component={FieldWrapper}
+        field={TextInput}
+        name={`email`}
+        label="Email address"
+      />
+      <Box width={1}>
+        <Field
+          component={FieldWrapper}
+          field={TextInput}
+          name={`firstName`}
+          label="First name"
+          wrapper={{
+            width: [1, 2/5],
+            pr: [0, 1]
+          }}
+          />
+        <Field
+          component={FieldWrapper}
+          field={TextInput}
+          name="middleName"
+          label="Middle name"
+          wrapper={{
+            width: [1, 1/5],
+            pr: [0, 1]
+          }}
+          />
+        <Field
+          component={FieldWrapper}
+          field={TextInput}
+          name="lastName"
+          label="Last name"
+          wrapper={{
+            width: [1, 2/5]
+          }}
+          />
+      </Box>
+    </MaxBox>
+  </form>
 )

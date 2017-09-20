@@ -25,7 +25,7 @@ export const createReward = ({ id, actor, lead, incentive, value, depth }) => se
         id: id || uuid(),
         createdAt: moment().format(),
         depth,
-        value: value * Math.pow(REWARD_CUT, depth) / REWARD_CUT,
+        value: Math.round(value * Math.pow(REWARD_CUT, depth) / REWARD_CUT),
       }
     }
   )
