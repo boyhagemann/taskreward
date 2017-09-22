@@ -7,6 +7,7 @@ import Box from './Box'
 import Badge from './Badge'
 import Button from './Button'
 import DropdownMenu from './DropdownMenu'
+import Icon from './Icon'
 
 const Bar = Box.extend`
   position: fixed;
@@ -74,6 +75,7 @@ export default class extends Component {
                 <div>
                   <div>
                     Logged in as <Button onClick={this.toggleAccountMenu}>
+                      <Icon name='profile' color={'ocean'} size={2} mr={1} />
                       <Name>{name}</Name>
                     </Button>
                   { this.state.showAccountMenu && (

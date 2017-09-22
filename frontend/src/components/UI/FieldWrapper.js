@@ -2,16 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 import Box from './Box'
 import Text from './Text'
+import Label from './Label'
 
 const Wrapper = Box.extend`
-`
-
-const Label = styled.label`
-  display: block;
-  font-family: Verdana;
-  font-weight: bold;
-  font-size: 0.9em;
-  margin-bottom: 5px;
 `
 
 const Message = styled.p`
