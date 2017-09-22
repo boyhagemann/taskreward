@@ -13,7 +13,7 @@ const accountItems = [
   { to: '/my/account', label: 'My account', icon: 'profile' },
   { to: '/my/preferences', label: 'Preferences', icon: 'cogwheel' },
   { to: '/my/payments', label: 'Payments', icon: 'money' },
-  { to: '/logout', label: 'Logout' },
+  { to: '/logout', label: 'Logout', icon: 'power' },
 ]
 
 export default props => (
