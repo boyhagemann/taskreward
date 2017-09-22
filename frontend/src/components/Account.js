@@ -88,7 +88,7 @@ export default ({ loading, handleSubmit }) => (
             By registering your account, you agree to our <Link to="" target="_blank">Services Agreement</Link> and the <Link to="https://stripe.com/connect-account/legal" target="_blank">Stripe Connected Account Agreement</Link>.
         </Text>
 
-        <Button large primary>Save changes</Button>
+        <Button type="submit" large primary>Save changes</Button>
 
       </Box>
     </MaxBox>

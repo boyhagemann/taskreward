@@ -19,7 +19,7 @@ const WithReduxForm = reduxForm({
   onSubmit: (values, _, { request }) => request(values)
 })
 
-const WithQuery = graphql(updateReward, {
+const WithMutation = graphql(updateReward, {
   props: ({ mutate, ownProps }) => ({
     request: (values) => {
 
@@ -33,6 +33,6 @@ const WithQuery = graphql(updateReward, {
 
 export default compose(
   WithReduxForm,
-  WithQuery,
+  WithMutation,
   withApollo
 )(IncentiveForm)

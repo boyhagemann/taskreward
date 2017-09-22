@@ -11,11 +11,12 @@ const withPassword = (data, password) => {
   return { ...data, password: encrypt(password, salt) , salt }
 }
 
-export const createUser = ({ id, email, firstName, lastName, password, role }) => {
+export const createUser = ({ id, email, telephone, firstName, lastName, password, role }) => {
 
   const data = {
     id: id || uuid(),
     email,
+    telephone,
     firstName,
     lastName,
     role
@@ -48,6 +49,23 @@ export const createUserFromSession = key => session
   )
   .then(result => transformOne(result, session))
   .catch(handleError)
+
+export const updateUser = (input, { id }) => {
+
+  // const props = password ? withPassword(data, password) : data
+
+
+  return session
+  .run(`
+    MATCH (a:User { id: $id })
+    SET a += $input
+    RETURN a
+  `,
+    { id, input }
+  )
+  .then(result => transformOne(result, session))
+  .catch(handleError)
+}
 
 export const getUsers = () => session
   .run(`

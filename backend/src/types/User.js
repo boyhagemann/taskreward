@@ -13,6 +13,7 @@ type User {
   email: String
   telephone: String
   role: String
+  bankaccount: String
   rewards: [Reward]
   payments: [Payment]
   payment(

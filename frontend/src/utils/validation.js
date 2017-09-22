@@ -5,4 +5,4 @@ export const isEmail = value => value.match(/(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\
   ? undefined
   : 'This is not a valid email address'
 
-export const isIban = value => IBAN.isValid(value) ? undefined : 'This is not a valid IBAN account number'
+export const isIban = value => IBAN.isValid(value) ? undefined : 'This is not a valid IBAN account number (NL91ABNA0417164300)'

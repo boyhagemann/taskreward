@@ -1,5 +1,5 @@
 import { requestToken } from './Token'
-import { createUser } from './User'
+import { createUser, updateUser } from './User'
 import { createIncentive, updateIncentive } from './Incentive'
 import { createAction, assignAction } from './Action'
 import { createLead, redirect } from './Lead'
@@ -17,5 +17,6 @@ export default {
   createLead: (_, { input }) => createLead(input),
   createProfile: (_, { input }) => createProfile(input),
   createPayment: (_, { input }) => createPayment(input),
+  updateUser: (_, { input }, { user }) => updateUser(input, user),
   updateProfile: (_, { input }) => updateProfile(input),
 }

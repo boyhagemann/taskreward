@@ -36,6 +36,7 @@ const WithQuery = graphql(gql`
       lastName
       email
       telephone
+      bankaccount
     }
   }
 `, {
@@ -46,7 +47,20 @@ const WithQuery = graphql(gql`
   })
 })
 
+const WithMutation = graphql(updateAccount, {
+  props: ({ mutate, ownProps }) => ({
+    updateAccount: (values) => {
+
+      const { email, telephone, firstName, middleName, lastName, bankaccount } = values
+
+      mutate({ variables: { input: { email, telephone, firstName, middleName, lastName, bankaccount } } })
+        .catch(error => console.error('Got error', error))
+    }
+  })
+})
+
 export default compose(
   WithQuery,
+  WithMutation,
   WithReduxForm,
 )(Account)
