@@ -12,6 +12,8 @@ const Container = styled.div`
   top: 40px;
   right: 0;
   text-align: left;
+  z-index: 5;
+  box-shadow: 0px 10px 10px rgba(0,0,0,0.1);
 `
 
 const Item = props => <Box width={1} p={2} bg={`bleech`} { ...props } />
@@ -22,7 +24,7 @@ const Menu = ({ items, handleClick }) => (
     { items.map(({ to, label, badge, icon }) => (
       <Item key={to}>
         <Link key={to} to={to} color={`pencil`} onClick={handleClick}>
-          {icon && <Icon name={icon} size={2} color={`pencil`} mr={1} /> }
+          {icon && <Icon name={icon} size={2} color={`pencil++++`} mr={1} /> }
           {label} { badge && <Badge bg={badge.background}>{badge.count}</Badge>}
         </Link>
       </Item>

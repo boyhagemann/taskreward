@@ -28,6 +28,14 @@ export default ({ loading, handleSubmit }) => (
           field={TextInput}
           name={`email`}
           label="Email address"
+          width={[1, 1/2]}
+        />
+        <Field
+          component={FieldWrapper}
+          field={TextInput}
+          name={`telephone`}
+          label="Telephone number"
+          width={[1, 1/2]}
         />
         <SubHeading>Personal information</SubHeading>
         <Text>
@@ -72,6 +80,7 @@ export default ({ loading, handleSubmit }) => (
           field={TextInput}
           name="bankaccount"
           label="IBAN bank account number"
+          width={[1, 1/2]}
           validate={isIban}
           />
 
@@ -79,7 +88,7 @@ export default ({ loading, handleSubmit }) => (
             By registering your account, you agree to our <Link to="" target="_blank">Services Agreement</Link> and the <Link to="https://stripe.com/connect-account/legal" target="_blank">Stripe Connected Account Agreement</Link>.
         </Text>
 
-        <Button primary>Save changes</Button>
+        <Button large primary>Save changes</Button>
 
       </Box>
     </MaxBox>

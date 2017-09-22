@@ -8,6 +8,8 @@ import { store, history } from '../configuration/redux'
 import styled, { injectGlobal, ThemeProvider } from 'styled-components'
 import defaultTheme from '../themes/default'
 import Allowed from './Allowed'
+import Box from './UI/Box'
+import Footer from './Footer'
 
 import HomeContainer from './HomeContainer'
 import LoginContainer from './LoginContainer'
@@ -40,11 +42,11 @@ injectGlobal([`
     font-family: sans-serif;
     font-size: 16px;
     color: #456;
-    background: #f3f1eb;
+    background: #234;
   }
 `])
 
-const Content = styled.div`
+const Content = styled(props => <Box width={1} bg={`canvas`} pb={4} { ...props } />)`
   padding-top: 74px;
 `
 
@@ -81,6 +83,9 @@ class App extends Component {
                   <Route path={`/r/:hash`} render={ ({ match }) => <RedirectContainer hash={match.params.hash} /> } />
 
                 </Content>
+
+                <Footer />
+
                 <ModalContainer />
               </div>
             </ThemeProvider>

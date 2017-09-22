@@ -4,6 +4,20 @@ import { reduxForm } from 'redux-form'
 import Account from './Account'
 
 
+const updateAccount = gql(`
+  mutation updateAccount($input: UpdateUserInput) {
+    updateUser(input: $input) {
+      id
+      email
+      firstName
+      middleName
+      lastName
+      email
+      telephone
+    }
+  }
+`)
+
 const WithReduxForm = reduxForm({
   form: 'account',
   onSubmit: (input, _, { updateAccount }) => updateAccount(input),

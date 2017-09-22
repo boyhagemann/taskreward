@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { space, width, fontSize, color, removeProps, responsiveStyle } from 'styled-system'
 
-const Component = ({ component: Component = 'button', primary, positive, negative, huge, borderColor, ...props}) => {
+const Component = ({ component: Component = 'button', primary, positive, negative, large, huge, borderColor, ...props}) => {
   const cleanProps = removeProps(props)
   return <Component {...cleanProps} />
 }
@@ -38,6 +38,11 @@ export default styled(props => {
 
   if(props.huge) {
       buttonProps.p = 3
+  }
+
+  if(props.large) {
+      buttonProps.p = 2
+      buttonProps.fontSize = 2
   }
 
   if(props.huge) {

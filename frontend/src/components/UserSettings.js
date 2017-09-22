@@ -6,18 +6,23 @@ import PreferencesContainer from './PreferencesContainer'
 import MaxBox from './UI/MaxBox'
 import Box from './UI/Box'
 import Tab from './UI/Tab'
+import Icon from './UI/Icon'
 import { Route } from 'react-router-dom'
 
 
 
-const renderTab = (to, text) => <Tab width={1} fontSize={3} color={`pencil++++`} activeColor={`pencil`} p={1} mb={1} to={to}>{text}</Tab>
+const renderTab = (to, text, icon) => (
+  <Tab width={1} fontSize={3} color={`pencil++++`} activeColor={`pencil`} p={1} mb={1} to={to}>
+    <Icon size={3} name={icon} color={`pencil++++`} activeColor={`pencil`} mr={1} /> {text}
+  </Tab>
+)
 
 export default () => (
   <MaxBox>
     <Box width={[1, 1/5]} mt={4}>
-      { renderTab('/my/account', 'My account') }
-      { renderTab('/my/preferences', 'Preferences') }
-      { renderTab('/my/payments', 'Payments') }
+      { renderTab('/my/account', 'My account', 'profile') }
+      { renderTab('/my/preferences', 'Preferences', 'cogwheel') }
+      { renderTab('/my/payments', 'Payments', 'money') }
     </Box>
     <Box width={[1, 4/5]} pl={[0, 3]}>
       <Route path={`/my/account`} component={AccountContainer} />

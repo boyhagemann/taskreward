@@ -12,7 +12,7 @@ export default ({ title, icon, actions = []}) => (
   <Container>
     <Title>
       <Heading>
-        { icon && <Icon name={icon} size={5} color={`pencil++++`} mr={2} /> }
+        { icon && <Icon name={icon} size={6} color={`pencil++++`} mt={-1} mr={2} /> }
         {title}
       </Heading>
     </Title>
