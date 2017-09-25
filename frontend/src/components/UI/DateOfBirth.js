@@ -19,7 +19,7 @@ export default ({ name, ...props }) => (
       }}
     >
       <option>Year...</option>
-      { range(1900, 2017).reverse().map(year => <option value={year}>{year}</option>) }
+      { range(1900, 2017).reverse().map(year => <option key={year} value={year}>{year}</option>) }
     </Field>
     <Field
       component={FieldWrapper}
@@ -31,7 +31,7 @@ export default ({ name, ...props }) => (
       }}
     >
       <option>Month...</option>
-      { months().map(({ value, label}) => <option value={value}>{label}</option>) }
+      { months().map(({ value, label}) => <option key={value} value={value}>{label}</option>) }
     </Field>
     <Field
       component={FieldWrapper}
@@ -42,7 +42,7 @@ export default ({ name, ...props }) => (
       }}
     >
       <option>Day...</option>
-      { range(1, 31).map(day => <option value={day}>{day}</option>) }
+      { range(1, 31).map(day => <option key={day} value={day}>{day}</option>) }
     </Field>
   </Box>
 )

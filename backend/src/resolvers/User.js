@@ -18,7 +18,7 @@ export const createUser = input => {
     id: input.id || uuid(),
   }
 
-  const props = password ? withPassword(data, password) : data
+  const props = input.password ? withPassword(data, input.password) : data
 
   return session
   .run(`

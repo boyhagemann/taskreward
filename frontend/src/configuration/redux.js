@@ -4,6 +4,8 @@ import { reducer as formReducer } from 'redux-form'
 import createHistory from 'history/createBrowserHistory'
 import {routerReducer, routerMiddleware } from 'react-router-redux'
 import modalReducer from '../redux/modal'
+import notifications from '../redux/notifications'
+import thunk from 'redux-thunk'
 
 import windowSize, { REDUCER_KEY, createSizeAction, listenResize } from 'redux-windowsize'
 
@@ -21,10 +23,11 @@ const rootReducer = combineReducers({
   form: formReducer,
   router: routerReducer,
   modal: modalReducer,
+  notifications,
   [REDUCER_KEY]: windowSize,
 })
 
-export const store = createStore(rootReducer, applyMiddleware(middleware))
+export const store = createStore(rootReducer, applyMiddleware(middleware, thunk))
 
 // Update redux with current size.
 store.dispatch(createSizeAction(window))

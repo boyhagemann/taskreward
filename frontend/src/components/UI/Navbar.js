@@ -61,16 +61,13 @@ export default class extends Component {
     const { items = [], accountItems = [], name } = this.props
 
     return (
-      <Bar bg={`bleech`} py={2} px={1}>
+      <Bar bg={`bleech`} pt={2} pb={1} px={1}>
         <MaxBox>
           <Box width={[1, 2/12]} color={`night+++`}>
             <Logo />
           </Box>
           <Box width={[1, 8/12]} color={`night+++`}>
-            { name
-              ? items.map(renderItem)
-              : <Tab exact to={`/`}>Home</Tab>
-            }
+            { name && items.map(renderItem) }
           </Box>
           <Account width={[1, 2/12]}>
             { name

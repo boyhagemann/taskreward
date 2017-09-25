@@ -12,7 +12,7 @@ const Logo = styled(Box)`
 
 export default ({ logoColor = 'grass', color = 'night'}) => (
     <Link to={`/`}>
-      <Icon name="crowd" size={6} color={logoColor} mr={1} />
+      <Icon name="crowd" size={6} color={logoColor} mr={1} mt={-5} />
       <Logo color={color}>Croudio</Logo>
     </Link>
 )

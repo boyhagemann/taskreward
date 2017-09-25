@@ -10,6 +10,7 @@ import defaultTheme from '../themes/default'
 import Allowed from './Allowed'
 import Box from './UI/Box'
 import Footer from './Footer'
+import NotificationsContainer from './NotificationsContainer'
 
 import HomeContainer from './HomeContainer'
 import LoginContainer from './LoginContainer'
@@ -47,8 +48,10 @@ injectGlobal([`
 `])
 
 const Content = styled(props => <Box width={1} bg={`canvas`} pb={4} { ...props } />)`
-  padding-top: 74px;
+  padding-top: 72px;
+  min-height: 700px;
 `
+
 
 class App extends Component {
   render() {
@@ -64,6 +67,7 @@ class App extends Component {
                 </Switch>
 
                 <Content>
+                  <NotificationsContainer />
                   <Route exact path={`/`} component={HomeContainer}/>
                   <Route path={'/login'} component={GuestCanView(LoginContainer)} />
                   <Route path={'/logout'} component={Logout} />

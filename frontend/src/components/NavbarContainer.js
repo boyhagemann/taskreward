@@ -6,6 +6,9 @@ const WithQuery = graphql(gql`
     viewer {
       id
       name
+      profile {
+        id
+      }
     }
   }
 `)

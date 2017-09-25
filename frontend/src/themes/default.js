@@ -9,7 +9,7 @@ const colors = {
   heart: '#d85b5b',
   love: '#d36eb6',
   bleech: '#fff',
-  dirt: '#bdb289',
+  beach: '#e6d17f',
   grass: '#89c552',
 }
 

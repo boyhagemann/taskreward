@@ -9,17 +9,24 @@ const items = [
 ]
 
 const accountItems = [
-  { to: '/page/dashboard', label: 'Switch to Page', icon: 'switch' },
   { to: '/my/account', label: 'My account', icon: 'profile' },
   { to: '/my/preferences', label: 'Preferences', icon: 'cogwheel' },
   { to: '/my/payments', label: 'Payments', icon: 'money' },
   { to: '/logout', label: 'Logout', icon: 'power' },
 ]
 
+const switchToPage = { to: '/page/dashboard', label: 'Switch to Page', icon: 'switch' }
+
+const getAccountItems = ({ data }) => {
+  return data.viewer && data.viewer.profile
+  ? [ switchToPage, ...accountItems ]
+  : accountItems
+}
+
 export default props => (
   <Navbar
     { ...props }
     items={items}
-    accountItems={accountItems}
+    accountItems={getAccountItems(props)}
     />
 )
