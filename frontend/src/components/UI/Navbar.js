@@ -8,6 +8,7 @@ import Badge from './Badge'
 import Button from './Button'
 import DropdownMenu from './DropdownMenu'
 import Icon from './Icon'
+import Logo from './Logo'
 
 const Bar = Box.extend`
   position: fixed;
@@ -16,7 +17,6 @@ const Bar = Box.extend`
   box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
   z-index: 10;
 `
-
 
 const Account = Box.extend`
   text-align: right;
@@ -61,9 +61,12 @@ export default class extends Component {
     const { items = [], accountItems = [], name } = this.props
 
     return (
-      <Bar bg={`bleech`} py={2}>
+      <Bar bg={`bleech`} py={2} px={1}>
         <MaxBox>
-          <Box width={[1, 10/12]} color={`night+++`}>
+          <Box width={[1, 2/12]} color={`night+++`}>
+            <Logo />
+          </Box>
+          <Box width={[1, 8/12]} color={`night+++`}>
             { name
               ? items.map(renderItem)
               : <Tab exact to={`/`}>Home</Tab>

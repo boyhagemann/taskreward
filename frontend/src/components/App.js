@@ -39,7 +39,7 @@ injectGlobal([`
   body {
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 16px;
     color: #456;
     background: #234;

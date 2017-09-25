@@ -1,11 +1,18 @@
 import { gql, graphql } from 'react-apollo'
+import { compose } from 'redux'
 import Home from './Home'
+import WithWindowSize from './WithWindowSize'
 
-export default graphql(gql`
+const WithQuery = graphql(gql`
   query HomeContainer {
     viewer {
       id
       name
     }
   }
-`)(Home)
+`)
+
+export default compose(
+  WithQuery,
+  WithWindowSize
+)(Home)

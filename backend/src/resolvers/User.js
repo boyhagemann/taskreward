@@ -11,15 +11,11 @@ const withPassword = (data, password) => {
   return { ...data, password: encrypt(password, salt) , salt }
 }
 
-export const createUser = ({ id, email, telephone, firstName, lastName, password, role }) => {
+export const createUser = input => {
 
   const data = {
-    id: id || uuid(),
-    email,
-    telephone,
-    firstName,
-    lastName,
-    role
+    ...input,
+    id: input.id || uuid(),
   }
 
   const props = password ? withPassword(data, password) : data

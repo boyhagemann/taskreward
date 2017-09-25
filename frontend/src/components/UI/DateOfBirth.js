@@ -4,6 +4,7 @@ import FieldWrapper from './FieldWrapper'
 import Select from './Select'
 import Label from './Label'
 import { Field } from 'redux-form'
+import { range, months } from '../../utils/numbers'
 
 export default ({ name, ...props }) => (
   <Box width={1} { ...props }>
@@ -11,37 +12,37 @@ export default ({ name, ...props }) => (
     <Field
       component={FieldWrapper}
       field={Select}
-      name={`${name}.year`}
+      name={`dobYear`}
       wrapper={{
         width: 1/3,
         pr: 1
       }}
     >
       <option>Year...</option>
-      <option value="1999">1900</option>
+      { range(1900, 2017).reverse().map(year => <option value={year}>{year}</option>) }
     </Field>
     <Field
       component={FieldWrapper}
       field={Select}
-      name={`${name}.month`}
+      name={`dobMonth`}
       wrapper={{
         width: 1/3,
         pr: 1
       }}
     >
       <option>Month...</option>
-      <option value="1">January</option>
+      { months().map(({ value, label}) => <option value={value}>{label}</option>) }
     </Field>
     <Field
       component={FieldWrapper}
       field={Select}
-      name={`${name}.day`}
+      name={`dobDay`}
       wrapper={{
         width: 1/3
       }}
     >
       <option>Day...</option>
-      <option value="1">1</option>
+      { range(1, 31).map(day => <option value={day}>{day}</option>) }
     </Field>
   </Box>
 )

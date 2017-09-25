@@ -9,5 +9,8 @@ input UpdateUserInput {
   lastName: String
   telephone: String
   bankaccount: String
+  dobYear: Int
+  dobMonth: Int
+  dobDay: Int
 }
 `

@@ -8,7 +8,6 @@ const Label = styled.label`
   ${fontSize}
   ${color}
   display: block;
-  font-family: Verdana;
 `
 
 export default props => <Label color={`night`} mt={2} mb={1} fontSize={2} { ...props } />

@@ -9,5 +9,9 @@ input CreateUserInput {
   middleName: String
   lastName: String
   telephone: String
+  bankaccount: String
+  dobYear: Int
+  dobMonth: Int
+  dobDay: Int
 }
 `

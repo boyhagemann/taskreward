@@ -14,6 +14,9 @@ type User {
   telephone: String
   role: String
   bankaccount: String
+  dobYear: Int
+  dobMonth: Int
+  dobDay: Int
   rewards: [Reward]
   payments: [Payment]
   payment(

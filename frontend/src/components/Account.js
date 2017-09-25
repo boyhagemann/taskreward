@@ -72,7 +72,7 @@ export default ({ loading, handleSubmit }) => (
           }}
           />
         <DateOfBirth
-          name="DateOfBirth"
+          name="dateOfBirth"
           width={[1, 1/2]}
           />
         <Field

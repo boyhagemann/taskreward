@@ -37,6 +37,9 @@ const WithQuery = graphql(gql`
       email
       telephone
       bankaccount
+      dobYear
+      dobMonth
+      dobDay
     }
   }
 `, {
@@ -51,9 +54,9 @@ const WithMutation = graphql(updateAccount, {
   props: ({ mutate, ownProps }) => ({
     updateAccount: (values) => {
 
-      const { email, telephone, firstName, middleName, lastName, bankaccount } = values
+      const { email, telephone, firstName, middleName, lastName, bankaccount, dobYear, dobMonth, dobDay } = values
 
-      mutate({ variables: { input: { email, telephone, firstName, middleName, lastName, bankaccount } } })
+      mutate({ variables: { input: { email, telephone, firstName, middleName, lastName, bankaccount, dobYear, dobMonth, dobDay } } })
         .catch(error => console.error('Got error', error))
     }
   })

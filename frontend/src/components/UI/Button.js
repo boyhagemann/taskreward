@@ -46,8 +46,8 @@ export default styled(props => {
   }
 
   if(props.huge) {
-      buttonProps.p = 3
-      buttonProps.fontSize = 3
+      buttonProps.p = 2
+      buttonProps.fontSize = 4
   }
 
   if(props.primary) {

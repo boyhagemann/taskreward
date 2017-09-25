@@ -7,22 +7,13 @@ import Button from './UI/Button'
 import MaxBox from './UI/MaxBox'
 import Box from './UI/Box'
 import Card from './UI/Card'
+import Visual from './UI/Visual'
 import { redirectUrl } from '../utils/routes'
 import { valuta } from '../utils/numbers'
 
 import background from '../assets/images/bg.jpg'
 
 const Description = props => <Text { ...props } />
-
-const Visual = styled(props => (
-  <Box { ...props } width={1} />
-))`
-  position: relative;
-  background-image: url(${background});
-  background-size: cover;
-  background-position: center;
-  height: ${ props => props.height - 70 || 500}px;
-`
 
 const VisualText = styled(props => (
   <Box { ...props } width={1} />
@@ -44,7 +35,7 @@ const Actions = styled(props => (
 
 export default ({ handleSubmit, loading, hash, profile, action, windowSize, openReferModal }) => loading ? null : (
   <Box width={1}>
-    <Visual height={windowSize.height}>
+    <Visual image={background} height={windowSize.height - 70}>
       <VisualText color={`bleech`}>
         <MaxBox>
           <Box width={[1, 3/5]}>
