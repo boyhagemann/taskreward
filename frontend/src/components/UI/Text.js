@@ -6,5 +6,5 @@ export default styled.p`
   ${fontSize}
   ${color}
   opacity: ${ props => props.opacity || 1};
-  line-height: 2em;
+  line-height: 1.4em;
 `

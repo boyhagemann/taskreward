@@ -9,6 +9,7 @@ export default styled.div`
   display: inline-block;
   vertical-align: top;
   box-sizing: border-box;
+  opacity: ${props => props.opacity};
   ${space}
   ${width}
   ${fontSize}

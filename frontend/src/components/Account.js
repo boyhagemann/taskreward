@@ -19,7 +19,6 @@ export default ({ loading, handleSubmit }) => (
   <form onSubmit={handleSubmit}>
     <MaxBox>
       <Header
-        icon='profile'
         title={'My account'}
       />
       <Box width={2/3}>

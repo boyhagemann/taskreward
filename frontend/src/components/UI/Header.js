@@ -11,7 +11,7 @@ const Actions = props => <Box width={[1, 1/5]} pt={2} textAlign={['left', 'right
 export default ({ title, icon, actions = []}) => (
   <Container>
     <Title>
-      <Heading>
+      <Heading my={3}>
         { icon && <Icon name={icon} size={6} color={`pencil++++`} mt={-1} mr={2} /> }
         {title}
       </Heading>

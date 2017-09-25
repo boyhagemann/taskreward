@@ -12,4 +12,4 @@ const StyledSubHeading = styled.h2`
   ${color}
 `
 
-export default props => <StyledSubHeading fontSize={5} mt={2} mb={1} { ...props } />
+export default props => <StyledSubHeading fontSize={5} { ...props } />

@@ -2,6 +2,7 @@ import { compose } from 'redux'
 import { gql, graphql } from 'react-apollo'
 import AssignAction from './AssignAction'
 import WithMutation from '../../mutations/AssignAction'
+import WithNotification from '../WithNotification'
 
 const actionQuery = gql`
 query AssignActionContainer($id: ID!) {
@@ -36,6 +37,7 @@ const WithQuery = graphql(actionQuery, {
 })
 
 export default compose(
+  WithNotification,
   WithMutation,
   WithQuery,
 )(AssignAction)

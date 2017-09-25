@@ -48,7 +48,7 @@ injectGlobal([`
 `])
 
 const Content = styled(props => <Box width={1} bg={`canvas`} pb={4} { ...props } />)`
-  padding-top: 72px;
+  padding-top: 61px;
   min-height: 700px;
 `
 

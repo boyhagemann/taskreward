@@ -27,7 +27,7 @@ const Name = styled.span`
   font-weight: bold;
 `
 
-const renderItem = ({ to, label, badge }) => <Tab key={to} to={to} color={`pencil++++`} activeColor={`night`}>
+const renderItem = ({ to, label, badge }) => <Tab key={to} to={to} activeBorder={`ocean`} >
   {label} { badge && <Badge bg={badge.background}>{badge.count}</Badge>}
 </Tab>
 
@@ -61,15 +61,15 @@ export default class extends Component {
     const { items = [], accountItems = [], name } = this.props
 
     return (
-      <Bar bg={`bleech`} pt={2} pb={1} px={1}>
+      <Bar bg={`bleech`} pt={2} pb={0}>
         <MaxBox>
-          <Box width={[1, 2/12]} color={`night+++`}>
+          <Box width={[1, 2/12]} mt={`-3px`} px={1} color={`night+++`}>
             <Logo />
           </Box>
-          <Box width={[1, 8/12]} color={`night+++`}>
+          <Box width={[1, 8/12]} color={`night+++`} px={1}>
             { name && items.map(renderItem) }
           </Box>
-          <Account width={[1, 2/12]}>
+          <Account width={[1, 2/12]} px={1}>
             { name
               ? (
                 <div>

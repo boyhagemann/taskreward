@@ -6,7 +6,7 @@ import Logo from './UI/Logo'
 
 const renderLink = (to, label) => (
   <Box width={1} py={1}>
-    <Link to={to} color={`pencil`}>{label}</Link>
+    <Link to={to} color={`night++++`} hoverColor={`bleech`}>{label}</Link>
   </Box>
 )
 

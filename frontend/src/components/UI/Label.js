@@ -10,4 +10,4 @@ const Label = styled.label`
   display: block;
 `
 
-export default props => <Label color={`night`} mt={2} mb={1} fontSize={2} { ...props } />
+export default props => <Label color={`night`} mb={1} fontSize={2} { ...props } />

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import moment from 'moment'
+import Moment from 'react-moment'
 import { Route } from 'react-router-dom'
 import Activity from './Lead/Activity'
 import Conversation from './Lead/Conversation'
@@ -8,20 +8,26 @@ import Box from './UI/Box'
 import Button from './UI/Button'
 import MaxBox from './UI/MaxBox'
 import Tab from './UI/Tab'
+import Heading from './UI/Heading'
 import Link from './UI/Link'
+import Text from './UI/Text'
+import Icon from './UI/Icon'
 import Loading from './Loading'
+import Avatar from './UI/Avatar'
+import { randomColor } from '../utils/colors'
 
-const Breadcrumb = props => <Box width={1} mt={3} mb={3} { ...props } />
+const Breadcrumb = props => <Box width={1} px={1} py={2} { ...props } />
 
-const Name = props => <Box width={1} fontSize={5} { ...props } />
-const Email = props => <Box width={1} fontSize={1} color={`pencil+++`} { ...props } />
+const Name = props => <Box fontSize={5} { ...props } />
+const Email = props => <Box fontSize={1} color={`pencil+++`} { ...props } />
 
 
 const Tabs = props => <Box width={1} my={2} { ...props } />
-const Profile = props => <Box width={1} bg={`canvas-`} p={1} mb={1} { ...props } />
+const Profile = props => <Box width={1} p={1} mb={1} { ...props } />
 const Actions = props => <Box width={1} mb={1} { ...props } />
-const StyledTab = props => <Tab p={2} color={`pencil+++`} activeColor={`night`} { ...props } />
+const StyledTab = props => <Tab p={2} color={`pencil+++`} activeColor={`night`}activeBorder={`ocean`}  { ...props } />
 
+const color = randomColor()
 
 export default class extends Component {
 
@@ -33,34 +39,49 @@ export default class extends Component {
 
     const { loading, viewer, profile, openAssignActionModal } = this.props
 
-    console.log(this.props)
-
     return loading ? <Loading /> : (
-        <MaxBox>
-          <Box width={[1, 1/4]} p={1}>
+      <div>
 
+        <Box width={1} bg={color.darken(0.15).hex()}>
+          <MaxBox>
             <Breadcrumb>
-              <Link to={`/page/leads`}>Back to leads</Link>
+              <Link to={`/page/leads`} color={`bleech`} opacity={0.3} fontSize={1}>
+                Back to leads
+              </Link>
             </Breadcrumb>
+          </MaxBox>
+        </Box>
 
-            <Profile>
-              <Name>{ profile.lead.user.name }</Name>
-              <Email>{ profile.lead.user.email }</Email>
-            </Profile>
+        <Box width={1} bg={color.hex()}>
+          <MaxBox>
+            <Box width={[1]} px={1} py={4} textAlign={['center', 'center', 'left']}>
 
-            { profile.lead.parent && (
-            <Box width={1} bg={`bleech`} p={1} mb={1}>
-              Current status: <strong>None</strong>
+
+              <Profile width={[1, 1/2]}>
+                <Avatar
+                  fontSize={5}
+                  color={color.lighten(0.1).hex()}
+                  mt={1}
+                  mr={1}
+                  p={3}
+                >AT</Avatar>
+                <Box mt={3}>
+                  <Heading m={0} color={`bleech`}>{ profile.lead.user.name }</Heading>
+                  <Email color={`night`} opacity={0.8}>{ profile.lead.user.email }</Email>
+                </Box>
+              </Profile>
+
+              <Actions mt={2} width={[1, 1/2]}>
+                <Text color={`bleech`} opacity={0.5}>Came to the office on <Moment>{profile.lead.createdAt}</Moment></Text>
+                <Button positive mr={[0, 1]} onClick={openAssignActionModal}>Change status</Button>
+                <Button negative>Reject</Button>
+              </Actions>
+
             </Box>
-            ) }
-
-            <Actions>
-              <Button positive mr={[0, 1]} onClick={openAssignActionModal}>Change status</Button>
-              <Button negative>Reject</Button>
-            </Actions>
-
-          </Box>
-          <Box width={[1, 3/4]} p={1}>
+          </MaxBox>
+        </Box>
+        <MaxBox>
+          <Box width={[1]} px={1}>
 
             <Tabs>
               <StyledTab exact to={`/page/leads/${profile.lead.id}`}>Activity</StyledTab>
@@ -74,6 +95,7 @@ export default class extends Component {
 
           </Box>
         </MaxBox>
+        </div>
     )
   }
 }

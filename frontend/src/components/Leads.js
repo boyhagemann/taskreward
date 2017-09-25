@@ -30,7 +30,7 @@ export default ({ loading, leads = [] }) => loading ? null : (
       <Item key={lead.id}>
         <Image />
         <Content>
-          <SubHeading>{ lead.profile.name }</SubHeading>
+          <SubHeading m={0}>{ lead.profile.name }</SubHeading>
           <p>{lead.profile.description}</p>
           <Actions>
             <Button component={Link} to={`/p/${lead.hash}`} mr={1}>View page</Button>

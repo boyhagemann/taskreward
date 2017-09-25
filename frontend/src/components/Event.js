@@ -3,6 +3,7 @@ import Moment from 'react-moment'
 import Box from './UI/Box'
 import Heading from './UI/Heading'
 import Link from './UI/Link'
+import Text from './UI/Text'
 import { valuta } from '../utils/numbers'
 import { name } from '../utils/text'
 import Message from './UI/Message'
@@ -18,7 +19,7 @@ const translateEvent = (event, viewer) => {
 
     case 'PerformedAction': {
       const { lead, action } = event
-      return <span>{name(lead.user, viewer)} <bold>{action.name}</bold></span>
+      return <Text m={0}>{name(lead.user, viewer)} <bold>{action.name}</bold></Text>
     }
 
     case 'ReceivedReward': {
@@ -27,8 +28,8 @@ const translateEvent = (event, viewer) => {
       const { action } = incentive
 
       return reward.value === incentive.value
-        ? <span>{name(lead.user, viewer)} got a full {valuta(reward.value)} reward because <Link to={actor.id}>{name(actor.user)}</Link> {action.name}.</span>
-        : <span>{name(lead.user, viewer)} got a {valuta(reward.value)} cut of the original {valuta(incentive.value)} reward because <Link to={actor.id}>{name(actor.user)}</Link> {action.name}.</span>
+        ? <Text m={0}>{name(lead.user, viewer)} got a full {valuta(reward.value)} reward because <Link to={actor.id}>{name(actor.user)}</Link> {action.name}.</Text>
+        : <Text m={0}>{name(lead.user, viewer)} got a {valuta(reward.value)} cut of the original {valuta(incentive.value)} reward because <Link to={actor.id}>{name(actor.user)}</Link> {action.name}.</Text>
     }
 
     default:

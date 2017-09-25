@@ -7,6 +7,7 @@ import Header from './UI/Header'
 import TextInput from './UI/TextInput'
 import Quote from './UI/Quote'
 import Score from './UI/Score'
+import Avatar from './UI/Avatar'
 
 const SearchBox = styled.div`
   background: #ddd;
@@ -42,11 +43,18 @@ export default ({ view, loading, leads = [] }) => loading ? null : (
 
       <Row key={lead.hash}>
         <ClickableBox width={[1, 2/8]} pt={1} onClick={ () => view(lead.id) }>
-          <Name>{lead.user.name}</Name>
-          <Email>{lead.user.email}</Email>
+          <Avatar mt={1} mr={1}>AT</Avatar>
+          <Box>
+            <Name>{lead.user.name}</Name>
+            <Email>{lead.user.email}</Email>
+          </Box>
         </ClickableBox>
         <ClickableBox width={[1, 3/8]} pt={1} fontSize={0} color={`pencil+++`} onClick={ () => view(lead.id) }>
-          { lead.parent && <Quote from={lead.parent.user.name} text={lead.motivation} /> }
+          { lead.parent && <Quote
+            id={lead.parent.user.id}
+            name={lead.parent.user.name}
+            text={lead.motivation}
+          /> }
         </ClickableBox>
         <Box width={[1, 1/8]} pt={1}>
           { lead.score && <Score value={lead.score} /> }

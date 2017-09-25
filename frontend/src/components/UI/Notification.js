@@ -1,6 +1,5 @@
 import React from 'react'
 import Box from './Box'
-import MaxBox from './MaxBox'
 import Text from './Text'
 
 const getStatusProps = status => {
@@ -21,7 +20,7 @@ const getStatusProps = status => {
 
     case 'positive':
       return {
-        bg: 'green',
+        bg: 'grass',
         color: 'bleech'
       }
 
@@ -46,17 +45,15 @@ const getStatusProps = status => {
 }
 
 export default ({ text, status, close }) => (
-  <MaxBox>
-    <Box width={1} p={1} mb={1} { ...getStatusProps(status) }>
-      <Box width={4/5}>
-        { typeof(text) === 'string'
-          ? <Text m={0}>{text}</Text>
-          : text
-        }
-      </Box>
-      <Box width={1/5} textAlign={`right`}>
-        <Text onClick={close} m={0}>X</Text>
-      </Box>
+  <Box width={1} p={1} mb={1} { ...getStatusProps(status) }>
+    <Box width={4/5}>
+      { typeof(text) === 'string'
+        ? <Text m={0}>{text}</Text>
+        : text
+      }
     </Box>
-  </MaxBox>
+    <Box width={1/5} textAlign={`right`}>
+      <Text onClick={close} m={0}>X</Text>
+    </Box>
+  </Box>
 )

@@ -3,7 +3,7 @@ import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { reduxForm } from 'redux-form'
 import Account from './Account'
-import { notify } from '../redux/notifications'
+import WithNotification from './WithNotification'
 
 const updateAccount = gql(`
   mutation updateAccount($input: UpdateUserInput) {
@@ -65,15 +65,9 @@ const WithMutation = graphql(updateAccount, {
 })
 
 
-const mapDispatchToProps = dispatch => ({
-  notify: (text, status) => dispatch(notify({ text, status }))
-})
-
-const WithRedux = connect(null, mapDispatchToProps)
-
 export default compose(
   WithQuery,
-  WithRedux,
+  WithNotification,
   WithMutation,
   WithReduxForm,
 )(Account)

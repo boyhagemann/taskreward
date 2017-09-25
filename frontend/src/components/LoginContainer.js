@@ -5,6 +5,7 @@ import { reduxForm } from 'redux-form'
 import { push } from 'react-router-redux'
 import Login from './Login'
 import LoginMutation from '../mutations/Login'
+import { notify } from '../redux/notifications'
 
 
 const WithReduxForm = reduxForm({
@@ -14,7 +15,8 @@ const WithReduxForm = reduxForm({
 
 
 const mapDispatchToProps = dispatch => ({
-  redirect: () => dispatch(push('/dashboard'))
+  redirect: () => dispatch(push('/dashboard')),
+  notify: (text) => dispatch(notify({ }))
 })
 
 const WithRedux = connect(null, mapDispatchToProps)

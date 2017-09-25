@@ -7,112 +7,93 @@ import FieldWrapper from '../UI/FieldWrapper'
 import TextInput from '../UI/TextInput'
 import TextArea from '../UI/TextArea'
 import Box from '../UI/Box'
+import SubHeading from '../UI/SubHeading'
+import Header from './Header'
 
 const isRequired = value => value ? undefined : 'This field is required'
 
-const Header = props => <Box width={1} p={2} bg={`night`} color={`bleech`} { ...props } />
-
-const Heading = styled.h3`
-  margin: 0;
-`
-
-const HeaderActions = styled(props => <Box width={1/12} { ...props } />)`
-  text-align: right;
-`
-
-const Close = styled.span`
-  cursor: pointer;
-`
-
 export default ({ handleSubmit, close, lead }) => (
   <div>
-    <Header>
-      <Box width={11/12}>
-        <Heading>Recommend a friend</Heading>
-      </Box>
-      <HeaderActions>
-        <Close onClick={close}>X</Close>
-      </HeaderActions>
-    </Header>
-      <Flex direction={['column', 'column', 'row']}>
-        <Box width={[1, 1, 2/3]} py={2}>
-          <form onSubmit={handleSubmit}>
-            <Box width={1}>
-              <Box width={[1, 2/5]} pl={2} pr={1}>
-                <Field
-                  component={FieldWrapper}
-                  field={TextInput}
-                  label={`First name`}
-                  type="text"
-                  name={`firstName`}
-                  placeholder=""
-                  validate={[isRequired]}
-                />
-              </Box>
-              <Box width={[1, 1/5]} px={1}>
-                <Field
-                  component={FieldWrapper}
-                  field={TextInput}
-                  label={`Middle name`}
-                  type="text"
-                  name={`middleName`}
-                  placeholder=""
-                />
-              </Box>
-              <Box width={[1, 2/5]} pl={1} pr={2}>
-                <Field
-                  component={FieldWrapper}
-                  field={TextInput}
-                  label={`Last name`}
-                  type="text"
-                  name={`lastName`}
-                  placeholder=""
-                  validate={[isRequired]}
-                />
-              </Box>
-              <Box width={1} px={2}>
-                <Field
-                  component={FieldWrapper}
-                  field={TextInput}
-                  label={`Email address`}
-                  type="text"
-                  name={`email`}
-                  placeholder="Email address..."
-                  validate={[isRequired]}
-                />
-              </Box>
-              <Box width={1} px={2}>
-                <Field
-                  component={FieldWrapper}
-                  label={`Telephone`}
-                  field={TextInput}
-                  type="text"
-                  name={`telephone`}
-                  placeholder="Telephone..." />
-              </Box>
-              <Box width={1} px={2}>
-                <Field
-                  component={FieldWrapper}
-                  label={`Motivation`}
-                  field={TextArea}
-                  type="text"
-                  name={`motivation`}
-                  placeholder="Tell us more why this person might be interested..." />
-              </Box>
+    <Header title="Recommend a friend" close={close} />
+    <Flex direction={['column', 'column', 'row']}>
+      <Box width={[1, 1, 2/3]} py={2}>
+        <form onSubmit={handleSubmit}>
+          <Box width={1}>
+            <Box width={[1, 2/5]} pl={2} pr={1}>
+              <Field
+                component={FieldWrapper}
+                field={TextInput}
+                label={`First name`}
+                type="text"
+                name={`firstName`}
+                placeholder=""
+                validate={[isRequired]}
+              />
             </Box>
-          <Box width={1} px={2}>
-            <Button primary onClick={ () => {} }>Recommend this person</Button>
+            <Box width={[1, 1/5]} px={1}>
+              <Field
+                component={FieldWrapper}
+                field={TextInput}
+                label={`Middle name`}
+                type="text"
+                name={`middleName`}
+                placeholder=""
+              />
+            </Box>
+            <Box width={[1, 2/5]} pl={1} pr={2}>
+              <Field
+                component={FieldWrapper}
+                field={TextInput}
+                label={`Last name`}
+                type="text"
+                name={`lastName`}
+                placeholder=""
+                validate={[isRequired]}
+              />
+            </Box>
+            <Box width={1} px={2}>
+              <Field
+                component={FieldWrapper}
+                field={TextInput}
+                label={`Email address`}
+                type="text"
+                name={`email`}
+                placeholder="Email address..."
+                validate={[isRequired]}
+              />
+            </Box>
+            <Box width={1} px={2}>
+              <Field
+                component={FieldWrapper}
+                label={`Telephone`}
+                field={TextInput}
+                type="text"
+                name={`telephone`}
+                placeholder="Telephone..." />
+            </Box>
+            <Box width={1} px={2}>
+              <Field
+                component={FieldWrapper}
+                label={`Motivation`}
+                field={TextArea}
+                type="text"
+                name={`motivation`}
+                placeholder="Tell us more why this person might be interested..." />
+            </Box>
           </Box>
-        </form>
-      </Box>
-      <Box width={[1, 1, 1/3]} bg={'canvas'} p={2}>
-        <Heading>Already invited</Heading>
-        { lead && lead.invited.map( invited => (
-          <Box key={invited.id} width={1} pt={2}>
-            <a>{ invited.user.name }</a>
-          </Box>
-        ) )}
-      </Box>
-    </Flex>
+        <Box width={1} px={2}>
+          <Button primary onClick={ () => {} }>Recommend this person</Button>
+        </Box>
+      </form>
+    </Box>
+    <Box width={[1, 1, 1/3]} bg={'canvas'} p={2}>
+      <SubHeading>Already invited</SubHeading>
+      { lead && lead.invited.map( invited => (
+        <Box key={invited.id} width={1} pt={2}>
+          <a>{ invited.user.name }</a>
+        </Box>
+      ) )}
+    </Box>
+  </Flex>
   </div>
 )

@@ -14,6 +14,6 @@ export default ({ text, date, actions }) => (
         <Moment fromNow interval={1000}>{date}</Moment>
       </Box>
     </Box>
-    { actions && <Box mt={1} width={[1, 1/5]} textAlign={['left', 'right']}>{ actions }</Box> }
+    { actions && <Box width={[1, 1/5]} textAlign={['left', 'right']}>{ actions }</Box> }
   </Box>
 )
