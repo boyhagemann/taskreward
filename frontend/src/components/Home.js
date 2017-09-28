@@ -8,6 +8,7 @@ import Text from './UI/Text'
 import SubHeading from './UI/SubHeading'
 import Button from './UI/Button'
 import Visual from './UI/Visual'
+import Page from './UI/Page'
 import crowd from '../assets/images/crowd-1.jpeg'
 
 const Payoff = Box.extend`
@@ -20,6 +21,7 @@ const Info = props => <Box p={1} { ...props } />
 
 export default ({ windowSize }) => (
   <div>
+    <Page title="Home" />
     <Visual image={crowd} height={windowSize.height - 200}>
       <MaxBox>
         <Payoff mt={windowSize.height - 500} px={1}>

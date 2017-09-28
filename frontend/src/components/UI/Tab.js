@@ -14,7 +14,6 @@ const Tab = ({ component: Component = NavLink, activeColor, activeBg, ...props }
 const StyledTab = styled(Tab)`
   display: inline-block;
   margin-right: 3px;
-  padding: 10px;
   text-decoration: none;
   ${space}
   ${width}
@@ -27,4 +26,4 @@ const StyledTab = styled(Tab)`
   }
 `
 
-export default props => <StyledTab color={`pencil++++`} activeColor={`night`} { ...props } />
+export default props => <StyledTab p={2} color={`pencil++++`} activeColor={`night`} { ...props } />

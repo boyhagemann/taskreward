@@ -1,11 +1,11 @@
-import { session, transformOne, transformMany, uuid, handleError, cookieExists, getUserFromCookie, } from './helpers'
+import { session, transformOne, transformMany, uuid, handleError, cookieExists, getUserFromCookie, randomColor } from './helpers'
 import { getUserByLead, createUserFromSession } from './User'
 import { getProfileByLead } from './Profile'
 import { getEventsForLead, getEventsForLeadAndType, createEvent } from './Event'
 import { unique } from 'shorthash'
 import moment from 'moment'
 
-export const createLead = ({ id, user, parent, hash, source, motivation, status, score }) => session
+export const createLead = ({ id, user, parent, hash, source, motivation, status, score, color }) => session
   .run(`
     MATCH (b:Lead { id: $parent })
     MATCH (c:User { id: $user })
@@ -25,6 +25,7 @@ export const createLead = ({ id, user, parent, hash, source, motivation, status,
         motivation,
         status,
         score,
+        color: color || randomColor(),
       },
     }
   )

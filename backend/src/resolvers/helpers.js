@@ -1,6 +1,7 @@
 import neo4j from 'neo4j-driver'
 export { default as uuid } from 'uuid/v4'
 import crypto from 'crypto'
+import Color from 'color'
 
 const driver = neo4j.driver('bolt://neo4j:7687', neo4j.auth.basic('neo4j', 'admin'))
 export const session = driver.session()
@@ -63,3 +64,20 @@ export const encrypt = (string, salt) => crypto
   .createHmac('sha512', salt)
   .update(string)
   .digest('hex')
+
+
+
+export const range = (start, end) => [ ...Array(1 + end - start).keys() ].map( v => start + v )
+
+export const pick = items => items[Math.floor(Math.random()*items.length)]
+
+export const randomColor = () => {
+
+  const set = range(70, 180)
+
+  return Color({
+    r: pick(set),
+    g: pick(set),
+    b: pick(set)
+  }).hex()
+}

@@ -14,7 +14,7 @@ import Text from './UI/Text'
 import Icon from './UI/Icon'
 import Loading from './Loading'
 import Avatar from './UI/Avatar'
-import { randomColor } from '../utils/colors'
+import Color from 'color'
 
 const Breadcrumb = props => <Box width={1} px={1} py={2} { ...props } />
 
@@ -27,8 +27,6 @@ const Profile = props => <Box width={1} p={1} mb={1} { ...props } />
 const Actions = props => <Box width={1} mb={1} { ...props } />
 const StyledTab = props => <Tab p={2} color={`pencil+++`} activeColor={`night`}activeBorder={`ocean`}  { ...props } />
 
-const color = randomColor()
-
 export default class extends Component {
 
   componentDidMount() {
@@ -38,6 +36,8 @@ export default class extends Component {
   render() {
 
     const { loading, viewer, profile, openAssignActionModal } = this.props
+
+    const color = profile && Color(profile.lead.color)
 
     return loading ? <Loading /> : (
       <div>
@@ -55,7 +55,6 @@ export default class extends Component {
         <Box width={1} bg={color.hex()}>
           <MaxBox>
             <Box width={[1]} px={1} py={4} textAlign={['center', 'center', 'left']}>
-
 
               <Profile width={[1, 1/2]}>
                 <Avatar

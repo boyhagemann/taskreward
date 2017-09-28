@@ -14,6 +14,7 @@ type Lead {
   parents: [Lead]
   status: String
   source: String
+  color: String
   depth: Int
   score: Float
   invited: [Lead]

@@ -8,6 +8,7 @@ import TextInput from './UI/TextInput'
 import Quote from './UI/Quote'
 import Score from './UI/Score'
 import Avatar from './UI/Avatar'
+import Page from './UI/Page'
 
 const SearchBox = styled.div`
   background: #ddd;
@@ -33,6 +34,7 @@ const ClickableBox = styled(Box)`
 
 export default ({ view, loading, leads = [] }) => loading ? null : (
   <MaxBox>
+    <Page title="Leads" />
     <Header
       title={`Leads`}
     />
@@ -43,7 +45,7 @@ export default ({ view, loading, leads = [] }) => loading ? null : (
 
       <Row key={lead.hash}>
         <ClickableBox width={[1, 2/8]} pt={1} onClick={ () => view(lead.id) }>
-          <Avatar mt={1} mr={1}>AT</Avatar>
+          <Avatar mt={1} mr={1} bg={lead.color}>AT</Avatar>
           <Box>
             <Name>{lead.user.name}</Name>
             <Email>{lead.user.email}</Email>

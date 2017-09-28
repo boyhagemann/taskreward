@@ -19,6 +19,7 @@ query LeadContainer($id: ID!) {
       lead(id: $id) {
         id
         source
+        color
         createdAt
         user {
           id
@@ -27,6 +28,7 @@ query LeadContainer($id: ID!) {
         }
         parent {
           id
+          color
           user {
             id
             name
@@ -35,6 +37,7 @@ query LeadContainer($id: ID!) {
         parents {
           id
           source
+          color
           createdAt
           user {
             id

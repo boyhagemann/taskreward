@@ -15,6 +15,7 @@ const WithQuery = graphql(gql`
           hash
           motivation
           score
+          color
           parent {
             id
             user {
