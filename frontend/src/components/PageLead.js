@@ -16,7 +16,7 @@ import Loading from './Loading'
 import Avatar from './UI/Avatar'
 import Color from 'color'
 
-const Breadcrumb = props => <Box width={1} px={1} py={2} { ...props } />
+const Breadcrumb = props => <Box width={1} px={1} py={3} { ...props } />
 
 const Name = props => <Box fontSize={5} { ...props } />
 const Email = props => <Box fontSize={1} color={`pencil+++`} { ...props } />
@@ -54,7 +54,7 @@ export default class extends Component {
 
         <Box width={1} bg={color.hex()}>
           <MaxBox>
-            <Box width={[1]} px={1} py={4} textAlign={['center', 'center', 'left']}>
+            <Box width={[1]} px={1} py={120} textAlign={['center', 'center', 'left']}>
 
               <Profile width={[1, 1/2]}>
                 <Avatar

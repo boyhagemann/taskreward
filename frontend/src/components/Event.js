@@ -15,7 +15,7 @@ const propsByEvent = (event, viewer) => {
     case 'ViewedProfile': {
       const { lead } = event
       return {
-        icon: 'power',
+        icon: 'eye',
         text: <Text m={0}>{name(lead.user, viewer)} viewed page {lead.profile.name}.</Text>
       }
     }

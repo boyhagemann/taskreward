@@ -63,13 +63,13 @@ export default class extends Component {
     return (
       <Bar bg={`bleech`} pt={2} pb={0}>
         <MaxBox>
-          <Box width={[1, 2/12]} mt={`-3px`} px={1} color={`night+++`}>
+          <Box width={[1, 3/12]} mt={`-3px`} px={1} color={`night+++`}>
             <Logo />
           </Box>
-          <Box width={[1, 8/12]} color={`night+++`} px={1}>
+          <Box width={[1, 6/12]} color={`night+++`} px={1}>
             { name && items.map(renderItem) }
           </Box>
-          <Account width={[1, 2/12]} px={1}>
+          <Account width={[1, 3/12]} px={1}>
             { name
               ? (
                 <div>

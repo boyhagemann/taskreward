@@ -2,6 +2,7 @@ import React from 'react'
 import Box from '../UI/Box'
 import { name } from '../../utils/text'
 import Message from '../UI/Message'
+import Text from '../UI/Text'
 
 const translateLead = (lead, viewer) => {
 
@@ -16,7 +17,14 @@ const translateLead = (lead, viewer) => {
 
 }
 
-const renderLead = (lead, viewer) => <Message key={lead.id} text={translateLead(lead, viewer)} date={lead.createdAt} />
+const renderLead = (lead, viewer) => (
+  <Message
+    key={lead.id}
+    text={<Text m={0}>{translateLead(lead, viewer)}</Text>}
+    icon="eye"
+    date={lead.createdAt}
+  />
+)
 
 export default ({ viewer, lead }) => (
   <div>
