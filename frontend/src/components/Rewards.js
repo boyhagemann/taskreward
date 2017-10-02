@@ -6,6 +6,7 @@ import Header from './UI/Header'
 import Text from './UI/Text'
 import Message from './UI/Message'
 import Button from './UI/Button'
+import Icon from './UI/Icon'
 import Moment from 'react-moment'
 import { valuta } from '../utils/numbers'
 
@@ -15,7 +16,9 @@ export default ({ loading, viewer, rewards = [], total, currency, canRequestPaym
       title={'Rewards'}
       actions={[
         canRequestPayment
-          ? <Button key="request-payment" onClick={ () => createPayment(viewer.id)} positive>Request payment for {valuta(total)} euro</Button>
+          ? <Button key="request-payment" onClick={ () => createPayment(viewer.id)} positive>
+            <Icon name="money" size={4} color={'bleech'} opacity={0.5} mr={1} />Request payment for {valuta(total)} euro
+          </Button>
           : <Text key="not-enough">{valuta(total)} {currency} is not enough to request a payment.</Text>
       ]}
     />

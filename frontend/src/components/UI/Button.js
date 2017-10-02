@@ -19,7 +19,6 @@ const Button = styled(Component)`
   box-sizing: border-box;
   cursor: pointer;
   text-decoration: none;
-  border-radius: 5px;
 
   &:focus {
     outline:0;
