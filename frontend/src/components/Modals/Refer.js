@@ -96,7 +96,8 @@ export default ({ handleSubmit, close, lead }) => (
           iconColor={invited.color}
           key={invited.id}
           date={invited.createdAt}
-          text={<Text m={0}>invited.user.name</Text>}
+          bg={`canvas-`}
+          text={<Text m={0}>{invited.user.name}</Text>}
         />
       ) )}
     </Box>

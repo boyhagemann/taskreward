@@ -15,7 +15,7 @@ const Button = styled(Component)`
   ${fontSize}
   ${color}
   border: 1px solid ${borderColor};
-  display: inline-box;
+  display: inline-block;
   box-sizing: border-box;
   cursor: pointer;
   text-decoration: none;

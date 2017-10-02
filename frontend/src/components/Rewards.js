@@ -4,12 +4,10 @@ import MaxBox from './UI/MaxBox'
 import Box from './UI/Box'
 import Header from './UI/Header'
 import Text from './UI/Text'
+import Message from './UI/Message'
 import Button from './UI/Button'
 import Moment from 'react-moment'
 import { valuta } from '../utils/numbers'
-
-
-const Item = props => <Box width={1} bg={`bleech`} mb={2} p={1} { ...props } />
 
 export default ({ loading, viewer, rewards = [], total, currency, canRequestPayment, createPayment }) => loading ? null : (
   <MaxBox>
@@ -23,13 +21,17 @@ export default ({ loading, viewer, rewards = [], total, currency, canRequestPaym
     />
     { rewards.length
       ? rewards.map(reward => (
-      <Item key={reward.id}>
-        <SubHeading>{ reward.incentive.name }</SubHeading>
-        <p>You got a <strong>{valuta(reward.value)}</strong> euro reward for completing <strong>{reward.incentive.name}</strong> because you {reward.incentive.action.name}.</p>
-        <div>
-          <Moment fromNow interval={1000}>{reward.createdAt}</Moment>
-        </div>
-      </Item>
+      <Message
+        icon="reward"
+        iconColor={`beach`}
+        key={reward.id}
+        text={
+          <Text m={0}>
+            <Text m={0}>For { reward.incentive.name }, you got a <strong>{valuta(reward.value)}</strong> euro reward for completing <strong>{reward.incentive.name}</strong> because you {reward.incentive.action.name}.</Text>
+          </Text>
+        }
+        date={reward.createdAt}
+      />
     ))
     : (
       <Box width={1}>

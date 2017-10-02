@@ -8,6 +8,7 @@ import MaxBox from './UI/MaxBox'
 import Box from './UI/Box'
 import Card from './UI/Card'
 import Visual from './UI/Visual'
+import Icon from './UI/Icon'
 import { redirectUrl } from '../utils/routes'
 import { valuta } from '../utils/numbers'
 
@@ -38,19 +39,23 @@ export default ({ handleSubmit, loading, hash, profile, action, windowSize, open
     <Visual image={background} height={windowSize.height - 70}>
       <VisualText color={`bleech`}>
         <MaxBox>
-          <Box width={[1, 3/5]}>
+          <Box width={[1, 3/4]}>
             <Heading fontSize={7}>{ profile.name }</Heading>
           </Box>
 
-          <VisualAction width={[1, 2/5]}>
+          <VisualAction width={[1, 1/4]}>
             <Button
+              width={1}
               mt={3}
               primary
               huge
               onClick={openReferModal}
             >
-              <Text m={0}>Recommend a friend</Text>
-              <Text m={0} color={`ocean+++`} fontSize={1}>You will be rewarded!</Text>
+              <Icon width={1/5} color={`ocean---`} name="thumbsup" size={6} pt={1} />
+              <Box width={4/5} textAlign="left" pl={1}>
+                <Text m={0}>Recommend a friend</Text>
+                <Text m={0} color={`bleech`} opacity={0.5} fontSize={1}>You will be rewarded!</Text>
+              </Box>
             </Button>
           </VisualAction>
         </MaxBox>
