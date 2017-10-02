@@ -1,14 +1,21 @@
 import { compose } from 'redux'
 import { gql, graphql } from 'react-apollo'
 import { reduxForm } from 'redux-form'
-import id from 'uuid/v4'
 import Refer from './Refer'
-import WithCreateUserAndLead from '../../mutations/CreateUserAndLead'
+import CreateUserMutation from '../../mutations/CreateUser'
+import CreateLeadMutation from '../../mutations/CreateLead'
 
 const ReduxForm = reduxForm({
   form: 'refer',
-  onSubmit: (values, _, { createUserAndLead, properties: { hash } }) => {
-    createUserAndLead({ ...values, hash, user: id() })
+  onSubmit: (values, _, { createUser, createLead, lead: { id } }) => {
+
+    const { firstName, middleName, lastName, email, telephone } = values
+
+    createUser({ firstName, middleName, lastName, email, telephone })
+      .then( response => createLead({
+         parent: id,
+         user: response.data.createUser.id,
+      }))
   }
 })
 
@@ -16,6 +23,7 @@ const ReduxForm = reduxForm({
 const profileQuery = gql`
 query Lead($hash: String!) {
   lead(hash: $hash) {
+    id
     invited {
       id
       user {
@@ -43,6 +51,7 @@ const WithQuery = graphql(profileQuery, {
 
 export default compose(
   WithQuery,
-  WithCreateUserAndLead,
+  CreateUserMutation,
+  CreateLeadMutation,
   ReduxForm
 )(Refer)

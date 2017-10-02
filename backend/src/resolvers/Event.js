@@ -4,7 +4,7 @@ import moment from 'moment'
 import pubsub from '../configuration/pubsub'
 
 
-export const createEvent = ({ id, type, user, root, lead, profile, action, incentive, reward }) => {
+export const createEvent = ({ id, type, user, lead, friend, profile, action, incentive, reward }) => {
 
   const query = [
     `CREATE (event:Event $event)`,
@@ -18,13 +18,13 @@ export const createEvent = ({ id, type, user, root, lead, profile, action, incen
     `)
   }
 
-  // if(root) {
-  //   query.push(`
-  //     WITH event
-  //     MATCH (root:Lead { id: $root })
-  //     CREATE (root)-[:HAS_EVENT]->(event)
-  //   `)
-  // }
+  if(friend) {
+    query.push(`
+      WITH event
+      MATCH (friend:Lead { id: $friend })
+      CREATE (friend)-[:HAS_EVENT]->(event)
+    `)
+  }
 
   if(lead) {
     query.push(`
@@ -97,6 +97,14 @@ export const createEvent = ({ id, type, user, root, lead, profile, action, incen
   })
   .catch(handleError)
 }
+
+export const viewedProfile = lead => createEvent({
+  type: 'VIEWED_PROFILE', lead, action: 'action.viewed-profile', // @TODO Make this a constant
+})
+
+export const invitedFriend = (lead, friend) => createEvent({
+  type: 'INVITED_FRIEND', lead, friend, action: 'action.invited-friend', // @TODO Make this a constant
+})
 
 export const getEventsForLead = id => session
   .run(`

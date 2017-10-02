@@ -8,12 +8,15 @@ import WithWindowSize from './WithWindowSize'
 const profileQuery = gql`
 query Profile($hash: String!) {
   lead(hash: $hash) {
+    id
     invited {
       user {
+        id
         name
       }
     }
     profile {
+      id
       name
       description
       incentives {

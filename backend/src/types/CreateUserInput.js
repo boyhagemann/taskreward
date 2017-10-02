@@ -1,7 +1,6 @@
 
 export default `
 input CreateUserInput {
-  id: ID!
   email: Email
   password: String
   role: String

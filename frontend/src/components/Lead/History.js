@@ -22,6 +22,7 @@ const renderLead = (lead, viewer) => (
     key={lead.id}
     text={<Text m={0}>{translateLead(lead, viewer)}</Text>}
     icon="eye"
+    iconColor='ocean'
     date={lead.createdAt}
   />
 )

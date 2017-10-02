@@ -16,6 +16,7 @@ const propsByEvent = (event, viewer) => {
       const { lead } = event
       return {
         icon: 'eye',
+        iconColor: 'ocean',
         text: <Text m={0}>{name(lead.user, viewer)} viewed page {lead.profile.name}.</Text>
       }
     }
@@ -23,6 +24,8 @@ const propsByEvent = (event, viewer) => {
     case 'PerformedAction': {
       const { lead, action } = event
       return {
+        icon: 'success',
+        iconColor: 'grass',
         text: <Text m={0}>{name(lead.user, viewer)} <bold>{action.name}</bold></Text>
       }
     }
@@ -32,15 +35,11 @@ const propsByEvent = (event, viewer) => {
       const { actor } = reward
       const { action } = incentive
 
-      return reward.value === incentive.value
-        ? {
-          icon: 'cogwheel',
-          text: <Text m={0}>{name(lead.user, viewer)} got a full {valuta(reward.value)} reward because <Link to={actor.id}>{name(actor.user)}</Link> {action.name}.</Text>
-        }
-        : {
-          icon: 'cogwheel',
-          text: <Text m={0}>{name(lead.user, viewer)} got a {valuta(reward.value)} cut of the original {valuta(incentive.value)} reward because <Link to={actor.id}>{name(actor.user)}</Link> {action.name}.</Text>
-        }
+      const text =  reward.value === incentive.value
+        ? <Text m={0}>{name(lead.user, viewer)} got a full {valuta(reward.value)} reward because <Link to={actor.id}>{name(actor.user)}</Link> {action.name}.</Text>
+        : <Text m={0}>{name(lead.user, viewer)} got a {valuta(reward.value)} cut of the original {valuta(incentive.value)} reward because <Link to={actor.id}>{name(actor.user)}</Link> {action.name}.</Text>
+
+      return { text, icon: 'reward', iconColor: 'beach'}
     }
 
     default:

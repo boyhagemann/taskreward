@@ -1,7 +1,7 @@
 import { session, transformOne, transformMany, uuid, handleError, cookieExists, getUserFromCookie, randomColor } from './helpers'
 import { getUserByLead, createUserFromSession } from './User'
 import { getProfileByLead } from './Profile'
-import { getEventsForLead, getEventsForLeadAndType, createEvent } from './Event'
+import { getEventsForLead, getEventsForLeadAndType, viewedProfile, invitedFriend } from './Event'
 import { unique } from 'shorthash'
 import moment from 'moment'
 
@@ -31,14 +31,22 @@ export const createLead = ({ id, user, parent, hash, source, motivation, status,
   )
   .then(result => transformOne(result, session))
   .then(lead => {
-    createEvent({
-      type: 'VIEWED_PROFILE',
-      lead: lead.id,
-      action: 'action.viewed-profile', // @TODO Make this a constant
-    })
+    
+    switch(source) {
+
+      case 'invitation':
+        invitedFriend(parent, lead.id)
+        break;
+
+      default: viewedProfile(lead.id)
+
+    }
+
     return lead
   })
   .catch(handleError)
+
+
 
 export const getLeads = () => session
   .run(`

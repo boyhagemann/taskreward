@@ -1,11 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import { space, width, fontSize, color } from 'styled-system'
+import { space, width, fontSize, color, removeProps } from 'styled-system'
 
 const colorHover = props => color({ ...props, color: props.hoverColor })
 
-const StyledLink = styled(Link)`
+const PureLink = ({ hoverColor, ...props }) => <Link { ...removeProps(props) } />
+
+const StyledLink = styled(PureLink)`
   display: inline-block;
   vertical-align: top;
   box-sizing: border-box;

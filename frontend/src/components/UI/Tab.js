@@ -7,7 +7,7 @@ import { NavLink } from 'react-router-dom'
 const colorActive = props => color({ ...props, color: props.activeColor, bg: props.activeBg })
 const borderActive = props => color({ ...props, color: props.activeBorder })
 
-const Tab = ({ component: Component = NavLink, activeColor, activeBg, ...props }) => {
+const Tab = ({ component: Component = NavLink, activeColor, activeBg, activeBorder, ...props }) => {
   return <Component { ...removeProps(props) } />
 }
 

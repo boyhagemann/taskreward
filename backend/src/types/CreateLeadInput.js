@@ -1,7 +1,7 @@
 
 export default `
 input CreateLeadInput {
-  hash: String!
+  parent: String!
   user: ID!
   source: String
   color: String
