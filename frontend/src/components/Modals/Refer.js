@@ -7,7 +7,9 @@ import FieldWrapper from '../UI/FieldWrapper'
 import TextInput from '../UI/TextInput'
 import TextArea from '../UI/TextArea'
 import Box from '../UI/Box'
+import Message from '../UI/Message'
 import SubHeading from '../UI/SubHeading'
+import Text from '../UI/Text'
 import Header from './Header'
 
 const isRequired = value => value ? undefined : 'This field is required'
@@ -89,9 +91,13 @@ export default ({ handleSubmit, close, lead }) => (
     <Box width={[1, 1, 1/3]} bg={'canvas'} p={2}>
       <SubHeading>Already invited</SubHeading>
       { lead && lead.invited.map( invited => (
-        <Box key={invited.id} width={1} pt={2}>
-          <a>{ invited.user.name }</a>
-        </Box>
+        <Message
+          avatar={`BY`}
+          iconColor={invited.color}
+          key={invited.id}
+          date={invited.createdAt}
+          text={<Text m={0}>invited.user.name</Text>}
+        />
       ) )}
     </Box>
   </Flex>

@@ -26,6 +26,8 @@ query Lead($hash: String!) {
     id
     invited {
       id
+      createdAt
+      color
       user {
         id
         name

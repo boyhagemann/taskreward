@@ -5,10 +5,11 @@ import Moment from 'react-moment'
 import Avatar from '../UI/Avatar'
 import Icon from '../UI/Icon'
 
-export default ({ icon, iconColor = `pencil++++`, text, date, actions }) => (
+export default ({ icon, iconColor = `pencil++++`, avatar, text, date, actions }) => (
   <Box width={1} bg={`bleech`} p={1} mb={1}>
     <Box width={[1, 4/5]}>
       { icon && <Icon name={icon} size={5} color={iconColor} mt={1} mr={2} /> }
+      { avatar && <Avatar size={5} color={iconColor} mt={1} mr={2}>{avatar}</Avatar> }
       <Box>
       { text }
         <Box mt={1} fontSize={0} color={'pencil+++'}>
