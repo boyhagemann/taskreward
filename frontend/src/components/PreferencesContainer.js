@@ -1,5 +1,6 @@
 import { gql, graphql } from 'react-apollo'
 import { compose } from 'redux'
+import { reduxForm } from 'redux-form'
 import Preferences from './Preferences'
 
 const WithQuery = graphql(gql`
@@ -15,6 +16,14 @@ const WithQuery = graphql(gql`
   })
 })
 
+const ReduxForm = reduxForm({
+  form: 'preferences',
+  onSubmit: values => {
+    console.log(values)
+  }
+})
+
 export default compose(
   WithQuery,
+  ReduxForm,
 )(Preferences)

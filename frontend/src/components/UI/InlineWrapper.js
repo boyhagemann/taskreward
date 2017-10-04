@@ -23,22 +23,18 @@ const Warning = Message.extend`
 
 const Description = props => <Text mt={1} mb={2} fontSize={0} color={'pencil++++'} { ...props} />
 
-export default ({ field: Component, input, type, label, description, placeholder, meta = {}, wrapper = {}, ...fieldProps }) => {
+export default ({ field: Component, input, label, description, meta = {}, wrapper = {}, ...fieldProps }) => {
 
     const error = meta.touched && meta.error
     const warning = meta.touched && meta.warning
 
-    return <Wrapper width={1} mb={2} { ...wrapper }>
-      { label && <Label>{label}</Label> }
+    return <Wrapper mb={2} { ...wrapper }>
       <Box width={1}>
         <Component
           { ...input }
-          type={type}
-          placeholder={placeholder}
-          error={error}
-          warning={warning}
           { ...fieldProps }
         />
+        { label && <Label inline>{label}</Label> }
         { error && <Error>{error}</Error> }
         { warning && <Warning>{warning}</Warning> }
       </Box>

@@ -54,11 +54,11 @@ export default ({ windowSize }) => (
     </Box>
 
 
-    <Box width={1} bg={`canvas`}>
+    <Box width={1} bg={`night`} color={`bleech`}>
       <MaxBox>
         <Info width={[1, 1/2]} py={150}>
           <SubHeading fontSize={6} my={0}>Some subheading</SubHeading>
-          <Text fontSize={4}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eu euismod nunc, vel tristique mi. Cras lobortis mi purus, quis commodo ex euismod in. Nulla facilisi. Mauris ipsum enim, rhoncus sed velit in, fringilla hendrerit enim. Aliquam venenatis, dolor sed tincidunt eleifend, metus nisi pulvinar purus, ac sodales ipsum velit ac nisi. Sed lobortis ultrices lacus, quis lacinia nulla ornare sed. In in neque ante. </Text>
+          <Text fontSize={4} opacity={0.5}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eu euismod nunc, vel tristique mi. Cras lobortis mi purus, quis commodo ex euismod in. Nulla facilisi. Mauris ipsum enim, rhoncus sed velit in, fringilla hendrerit enim. Aliquam venenatis, dolor sed tincidunt eleifend, metus nisi pulvinar purus, ac sodales ipsum velit ac nisi. Sed lobortis ultrices lacus, quis lacinia nulla ornare sed. In in neque ante. </Text>
         </Info>
       </MaxBox>
     </Box>

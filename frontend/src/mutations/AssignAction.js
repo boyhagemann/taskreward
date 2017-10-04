@@ -10,13 +10,10 @@ const mutation = gql(`
 
 export default graphql(mutation, {
   props: ({ mutate, ownProps }) => ({
-    assignAction: (lead, action) => {
-      mutate({
-        variables: {
-          input: { lead, action },
-        }
-      })
-      .then( () => ownProps.notify('A new action is assigned to this person', 'positive'))
-    }
+    assignAction: (lead, action) => mutate({
+      variables: {
+        input: { lead, action },
+      }
+    })
   })
 })

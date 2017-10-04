@@ -1,5 +1,6 @@
 import { compose } from 'redux'
 import { gql, graphql } from 'react-apollo'
+import { reduxForm } from 'redux-form'
 import AssignAction from './AssignAction'
 import WithMutation from '../../mutations/AssignAction'
 import WithNotification from '../WithNotification'
@@ -20,6 +21,10 @@ query AssignActionContainer($id: ID!) {
       actions {
         id
         name
+        incentives {
+          id
+          value
+        }
       }
     }
   }
@@ -36,8 +41,22 @@ const WithQuery = graphql(actionQuery, {
   })
 })
 
+const ReduxForm = reduxForm({
+  form: 'assign-action',
+  onSubmit: ({ action }, _, { profile, assignAction, notify }) => {
+    assignAction(profile.lead.id, action)
+      .then(response => console.log(response))
+      .then(response => {
+        notify('A new action is assigned to this person', 'positive')
+        return response
+      })
+      .catch(error => console.error(error))
+  }
+})
+
 export default compose(
   WithNotification,
   WithMutation,
   WithQuery,
+  ReduxForm,
 )(AssignAction)

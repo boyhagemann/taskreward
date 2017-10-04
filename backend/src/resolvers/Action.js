@@ -86,7 +86,7 @@ export const getActionByEvent = id => session
 
 const createRewardsForActionAndLead = async ({action, lead, user }) => {
 
-  const incentives = await findIncentivesByAction(action) // @todo must have a value and must be within date range
+  const incentives = await findIncentivesByAction(action) || [] // @todo must have a value and must be within date range
   const parents = await findParents(lead, user)
 
   incentives.forEach( incentive => {
@@ -119,7 +119,7 @@ export const assignAction = ({ lead, action }, { user }) => session
   .then(result => transformOne(result, session))
   .then( () => createEvent({ type: 'PERFORMED_ACTION', lead, action }))
   .then( () => createRewardsForActionAndLead({ action, lead, user: user.id }))
-  .catch(handleError)
+  // .catch(handleError)
 
 
 export default {

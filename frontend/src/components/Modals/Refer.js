@@ -89,7 +89,7 @@ export default ({ handleSubmit, close, lead }) => (
       </form>
     </Box>
     <Box width={[1, 1, 1/3]} bg={'canvas'} p={2}>
-      <SubHeading>Already invited</SubHeading>
+      <SubHeading mt={0} fontSize={3}>Already invited</SubHeading>
       { lead && lead.invited.map( invited => (
         <Message
           avatar={`BY`}

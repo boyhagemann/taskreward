@@ -13,10 +13,10 @@ const StyledAvatar = Box.extend`
   height: ${ props => props.size }px;
 `
 
-export default props => {
+export default ({ size = 5, ...props }) => {
 
-  const size = fontSize({ fontSize: props.size}).fontSize
+  const dimension = fontSize({ fontSize: size}).fontSize
   const bg = color(props).color || randomColor().hex()
 
-  return <StyledAvatar p={1} bg={bg} { ...props } size={size} color={`bleech`}  />
+  return <StyledAvatar p={1} bg={bg} { ...props } size={dimension} color={`bleech`}  />
 }

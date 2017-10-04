@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import Box from '../UI/Box'
+import Icon from '../UI/Icon'
 
 
 const Header = props => <Box width={1} p={2} bg={`grass`} color={`bleech`} { ...props } />
@@ -23,7 +24,7 @@ export default ({ title, close }) => (
       <Heading>{ title }</Heading>
     </Box>
     <HeaderActions>
-      <Close onClick={close}>X</Close>
+      <Icon name="cross" color={`bleech`} opacity={0.5} pointer onClick={close} />
     </HeaderActions>
   </Header>
 )

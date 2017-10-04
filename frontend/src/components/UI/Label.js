@@ -7,7 +7,9 @@ const Label = styled.label`
   ${width}
   ${fontSize}
   ${color}
-  display: block;
+  display: ${ props => props.inline ? 'inline-block' : 'block' };
+  box-sizing: border-box;
+  cursor: pointer;
 `
 
 export default props => <Label color={`night`} mb={1} fontSize={2} { ...props } />

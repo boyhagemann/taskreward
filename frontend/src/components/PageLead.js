@@ -72,8 +72,14 @@ export default class extends Component {
 
               <Actions mt={2} width={[1, 1/2]}>
                 <Text color={`bleech`} opacity={0.5}>Came to the office on <Moment>{profile.lead.createdAt}</Moment></Text>
-                <Button positive mr={[0, 1]} onClick={openAssignActionModal}>Change status</Button>
-                <Button negative>Reject</Button>
+                <Button large positive mr={[0, 1]} onClick={openAssignActionModal}>
+                  <Icon name="success" size={2} color={`bleech`} opacity={0.5} mr={1} />
+                  Add activity...
+                </Button>
+                <Button large negative>
+                  <Icon name="cross" size={2} color={`bleech`} opacity={0.5} mr={1} />
+                  Reject
+                </Button>
               </Actions>
 
             </Box>

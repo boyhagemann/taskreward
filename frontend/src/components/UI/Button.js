@@ -40,13 +40,14 @@ export default styled(props => {
   }
 
   if(props.large) {
-      buttonProps.p = 2
-      buttonProps.fontSize = 2
+      buttonProps.py = 1
+      buttonProps.px = 2
+      buttonProps.fontSize = 3
   }
 
   if(props.huge) {
       buttonProps.p = 2
-      buttonProps.fontSize = 4
+      buttonProps.fontSize = 5
   }
 
   if(props.primary) {

@@ -50,6 +50,7 @@ export default ({ handleSubmit, remove, name }) => {
           label="This reward is fullfilled when a user..."
           component={FieldWrapper}
           field={TextInput}
+          placeholder={`Finish the sentence above, like "bought the product" or "came to the office"`}
           description={`
             This text will show up in the assign reward section.
           `}
