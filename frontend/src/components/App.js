@@ -67,7 +67,6 @@ class App extends Component {
                 </Switch>
 
                 <Content>
-                  <NotificationsContainer />
                   <Route exact path={`/`} component={HomeContainer}/>
                   <Route path={'/login'} component={GuestCanView(LoginContainer)} />
                   <Route path={'/logout'} component={Logout} />
@@ -90,7 +89,9 @@ class App extends Component {
 
                 <Footer />
 
+                <NotificationsContainer />
                 <ModalContainer />
+                
               </div>
             </ThemeProvider>
           </Router>

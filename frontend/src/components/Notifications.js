@@ -3,18 +3,23 @@ import Box from './UI/Box'
 import MaxBox from './UI/MaxBox'
 import Notification from './UI/Notification'
 
-const Notifications = props => <Box width={1} my={2} px={1} { ...props } />
+
+const PositionedBox = Box.extend`
+  position: fixed;
+  right: 0;
+  bottom: 0;
+`
+
+const Notifications = props => <PositionedBox width={400} mr={2} mb={2} { ...props } />
 
 export default ({ notifications = [], stop }) => notifications.length ? (
-  <MaxBox>
-    <Notifications>
-    { notifications.map(notification => (
-      <Notification
-        key={notification.id}
-        { ...notification }
-        close={ () => stop(notification.id) }
-      />
-    )) }
-    </Notifications>
-  </MaxBox>
+  <Notifications>
+  { notifications.map(notification => (
+    <Notification
+      key={notification.id}
+      { ...notification }
+      close={ () => stop(notification.id) }
+    />
+  )) }
+  </Notifications>
 ) : null
