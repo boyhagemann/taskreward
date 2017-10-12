@@ -1,7 +1,7 @@
 import { sign } from 'jsonwebtoken'
 import { encrypt } from './helpers'
 import { findUserByEmail, isValidPassword } from './User'
-const secret = 'fdst3401$sxk&d&^@@WWQR%%wefq43o54@#F*&$%GGq23s'
+import { SECRET } from '../constants'
 
 export const requestToken = async (_, { email, password }) => {
 
@@ -17,7 +17,7 @@ export const requestToken = async (_, { email, password }) => {
       throw new Error('Invalid password')
     }
 
-    const token = sign({ id: user.id }, secret)
+    const token = sign({ id: user.id }, SECRET)
 
     return { ok: true, token }
 

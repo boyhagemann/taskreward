@@ -60,8 +60,6 @@ app.post('/graphql',
   (req, res, next) => {
 
     const { user } = req
-    // console.log('Is there a user?', user)
-
     const context = { user }
 
     graphqlExpress({ schema, context })(req, res, next)
