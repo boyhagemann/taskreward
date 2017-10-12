@@ -6,7 +6,6 @@ import cors from 'cors'
 import typeDefs from './types'
 import resolvers from './resolvers'
 import { getUserByToken } from './resolvers/User'
-
 import { SECRET, PORT } from './constants'
 import { id } from './resolvers/helpers'
 
@@ -14,8 +13,6 @@ import { id } from './resolvers/helpers'
 import { execute, subscribe } from 'graphql'
 import { createServer } from 'http'
 import { SubscriptionServer } from 'subscriptions-transport-ws'
-
-
 
 
 const schema = makeExecutableSchema({ typeDefs, resolvers })

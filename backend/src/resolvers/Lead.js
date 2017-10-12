@@ -31,7 +31,7 @@ export const createLead = ({ id, user, parent, hash, source, motivation, status,
   )
   .then(result => transformOne(result, session))
   .then(lead => {
-    
+
     switch(source) {
 
       case 'invitation':

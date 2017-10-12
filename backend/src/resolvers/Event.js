@@ -74,7 +74,7 @@ export const createEvent = ({ id, type, user, lead, friend, profile, action, inc
   .run(query.join(''),
     {
       user,
-      root,
+      friend,
       lead,
       profile,
       action,

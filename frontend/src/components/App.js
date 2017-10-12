@@ -6,6 +6,7 @@ import { ConnectedRouter as Router } from 'react-router-redux'
 import { Provider } from 'react-redux'
 import { store, history } from '../configuration/redux'
 import styled, { injectGlobal, ThemeProvider } from 'styled-components'
+import ScrollToTop from './ScrollToTop'
 import defaultTheme from '../themes/default'
 import Allowed from './Allowed'
 import Box from './UI/Box'
@@ -59,41 +60,43 @@ class App extends Component {
       <ApolloProvider client={client}>
         <Provider store={store}>
           <Router history={history}>
-            <ThemeProvider theme={defaultTheme}>
-              <div>
-                <Switch>
-                  <Route path={`/page/`} component={NavbarContainer(PageNavbar)} />
-                  <Route path={`/`} component={NavbarContainer(RefererNavbar)} />
-                </Switch>
+            <ScrollToTop>
+              <ThemeProvider theme={defaultTheme}>
+                <div>
+                  <Switch>
+                    <Route path={`/page/`} component={NavbarContainer(PageNavbar)} />
+                    <Route path={`/`} component={NavbarContainer(RefererNavbar)} />
+                  </Switch>
 
-                <Content>
-                  <Route exact path={`/`} component={HomeContainer}/>
-                  <Route path={'/login'} component={GuestCanView(LoginContainer)} />
-                  <Route path={'/logout'} component={Logout} />
+                  <Content>
+                    <Route exact path={`/`} component={HomeContainer}/>
+                    <Route path={'/login'} component={GuestCanView(LoginContainer)} />
+                    <Route path={'/logout'} component={Logout} />
 
-                  <Route path={'/page/dashboard'} component={AdminCanView(PageDashboardContainer)} />
-                  <Route path={'/page/profile'} component={AdminCanView(PageProfileContainer)} />
-                  <Route exact path={'/page/leads'} component={AdminCanView(PageLeadsContainer)} />
-                  <Route path={'/page/leads/:id'} component={AdminCanView(PageLeadContainer)} />
-                  <Route path={'/page/preview'} component={AdminCanView(PagePreviewContainer)} />
-                  <Route path={'/page/claims'} component={AdminCanView(() => (<div>Claims</div>))} />
+                    <Route path={'/page/dashboard'} component={AdminCanView(PageDashboardContainer)} />
+                    <Route path={'/page/profile'} component={AdminCanView(PageProfileContainer)} />
+                    <Route exact path={'/page/leads'} component={AdminCanView(PageLeadsContainer)} />
+                    <Route path={'/page/leads/:id'} component={AdminCanView(PageLeadContainer)} />
+                    <Route path={'/page/preview'} component={AdminCanView(PagePreviewContainer)} />
+                    <Route path={'/page/claims'} component={AdminCanView(() => (<div>Claims</div>))} />
 
-                  <Route path={'/leads'} component={LeadsContainer} />
-                  <Route path={'/rewards'} component={RewardsContainer} />
-                  <Route path={'/my'} component={UserSettings} />
+                    <Route path={'/leads'} component={LeadsContainer} />
+                    <Route path={'/rewards'} component={RewardsContainer} />
+                    <Route path={'/my'} component={UserSettings} />
 
-                  <Route path={`/p/:hash`} component={PageContainer}/>
-                  <Route path={`/r/:hash`} render={ ({ match }) => <RedirectContainer hash={match.params.hash} /> } />
+                    <Route path={`/p/:hash`} component={PageContainer}/>
+                    <Route path={`/r/:hash`} render={ ({ match }) => <RedirectContainer hash={match.params.hash} /> } />
 
-                </Content>
+                  </Content>
 
-                <Footer />
+                  <Footer />
 
-                <NotificationsContainer />
-                <ModalContainer />
-                
-              </div>
-            </ThemeProvider>
+                  <NotificationsContainer />
+                  <ModalContainer />
+
+                </div>
+              </ThemeProvider>
+            </ScrollToTop>
           </Router>
         </Provider>
       </ApolloProvider>

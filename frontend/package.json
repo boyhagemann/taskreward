@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "color": "^2.0.0",
+    "dotenv": "^4.0.0",
     "grid-styled": "^2.0.0-10",
     "history": "^4.6.3",
     "iban": "^0.0.8",
